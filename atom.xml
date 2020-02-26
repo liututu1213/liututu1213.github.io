@@ -3,11 +3,11 @@
   <title>渣渣程序员</title>
   
   
-  <link href="/atom.xml" rel="self"/>
+  <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="https://github.com/liututu1213/liututu1213.github.io/"/>
+  <link href="https://github.com/liututu1213/liututu1213.github.io/blog/"/>
   <updated>2020-02-25T16:23:17.648Z</updated>
-  <id>https://github.com/liututu1213/liututu1213.github.io/</id>
+  <id>https://github.com/liututu1213/liututu1213.github.io/blog/</id>
   
   <author>
     <name>liututu1213</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Moya &amp;&amp; Alamofire</title>
-    <link href="https://github.com/liututu1213/liututu1213.github.io/2020/02/26/Moya/"/>
-    <id>https://github.com/liututu1213/liututu1213.github.io/2020/02/26/Moya/</id>
+    <link href="https://github.com/liututu1213/liututu1213.github.io/blog/2020/02/26/Moya/"/>
+    <id>https://github.com/liututu1213/liututu1213.github.io/blog/2020/02/26/Moya/</id>
     <published>2020-02-25T16:05:39.000Z</published>
     <updated>2020-02-25T16:23:17.648Z</updated>
     
@@ -36,17 +36,17 @@
     </summary>
     
     
-      <category term="swift" scheme="https://github.com/liututu1213/liututu1213.github.io/categories/swift/"/>
+      <category term="swift" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/categories/swift/"/>
     
     
-      <category term="liu" scheme="https://github.com/liututu1213/liututu1213.github.io/tags/liu/"/>
+      <category term="liu" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/tags/liu/"/>
     
   </entry>
   
   <entry>
     <title>Cocoapods源码分析</title>
-    <link href="https://github.com/liututu1213/liututu1213.github.io/2020/02/12/Cocoapods/"/>
-    <id>https://github.com/liututu1213/liututu1213.github.io/2020/02/12/Cocoapods/</id>
+    <link href="https://github.com/liututu1213/liututu1213.github.io/blog/2020/02/12/Cocoapods/"/>
+    <id>https://github.com/liututu1213/liututu1213.github.io/blog/2020/02/12/Cocoapods/</id>
     <published>2020-02-11T16:57:24.000Z</published>
     <updated>2020-02-25T17:00:01.631Z</updated>
     
@@ -62,15 +62,15 @@
     </summary>
     
     
-      <category term="Ruby" scheme="https://github.com/liututu1213/liututu1213.github.io/categories/Ruby/"/>
+      <category term="Ruby" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/categories/Ruby/"/>
     
     
   </entry>
   
   <entry>
     <title>Ruby基础</title>
-    <link href="https://github.com/liututu1213/liututu1213.github.io/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/"/>
-    <id>https://github.com/liututu1213/liututu1213.github.io/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/</id>
+    <link href="https://github.com/liututu1213/liututu1213.github.io/blog/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/"/>
+    <id>https://github.com/liututu1213/liututu1213.github.io/blog/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/</id>
     <published>2020-01-17T16:56:10.000Z</published>
     <updated>2020-02-25T17:00:24.905Z</updated>
     
@@ -86,15 +86,15 @@
     </summary>
     
     
-      <category term="Ruby" scheme="https://github.com/liututu1213/liututu1213.github.io/categories/Ruby/"/>
+      <category term="Ruby" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/categories/Ruby/"/>
     
     
   </entry>
   
   <entry>
     <title>Date</title>
-    <link href="https://github.com/liututu1213/liututu1213.github.io/2020/01/05/Date/"/>
-    <id>https://github.com/liututu1213/liututu1213.github.io/2020/01/05/Date/</id>
+    <link href="https://github.com/liututu1213/liututu1213.github.io/blog/2020/01/05/Date/"/>
+    <id>https://github.com/liututu1213/liututu1213.github.io/blog/2020/01/05/Date/</id>
     <published>2020-01-04T16:05:39.000Z</published>
     <updated>2020-02-25T16:22:50.090Z</updated>
     
@@ -110,17 +110,17 @@
     </summary>
     
     
-      <category term="swift" scheme="https://github.com/liututu1213/liututu1213.github.io/categories/swift/"/>
+      <category term="swift" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/categories/swift/"/>
     
     
-      <category term="liu" scheme="https://github.com/liututu1213/liututu1213.github.io/tags/liu/"/>
+      <category term="liu" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/tags/liu/"/>
     
   </entry>
   
   <entry>
     <title>PromiseKit</title>
-    <link href="https://github.com/liututu1213/liututu1213.github.io/2019/12/31/PromiseKit/"/>
-    <id>https://github.com/liututu1213/liututu1213.github.io/2019/12/31/PromiseKit/</id>
+    <link href="https://github.com/liututu1213/liututu1213.github.io/blog/2019/12/31/PromiseKit/"/>
+    <id>https://github.com/liututu1213/liututu1213.github.io/blog/2019/12/31/PromiseKit/</id>
     <published>2019-12-30T17:01:25.000Z</published>
     <updated>2020-02-25T17:05:53.318Z</updated>
     
@@ -136,7 +136,7 @@
     </summary>
     
     
-      <category term="swift" scheme="https://github.com/liututu1213/liututu1213.github.io/categories/swift/"/>
+      <category term="swift" scheme="https://github.com/liututu1213/liututu1213.github.io/blog/categories/swift/"/>
     
     
   </entry>
