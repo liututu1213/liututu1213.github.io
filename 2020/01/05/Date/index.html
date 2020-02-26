@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="liu," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="渣渣程序员" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1. UTC、GMT和时间戳介绍GMT格林尼治标准时间（Greenwich Mean Time）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，即本初子午线时间。 由于地球在椭圆轨道里的运动速度不均匀，这个时刻可能与实际的太阳时有误差，所以有了UTC时间出现。 UTC协调世界时间（又称世界标准时间），与GMT一样都是本初子午时间，只不过UTC是经过协调后的世界时间，比GMT更加准确。全球一共有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Date">
+<meta property="og:url" content="https://github.com/liututu1213/liututu1213.github.io/2020/01/05/Date/index.html">
+<meta property="og:site_name" content="渣渣程序员">
+<meta property="og:description" content="1. UTC、GMT和时间戳介绍GMT格林尼治标准时间（Greenwich Mean Time）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，即本初子午线时间。 由于地球在椭圆轨道里的运动速度不均匀，这个时刻可能与实际的太阳时有误差，所以有了UTC时间出现。 UTC协调世界时间（又称世界标准时间），与GMT一样都是本初子午时间，只不过UTC是经过协调后的世界时间，比GMT更加准确。全球一共有">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png">
+<meta property="article:published_time" content="2020-01-04T16:05:39.000Z">
+<meta property="article:modified_time" content="2020-02-25T16:22:50.090Z">
+<meta property="article:author" content="liututu1213">
+<meta property="article:tag" content="liu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/liututu1213/liututu1213.github.io/2020/01/05/Date/"/>
+
+
+
+
+
+  <title>Date | 渣渣程序员</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">渣渣程序员</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/liututu1213/liututu1213.github.io/2020/01/05/Date/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liututu1213">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="渣渣程序员">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Date</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-05T00:05:39+08:00">
+                2020-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/swift/" itemprop="url" rel="index">
+                    <span itemprop="name">swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-UTC、GMT和时间戳介绍"><a href="#1-UTC、GMT和时间戳介绍" class="headerlink" title="1. UTC、GMT和时间戳介绍"></a>1. UTC、GMT和时间戳介绍</h4><h5 id="GMT"><a href="#GMT" class="headerlink" title="GMT"></a>GMT</h5><p>格林尼治标准时间（Greenwich Mean Time）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，即本初子午线时间。</p>
+<p>由于地球在椭圆轨道里的运动速度不均匀，这个时刻可能与实际的太阳时有误差，所以有了UTC时间出现。</p>
+<h5 id="UTC"><a href="#UTC" class="headerlink" title="UTC"></a>UTC</h5><p>协调世界时间（又称世界标准时间），与GMT一样都是本初子午时间，只不过UTC是经过协调后的世界时间，比GMT更加准确。全球一共有24个时区。</p>
+<p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png" alt="timezone"></p>
+<p>而北京时间位于东八区，与格林尼治时间相差八小时，也就是我们经常在开发中遇到8小时时差的问题。</p>
+<h4 id="2-swift中Date与Calender关系"><a href="#2-swift中Date与Calender关系" class="headerlink" title="2. swift中Date与Calender关系"></a>2. swift中Date与Calender关系</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png" alt=""></p>
+<p>首先Date可以通过DateFormatter进行互转，Date通过格式化可以转化成自定义的样式，反过来同样成立。在iOS中，没办法像其他语言一样直接time.year这样的api获取年份等信息，想要获取Date的年月日信息需要使用Calende+DateCompontents来完成，反之，也可以通过DateComponents对各个组件进行组装，通过Calender对象变成date。</p>
+<p>Calender封装了有关计算时间的系统的信息，其中定义了年的开始、长度和分割，提供了关于日历的信息和日历计算的支持。</p>
+<h4 id="3-Date"><a href="#3-Date" class="headerlink" title="3. Date"></a>3. Date</h4><p>iOS中的Date是用来表示公历的GMT时间，Date是没有存储时区等信息，所以不管你在哪个时区打印的Date()都是一样的，这一点非常重要。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="type">Date</span>()</span><br><span class="line"><span class="built_in">print</span>(date)</span><br></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2020-01-04 10:03:01 +0000</span><br></pre></td></tr></table></figure>
+
+<p>Date()获取的是零时区的时间(格林尼治的时间)，而如果你系统所在的时区是东八区即北京时间，则实际系统时间与打印出来的时间相差八小时。</p>
+<p>Date的初始化方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(timeIntervalSinceNow: <span class="type">TimeInterval</span>) <span class="comment">//以当前时间的偏移秒数来初始化</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(timeIntervalSince1970: <span class="type">TimeInterval</span>) <span class="comment">//以GMT时间的偏移秒数来初始化</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(timeInterval: <span class="type">TimeInterval</span>, since date: <span class="type">Date</span>) <span class="comment">//以给定秒数返回相对于另一个给定日期初始化的“日期”</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+<p>时间比较相关方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">compare</span><span class="params">(<span class="number">_</span> other: Date)</span></span> -&gt; <span class="type">ComparisonResult</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> == <span class="params">(lhs: Date, rhs: Date)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> &lt; (lhs: Date, rhs: Date) -&gt; <span class="title">Bool</span></span></span><br><span class="line"><span class="function"><span class="title">public</span> <span class="title">static</span> <span class="title">func</span> &gt; <span class="params">(lhs: Date, rhs: Date)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> + <span class="params">(lhs: Date, rhs: TimeInterval)</span></span> -&gt; <span class="type">Date</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h5><p>时间戳是指1970-01-01 00:00:00到当前时间的秒数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date.timeIntervalSince1970 </span><br><span class="line">date.timeIntervalSinceNow</span><br><span class="line">date.timeIntervalSince(xx)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-DateFormatter-Date-与String-互相转换"><a href="#4-DateFormatter-Date-与String-互相转换" class="headerlink" title="4. DateFormatter: Date 与String 互相转换"></a>4. DateFormatter: Date 与String 互相转换</h4><p>DateFormatter 是Formatter的子类，Formatter是将数据在字符串与特定类型的对象之间转换，目前Formatter有两个子类NumberFormatter和DateFormatter。</p>
+<p>DateFormatter用来在日期和字符串之间的转换，DateFormatter格式其实是遵守了Unicode Technical Standard。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> dateFormat: <span class="type">String!</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> dateStyle: <span class="type">DateFormatter</span>.<span class="type">Style</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> timeStyle: <span class="type">DateFormatter</span>.<span class="type">Style</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> locale: <span class="type">Locale!</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> timeZone: <span class="type">TimeZone!</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> calendar: <span class="type">Calendar!</span> <span class="comment">//如果未指定则使用当前用户的逻辑日历</span></span><br></pre></td></tr></table></figure>
+
+<p>下面将会来一一介绍这些相关的属性。</p>
+<p>DateFormatter提供了许多定义好的时间格式，如dateStyle和timeStyle。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Style</span> : <span class="title">UInt</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">case</span> short</span><br><span class="line">    <span class="keyword">case</span> medium</span><br><span class="line">    <span class="keyword">case</span> long</span><br><span class="line">    <span class="keyword">case</span> full</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">格式类型</th>
+<th align="center">dateStyle</th>
+<th align="center">timeStyle</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">none</td>
+<td align="center">/</td>
+<td align="center">/</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">1/4/20</td>
+<td align="center">7:37 PM</td>
+</tr>
+<tr>
+<td align="center">medium</td>
+<td align="center">Jan 4, 2020</td>
+<td align="center">7:38:51 PM</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">January 4, 2020</td>
+<td align="center">7:39:50 PM GMT+8</td>
+</tr>
+<tr>
+<td align="center">full</td>
+<td align="center">Saturday, January 4, 2020</td>
+<td align="center">7:40:40 PM China Standard Time</td>
+</tr>
+</tbody></table>
+<p>DateFormatter有一个local的属性，Local是与国际化相关的基础类。</p>
+<h4 id="5-Local"><a href="#5-Local" class="headerlink" title="5. Local"></a>5. Local</h4><p>Local是是与国际化相关的基础类，在OS X中，可以到”系统偏好设置-&gt;语言与地区”中设置当前的local。Local是包含所有地区的语言与文化习俗的基础类，一个Local实例包含了针对这个地区内特定一群人的所有语言文化基准，其中包括：</p>
+<ul>
+<li>语言</li>
+<li>键盘</li>
+<li>数字、日期和时间格式</li>
+<li>货币  如USD</li>
+<li>排序和分类</li>
+<li>符号、颜色与头像的使用</li>
+</ul>
+<p>每一个Local的实例对应着一个地区标识符，如en_US、zh_CN等，这些标识符包含 语言码(en)和地区码(US)。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Locale</span>.preferredLanguages <span class="comment">//返回用户偏好设置的语言列表</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-TimeZone"><a href="#6-TimeZone" class="headerlink" title="6. TimeZone"></a>6. TimeZone</h4><p>TimeZone表示时区信息，上面提到过世界上有24是个时区，任何时区都是GMT为基准，TimeZone对象所代表的时区都是相对于GMT的。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> current: <span class="type">TimeZone</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>?(identifier: <span class="type">String</span>) <span class="comment">//用给定的标识符初始化timeZone对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>?(secondsFromGMT seconds: <span class="type">Int</span>) <span class="comment">//通过相对于GMT时间偏移量(时差)来获取时区</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>一般应用程序的默认时区，是和手机系统设置的时区一致的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeZone.current</span><br></pre></td></tr></table></figure>
+
+<p>打印结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">▿ Asia&#x2F;Shanghai (current)</span><br><span class="line">  - identifier : &quot;Asia&#x2F;Shanghai&quot;</span><br><span class="line">  - kind : &quot;current&quot;</span><br><span class="line">  ▿ abbreviation : Optional&lt;String&gt;</span><br><span class="line">    - some : &quot;GMT+8&quot;</span><br><span class="line">  - secondsFromGMT : 28800 &#x2F;&#x2F;相对于GMT的时差 秒</span><br><span class="line">  - isDaylightSavingTime : false</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-DateComponents"><a href="#7-DateComponents" class="headerlink" title="7. DateComponents"></a>7. DateComponents</h4><p>这个类可用于计算未来或过去的日期，Calender用它来实现Date和DateComponents相互转换</p>
+<h4 id="8-Calendar"><a href="#8-Calendar" class="headerlink" title="8. Calendar"></a>8. Calendar</h4><p>在iOS中，没办法像其他语言一样直接time.year这样的api获取年份等信息，想要获取Date的年月日需要使用Calender的日历对象。Calender封装了有关计算时间的系统的信息，其中定义了年的开始、长度和分割，提供了关于日历的信息和日历计算的支持。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> current: <span class="type">Calendar</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> autoupdatingCurrent: <span class="type">Calendar</span> &#123; <span class="keyword">get</span> &#125; <span class="comment">//当前系统设置的日历的值</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(identifier: <span class="type">Calendar</span>.<span class="type">Identifier</span>) <span class="comment">//Identifier 是一个枚举，提供了各种类型的日历</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">component</span><span class="params">(<span class="number">_</span> component: Calendar.Component, from date: Date)</span></span> -&gt; <span class="type">Int</span> <span class="comment">//返回一个给定date的日期组件</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>先来介绍Calender的相关的api</p>
+<h5 id="8-1-Calendar-Identifier"><a href="#8-1-Calendar-Identifier" class="headerlink" title="8.1  Calendar.Identifier"></a>8.1  Calendar.Identifier</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Identifier</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> gregorian <span class="comment">//公历 Calender的默认值</span></span><br><span class="line">    <span class="keyword">case</span> buddhist</span><br><span class="line">    <span class="keyword">case</span> chinese <span class="comment">//农历</span></span><br><span class="line">    <span class="keyword">case</span> coptic</span><br><span class="line">    <span class="keyword">case</span> ethiopicAmeteMihret</span><br><span class="line">    <span class="keyword">case</span> ethiopicAmeteAlem</span><br><span class="line">    <span class="keyword">case</span> hebrew</span><br><span class="line">    <span class="keyword">case</span> iso8601</span><br><span class="line">    <span class="keyword">case</span> indian</span><br><span class="line">    <span class="keyword">case</span> islamic</span><br><span class="line">    <span class="keyword">case</span> islamicCivil</span><br><span class="line">    <span class="keyword">case</span> japanese</span><br><span class="line">    <span class="keyword">case</span> persian</span><br><span class="line">    <span class="keyword">case</span> republicOfChina</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-2-Calendar-Component"><a href="#8-2-Calendar-Component" class="headerlink" title="8.2 Calendar.Component"></a>8.2 Calendar.Component</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> era <span class="comment">// 特定时期的时代，取决于日期的日历系统</span></span><br><span class="line">    <span class="keyword">case</span> year</span><br><span class="line">    <span class="keyword">case</span> month</span><br><span class="line">    <span class="keyword">case</span> day</span><br><span class="line">    <span class="keyword">case</span> hour</span><br><span class="line">    <span class="keyword">case</span> minute</span><br><span class="line">    <span class="keyword">case</span> second</span><br><span class="line">    <span class="keyword">case</span> weekday <span class="comment">//星期几，默认情况下周日为1，周一为2，以此类推</span></span><br><span class="line">    <span class="keyword">case</span> weekdayOrdinal <span class="comment">//表示指定日期是当前这个月的第几个星期几，如2020-02-13，星期四，是这个月的第2个星期四</span></span><br><span class="line">    <span class="keyword">case</span> quarter <span class="comment">//返回季度单位的数字，但不同地区季度的起始时间不同，因此此属性默认是0，除非赋值。</span></span><br><span class="line">    <span class="keyword">case</span> weekOfMonth <span class="comment">//Identifier for the week of the month calendar unit.</span></span><br><span class="line">    <span class="keyword">case</span> weekOfYear<span class="comment">// Identifier for the week of the year unit.</span></span><br><span class="line">    <span class="keyword">case</span> yearForWeekOfYear <span class="comment">//Identifier for the week-counting year unit.</span></span><br><span class="line">    <span class="keyword">case</span> nanosecond</span><br><span class="line">    <span class="keyword">case</span> calendar</span><br><span class="line">    <span class="keyword">case</span> timeZone</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Date类是无法单独来获取每一个元素的信息，必须使用component方法获取给定日期的日期组件即Calendar.Component，获取某个时间点对应的”年”、”月”、”日”、”第几周”、”周几”等信息。</p>
+<h5 id="8-3-Calender相关函数"><a href="#8-3-Calender相关函数" class="headerlink" title="8.3 Calender相关函数"></a>8.3 Calender相关函数</h5><p><code>public func minimumRange(of component: Calendar.Component) -&gt; Range&lt;Int&gt;?</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">let</span> range = calendar.minimumRange(of: .day)</span><br><span class="line"><span class="built_in">print</span>(range) <span class="comment">//Range(1..&lt;29)</span></span><br></pre></td></tr></table></figure>
+
+<p>返回指定组件最小的限制范围，如Day Components 最小的范围是1-28</p>
+<p><code>public func maximumRange(of component: Calendar.Component) -&gt; Range&lt;Int&gt;?</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">let</span> range = calendar.maximumRange(of: .day)</span><br><span class="line"><span class="built_in">print</span>(range) <span class="comment">// Range(1..&lt;32)</span></span><br></pre></td></tr></table></figure>
+
+<p>date所在的小组件在 大组件里的范围。</p>
+<p><code>public func range(of smaller: Calendar.Component, in larger: Calendar.Component, for date: Date) -&gt; Range&lt;Int&gt;?</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="type">Date</span>() <span class="comment">///"Feb 14, 2020 at 1:10 AM"</span></span><br><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">let</span> range = calendar.range(of: .day, <span class="keyword">in</span>: .month, <span class="keyword">for</span>: date)</span><br><span class="line"><span class="built_in">print</span>(range) <span class="comment">/// Range(1..&lt;30)</span></span><br></pre></td></tr></table></figure>
+
+<p>返回指定日期所在的小组件在大组件的一个时间范围。</p>
+<p><code>public func dateInterval(of component: Calendar.Component, start: inout Date, interval: inout TimeInterval, for date: Date) -&gt; Bool</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="type">Date</span>() <span class="comment">///Feb 14, 2020 at 1:14 AM</span></span><br><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">var</span> d: <span class="type">Date</span> = <span class="type">Date</span>()</span><br><span class="line"><span class="keyword">var</span> time: <span class="type">Double</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 当前时间所在的一周的开始时间，周日为每周的开始时间</span></span><br><span class="line">calendar.dateInterval(of: .weekOfMonth, start: &amp;d, interval: &amp;time, <span class="keyword">for</span>: date)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="built_in">print</span>(time)</span><br></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2020-02-08 16:00:00 +0000</span><br><span class="line">604800.0</span><br></pre></td></tr></table></figure>
+
+<p>通过两个inout参数返回包含给定日期、组件的开始时间和时间长。</p>
+<p><code>public func ordinality(of smaller: Calendar.Component, in larger: Calendar.Component, for date: Date) -&gt; Int?</code></p>
+<p> 返回指定的日期 指定的较小日历组件(Day)在较大日历组件(weekOfMonth) 的序号。</p>
+<p><code>public func date(byAdding components: DateComponents, to date: Date, wrappingComponents: Bool = false) -&gt; Date?</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="type">Date</span>() <span class="comment">///2020-02-13 17:29:35 +0000</span></span><br><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">var</span> dateComponets = <span class="type">DateComponents</span>()</span><br><span class="line">dateComponets.day = <span class="number">18</span></span><br><span class="line"><span class="keyword">let</span> day = calendar.date(byAdding: dateComponets, to: date)!</span><br><span class="line"><span class="built_in">print</span>(day) <span class="number">2020</span>-<span class="number">03</span>-<span class="number">02</span> <span class="number">17</span>:<span class="number">29</span>:<span class="number">35</span> +<span class="number">0000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> day2 = calendar.date(byAdding: dateComponets, to: date, wrappingComponents: <span class="literal">true</span>)!</span><br><span class="line"><span class="built_in">print</span>(day2) <span class="comment">///2020-02-02 17:29:35 +0000</span></span><br></pre></td></tr></table></figure>
+
+<p>向给定日期添加组件计算出新的日期，其中<code>wrappingComponents</code>为true表示组件在增加的时候溢出时，不是向更高的组件”进位”</p>
+<p><code>public func date(from components: DateComponents) -&gt; Date?</code></p>
+<p>用指定的DateComponents创建一个新的日期，如果匹配不到组件的日期，则返回nil。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">dateComponents</span><span class="params">(<span class="number">_</span> components: Set&lt;Calendar.Component&gt;, from date: Date)</span></span> -&gt; <span class="type">DateComponents</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">dateComponents</span><span class="params">(<span class="keyword">in</span> timeZone: TimeZone, from date: Date)</span></span> -&gt; <span class="type">DateComponent</span></span><br></pre></td></tr></table></figure>
+
+<p>返回这个日历时区所有的日历组件，第一个是传入指定的Calendar.Component数组，第二个是传入TimeZone</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">dateComponents</span><span class="params">(<span class="number">_</span> components: Set&lt;Calendar.Component&gt;, from start: Date, to end: Date)</span></span> -&gt; <span class="type">DateComponents</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">dateComponents</span><span class="params">(<span class="number">_</span> components: Set&lt;Calendar.Component&gt;, from start: DateComponents, to end: DateComponents)</span></span> -&gt; <span class="type">DateComponents</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public func component(_ component: Calendar.Component, from date: Date) -&gt; Int</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="type">Date</span>() <span class="comment">//2020-02-15 07:14:06 +0000</span></span><br><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">let</span> startOfDay = calendar.startOfDay(<span class="keyword">for</span>: date)</span><br><span class="line"><span class="built_in">print</span>(startOfDay) <span class="comment">//2020-02-14 16:00:00 +0000</span></span><br></pre></td></tr></table></figure>
+
+<p>返回给定日期的第一个时刻。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">compare</span><span class="params">(<span class="number">_</span> date1: Date, to date2: Date, toGranularity component: Calendar.Component)</span></span> -&gt; <span class="type">ComparisonResult</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">isDate</span><span class="params">(<span class="number">_</span> date1: Date, equalTo date2: Date, toGranularity component: Calendar.Component)</span></span> -&gt; <span class="type">Bool</span></span><br></pre></td></tr></table></figure>
+
+<p>component用于比较的粒度，如.hour 判断两个日期是否在相同的小时内。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">isDate</span><span class="params">(<span class="number">_</span> date1: Date, inSameDayAs date2: Date)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">isDateInToday</span><span class="params">(<span class="number">_</span> date: Date)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">isDateInYesterday</span><span class="params">(<span class="number">_</span> date: Date)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">isDateInTomorrow</span><span class="params">(<span class="number">_</span> date: Date)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">isDateInWeekend</span><span class="params">(<span class="number">_</span> date: Date)</span></span> -&gt; <span class="type">Bool</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public func dateIntervalOfWeekend(containing date: Date) -&gt; DateInterval?</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用Calender和Components对Date进行的扩展：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Date</span> </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> startOfWeek: <span class="type">Date</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> calendar = <span class="type">Calendar</span>.current</span><br><span class="line">        <span class="keyword">let</span> component = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear, .hour], from: <span class="keyword">self</span>)</span><br><span class="line">        calendar.firstWeekday = <span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> calendar.date(from: component)!</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> startOfCurrentMonth: <span class="type">Date</span> &#123;</span><br><span class="line">         <span class="keyword">let</span> calendar = <span class="type">NSCalendar</span>.current</span><br><span class="line">         <span class="keyword">let</span> components = calendar.dateComponents([.year, .month, .hour], from: <span class="keyword">self</span>)</span><br><span class="line">         <span class="keyword">let</span> startOfMonth = calendar.date(from: components)!</span><br><span class="line">         <span class="keyword">return</span> startOfMonth</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>startOfWeek获取一周开始的日期，<code>calendar.firstWeekday = 2</code>用于设置一周从周一开始算起；startOfCurrentMonth获取当前日期所在的月开始时间。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/liu/" rel="tag"># liu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/31/PromiseKit/" rel="next" title="PromiseKit">
+                <i class="fa fa-chevron-left"></i> PromiseKit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/" rel="prev" title="Ruby基础">
+                Ruby基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">liututu1213</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-UTC、GMT和时间戳介绍"><span class="nav-number">1.</span> <span class="nav-text">1. UTC、GMT和时间戳介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GMT"><span class="nav-number">1.1.</span> <span class="nav-text">GMT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UTC"><span class="nav-number">1.2.</span> <span class="nav-text">UTC</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-swift中Date与Calender关系"><span class="nav-number">2.</span> <span class="nav-text">2. swift中Date与Calender关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Date"><span class="nav-number">3.</span> <span class="nav-text">3. Date</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#时间戳"><span class="nav-number">3.1.</span> <span class="nav-text">时间戳</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-DateFormatter-Date-与String-互相转换"><span class="nav-number">4.</span> <span class="nav-text">4. DateFormatter: Date 与String 互相转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Local"><span class="nav-number">5.</span> <span class="nav-text">5. Local</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-TimeZone"><span class="nav-number">6.</span> <span class="nav-text">6. TimeZone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-DateComponents"><span class="nav-number">7.</span> <span class="nav-text">7. DateComponents</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Calendar"><span class="nav-number">8.</span> <span class="nav-text">8. Calendar</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-Calendar-Identifier"><span class="nav-number">8.1.</span> <span class="nav-text">8.1  Calendar.Identifier</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-Calendar-Component"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 Calendar.Component</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-Calender相关函数"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 Calender相关函数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liututu1213</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
