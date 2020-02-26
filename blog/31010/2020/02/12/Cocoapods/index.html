@@ -129,7 +129,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    4.4k 字
+                    4.5k 字
                   </span>&nbsp;
                 
 
@@ -193,56 +193,258 @@
 </ul>
 <p>在Cocoapods中，所有的命令都会由<code>Commad</code>派发到对应的类。</p>
 <h3 id="Debug-Cocoapods"><a href="#Debug-Cocoapods" class="headerlink" title="Debug Cocoapods"></a>Debug Cocoapods</h3><p>把Cocoapods相关的代码clone下来，Cocoapods项目作为入口，修改Cocoapods/Gemfile，指定每个依赖的path:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 声明Cocoapods对于git 仓库的依赖关系</span></span><br><span class="line"><span class="comment"># 兼容本地git 仓库模式开发</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cp_gem</span><span class="params">(name, repo_name, branch = <span class="string">'master'</span>, <span class="symbol">path:</span> <span class="literal">false</span>)</span></span></span><br><span class="line">  <span class="keyword">return</span> gem name <span class="keyword">if</span> SKIP_UNRELEASED_VERSIONS</span><br><span class="line">  <span class="comment"># 如果path参数为true，则将在".../[repo_name]"这个路径下搜索仓库</span></span><br><span class="line">  opts = <span class="keyword">if</span> path</span><br><span class="line">           &#123; <span class="symbol">:path</span> =&gt; <span class="string">"../<span class="subst">#&#123;repo_name&#125;</span>"</span> &#125;</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">           url = <span class="string">"https://github.com/CocoaPods/<span class="subst">#&#123;repo_name&#125;</span>.git"</span></span><br><span class="line">           &#123; <span class="symbol">:git</span> =&gt; url, <span class="symbol">:branch</span> =&gt; branch &#125;</span><br><span class="line">         <span class="keyword">end</span></span><br><span class="line">  <span class="comment"># 返回标准的Gemfile Gem 导入格式</span></span><br><span class="line">  gem name, opts</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">source <span class="string">'https://rubygems.org'</span></span><br><span class="line"></span><br><span class="line">gemspec</span><br><span class="line"></span><br><span class="line">gem <span class="string">'json'</span>, <span class="symbol">:git</span> =&gt; <span class="string">'https://github.com/segiddins/json.git'</span>, <span class="symbol">:branch</span> =&gt; <span class="string">'seg-1.7.7-ruby-2.2'</span></span><br><span class="line"></span><br><span class="line">group <span class="symbol">:development</span> <span class="keyword">do</span></span><br><span class="line">  cp_gem <span class="string">'claide'</span>,                <span class="string">'CLAide'</span>, <span class="symbol">path:</span> <span class="string">'CLAide'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-core'</span>,        <span class="string">'Core'</span>, <span class="symbol">path:</span> <span class="string">'Core'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-deintegrate'</span>, <span class="string">'cocoapods-deintegrate'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-downloader'</span>,  <span class="string">'cocoapods-downloader'</span>, <span class="symbol">path:</span> <span class="string">'cocoapods-downloader'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-plugins'</span>,     <span class="string">'cocoapods-plugins'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-search'</span>,      <span class="string">'cocoapods-search'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-stats'</span>,       <span class="string">'cocoapods-stats'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-trunk'</span>,       <span class="string">'cocoapods-trunk'</span></span><br><span class="line">  cp_gem <span class="string">'cocoapods-try'</span>,         <span class="string">'cocoapods-try'</span></span><br><span class="line">  cp_gem <span class="string">'molinillo'</span>,             <span class="string">'Molinillo'</span>, <span class="symbol">path:</span> <span class="string">'Molinillo'</span></span><br><span class="line">  cp_gem <span class="string">'nanaimo'</span>,               <span class="string">'Nanaimo'</span></span><br><span class="line">  cp_gem <span class="string">'xcodeproj'</span>,             <span class="string">'Xcodeproj'</span>, <span class="symbol">path:</span> <span class="string">'Xcodeproj'</span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby"># 声明Cocoapods对于git 仓库的依赖关系
+# 兼容本地git 仓库模式开发
+def cp_gem(name, repo_name, branch = &#39;master&#39;, path: false)
+  return gem name if SKIP_UNRELEASED_VERSIONS
+  # 如果path参数为true，则将在&quot;.../[repo_name]&quot;这个路径下搜索仓库
+  opts = if path
+           { :path =&gt; &quot;../#{repo_name}&quot; }
+         else
+           url = &quot;https://github.com/CocoaPods/#{repo_name}.git&quot;
+           { :git =&gt; url, :branch =&gt; branch }
+         end
+  # 返回标准的Gemfile Gem 导入格式
+  gem name, opts
+end
 
+source &#39;https://rubygems.org&#39;
+
+gemspec
+
+gem &#39;json&#39;, :git =&gt; &#39;https://github.com/segiddins/json.git&#39;, :branch =&gt; &#39;seg-1.7.7-ruby-2.2&#39;
+
+group :development do
+  cp_gem &#39;claide&#39;,                &#39;CLAide&#39;, path: &#39;CLAide&#39;
+  cp_gem &#39;cocoapods-core&#39;,        &#39;Core&#39;, path: &#39;Core&#39;
+  cp_gem &#39;cocoapods-deintegrate&#39;, &#39;cocoapods-deintegrate&#39;
+  cp_gem &#39;cocoapods-downloader&#39;,  &#39;cocoapods-downloader&#39;, path: &#39;cocoapods-downloader&#39;
+  cp_gem &#39;cocoapods-plugins&#39;,     &#39;cocoapods-plugins&#39;
+  cp_gem &#39;cocoapods-search&#39;,      &#39;cocoapods-search&#39;
+  cp_gem &#39;cocoapods-stats&#39;,       &#39;cocoapods-stats&#39;
+  cp_gem &#39;cocoapods-trunk&#39;,       &#39;cocoapods-trunk&#39;
+  cp_gem &#39;cocoapods-try&#39;,         &#39;cocoapods-try&#39;
+  cp_gem &#39;molinillo&#39;,             &#39;Molinillo&#39;, path: &#39;Molinillo&#39;
+  cp_gem &#39;nanaimo&#39;,               &#39;Nanaimo&#39;
+  cp_gem &#39;xcodeproj&#39;,             &#39;Xcodeproj&#39;, path: &#39;Xcodeproj&#39;
+  ...
+end</code></pre>
 <ol>
 <li>在Cocoapods目录下，执行<code>bundle install</code></li>
 <li>进入CocoaPods/examples/AFNetworking\ Example，执行<code>bundle exec pod install</code></li>
 </ol>
 <h3 id="pod-install的分析"><a href="#pod-install的分析" class="headerlink" title="pod install的分析"></a>pod install的分析</h3><h4 id="pod-命令的入口"><a href="#pod-命令的入口" class="headerlink" title="pod  命令的入口"></a>pod  命令的入口</h4><p>当输入<code>pod install</code>命令的时候，首先系统会调用这个<code>pod</code>命令，所有的命令都是在<code>/bin</code>目录下存放的脚本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ command which pod</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;bin&#x2F;pod</span><br></pre></td></tr></table></figure>
+<pre><code>$ command which pod
+/usr/local/bin/pod</code></pre><p>打开这个入口脚本<code>pod</code>文件：</p>
+<pre><code class="ruby">#!/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby
+#
+# This file was generated by RubyGems.
+#
+# The application &#39;cocoapods&#39; is installed as part of a gem, and
+# this file is here to facilitate running it.
+#
 
-<p>打开这个入口脚本<code>pod</code>文件：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This file was generated by RubyGems.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The application 'cocoapods' is installed as part of a gem, and</span></span><br><span class="line"><span class="comment"># this file is here to facilitate running it.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"></span><br><span class="line">version = <span class="string">"&gt;= 0.a"</span></span><br><span class="line"></span><br><span class="line">str = ARGV.first</span><br><span class="line"><span class="keyword">if</span> str</span><br><span class="line">  <span class="comment"># \A代表输入开始的位置，\z代表输入的结束</span></span><br><span class="line">  str = str.b[<span class="regexp">/\A_(.*)_\z/</span>, <span class="number">1</span>]</span><br><span class="line">  <span class="keyword">if</span> str <span class="keyword">and</span> Gem::Version.correct?(str)</span><br><span class="line">    version = str</span><br><span class="line">    <span class="comment"># shift 拿出第一个元素并移除</span></span><br><span class="line">    ARGV.shift</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> Gem.respond_to?(<span class="symbol">:activate_bin_path</span>)</span><br><span class="line">load Gem.activate_bin_path(<span class="string">'cocoapods'</span>, <span class="string">'pod'</span>, version)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">gem <span class="string">"cocoapods"</span>, version</span><br><span class="line">load Gem.bin_path(<span class="string">"cocoapods"</span>, <span class="string">"pod"</span>, version)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+require &#39;rubygems&#39;
 
+version = &quot;&gt;= 0.a&quot;
+
+str = ARGV.first
+if str
+  # \A代表输入开始的位置，\z代表输入的结束
+  str = str.b[/\A_(.*)_\z/, 1]
+  if str and Gem::Version.correct?(str)
+    version = str
+    # shift 拿出第一个元素并移除
+    ARGV.shift
+  end
+end
+
+if Gem.respond_to?(:activate_bin_path)
+load Gem.activate_bin_path(&#39;cocoapods&#39;, &#39;pod&#39;, version)
+else
+gem &quot;cocoapods&quot;, version
+load Gem.bin_path(&quot;cocoapods&quot;, &quot;pod&quot;, version)
+end
+</code></pre>
 <p>入口中将命令的执行指向了Gem组件的Path中，这样就找到了Cocoapods的入口脚本，即在<code>cocoapods/bin</code>目录下的<code>pod</code>。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'cocoapods'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> profile_filename = ENV[<span class="string">'COCOAPODS_PROFILE'</span>]</span><br><span class="line">  <span class="keyword">require</span> <span class="string">'ruby-prof'</span></span><br><span class="line">  reporter =</span><br><span class="line">    <span class="keyword">case</span> (profile_extname = File.extname(profile_filename))</span><br><span class="line">    <span class="keyword">when</span> <span class="string">'.txt'</span></span><br><span class="line">      RubyProf::FlatPrinterWithLineNumbers</span><br><span class="line">    <span class="keyword">when</span> <span class="string">'.html'</span></span><br><span class="line">      RubyProf::GraphHtmlPrinter</span><br><span class="line">    <span class="keyword">when</span> <span class="string">'.callgrind'</span></span><br><span class="line">      RubyProf::CallTreePrinter</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      raise <span class="string">"Unknown profiler format indicated by extension: <span class="subst">#&#123;profile_extname&#125;</span>"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  File.open(profile_filename, <span class="string">'w'</span>) <span class="keyword">do</span> <span class="params">|io|</span></span><br><span class="line">    reporter.new(RubyProf.profile &#123; Pod::Command.run(ARGV) &#125;).print(io)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  Pod::Command.run(ARGV)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">require &#39;cocoapods&#39;
 
+if profile_filename = ENV[&#39;COCOAPODS_PROFILE&#39;]
+  require &#39;ruby-prof&#39;
+  reporter =
+    case (profile_extname = File.extname(profile_filename))
+    when &#39;.txt&#39;
+      RubyProf::FlatPrinterWithLineNumbers
+    when &#39;.html&#39;
+      RubyProf::GraphHtmlPrinter
+    when &#39;.callgrind&#39;
+      RubyProf::CallTreePrinter
+    else
+      raise &quot;Unknown profiler format indicated by extension: #{profile_extname}&quot;
+    end
+  File.open(profile_filename, &#39;w&#39;) do |io|
+    reporter.new(RubyProf.profile { Pod::Command.run(ARGV) }).print(io)
+  end
+else
+  Pod::Command.run(ARGV)
+end</code></pre>
 <p>在最后部分，通过调用<code>Pod::Command.run(ARGV)</code>,实例化了一个<code>CLAide::Command</code>对象，用户输入的命令及参数进入CLAide解析阶段，这个是一个命令解析工具，每次命令的执行，其实是对应到具体class的<code>run</code>方法。  </p>
 <p>执行<code>pod install</code>的类是<code>Install</code>，继承于<code>Command</code>， 根据Podfile.lock的版本安装项目依赖项：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Pod</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Command</span></span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Install</span> &lt; Command</span></span><br><span class="line">      <span class="keyword">include</span> RepoUpdate</span><br><span class="line">      <span class="keyword">include</span> ProjectDirectory</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">options</span></span></span><br><span class="line">        [</span><br><span class="line">          [<span class="string">'--repo-update'</span>, <span class="string">'Force running `pod repo update` before install'</span>],</span><br><span class="line">          [<span class="string">'--deployment'</span>, <span class="string">'Disallow any changes to the Podfile or the Podfile.lock during installation'</span>],</span><br><span class="line">          [<span class="string">'--clean-install'</span>, <span class="string">'Ignore the contents of the project cache and force a full pod installation. This only '</span> \</span><br><span class="line">            <span class="string">'applies to projects that have enabled incremental installation'</span>],</span><br><span class="line">        ].concat(<span class="keyword">super</span>).reject &#123; <span class="params">|(name, _)|</span> name == <span class="string">'--no-repo-update'</span> &#125;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(argv)</span></span></span><br><span class="line">        <span class="keyword">super</span></span><br><span class="line">        @deployment = argv.flag?(<span class="string">'deployment'</span>, <span class="literal">false</span>)</span><br><span class="line">        @clean_install = argv.flag?(<span class="string">'clean-install'</span>, <span class="literal">false</span>)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">run</span></span></span><br><span class="line">        verify_podfile_exists!</span><br><span class="line">        installer = installer_for_config</span><br><span class="line">        installer.repo_update = repo_update?(<span class="symbol">:default</span> =&gt; <span class="literal">false</span>)</span><br><span class="line">        installer.update = <span class="literal">false</span></span><br><span class="line">        installer.deployment = @deployment</span><br><span class="line">        installer.clean_install = @clean_install</span><br><span class="line">        installer.install!</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">module Pod
+  class Command
+    class Install &lt; Command
+      include RepoUpdate
+      include ProjectDirectory
+      def self.options
+        [
+          [&#39;--repo-update&#39;, &#39;Force running `pod repo update` before install&#39;],
+          [&#39;--deployment&#39;, &#39;Disallow any changes to the Podfile or the Podfile.lock during installation&#39;],
+          [&#39;--clean-install&#39;, &#39;Ignore the contents of the project cache and force a full pod installation. This only &#39; \
+            &#39;applies to projects that have enabled incremental installation&#39;],
+        ].concat(super).reject { |(name, _)| name == &#39;--no-repo-update&#39; }
+      end
 
+      def initialize(argv)
+        super
+        @deployment = argv.flag?(&#39;deployment&#39;, false)
+        @clean_install = argv.flag?(&#39;clean-install&#39;, false)
+      end
+
+      def run
+        verify_podfile_exists!
+        installer = installer_for_config
+        installer.repo_update = repo_update?(:default =&gt; false)
+        installer.update = false
+        installer.deployment = @deployment
+        installer.clean_install = @clean_install
+        installer.install!
+      end
+    end
+  end
+end</code></pre>
 <p><code>Install</code>是继承于<code>Command</code>命令的，所以对应的命令为<code>pod install</code>。如下写了一个<code>Test</code>类继承于<code>Command</code>类，实现<code>run</code>方法。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Pod</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Command</span></span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Test</span> &lt; Command</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">run</span></span></span><br><span class="line">        puts <span class="string">"----Test running--"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">module Pod
+  class Command
+    class Test &lt; Command
+      def run
+        puts &quot;----Test running--&quot;
+      end
+    end
+  end
+end</code></pre>
 <p>在命令行输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bundle exec pod test</span><br><span class="line">----Test running--</span><br></pre></td></tr></table></figure>
+<pre><code>$ bundle exec pod test
+----Test running--</code></pre><h4 id="pod-install主流程分析"><a href="#pod-install主流程分析" class="headerlink" title="pod install主流程分析"></a>pod install主流程分析</h4><p><code>installer.rb</code>中的<code>run</code>方法中会从config中取一个<code>installer</code>的实例，再执行<code>install</code>方法，<code>installer</code>还有一个<code>update</code>的属性，这个就是<code>pod install</code>和<code>pod update</code>最大的区别：<code>pod update</code>会忽略Podfile.lock文件，重新对依赖进行分析。</p>
+<pre><code class="ruby">module Pod
+  class Command
+    class Update &lt; Command
+      include RepoUpdate
+      include ProjectDirectory
 
+      def run
+        verify_podfile_exists!
 
+        installer = installer_for_config
+        installer.repo_update = repo_update?(:default =&gt; true)
+        installer.clean_install = @clean_install
+        if @pods.any? || @excluded_pods.any? || @source_pods.any?
+          verify_lockfile_exists!
+          verify_pods_are_installed!
+          verify_excluded_pods_are_installed!
 
-<h4 id="pod-install主流程分析"><a href="#pod-install主流程分析" class="headerlink" title="pod install主流程分析"></a>pod install主流程分析</h4><p><code>installer.rb</code>中的<code>run</code>方法中会从config中取一个<code>installer</code>的实例，再执行<code>install</code>方法，<code>installer</code>还有一个<code>update</code>的属性，这个就是<code>pod install</code>和<code>pod update</code>最大的区别：<code>pod update</code>会忽略Podfile.lock文件，重新对依赖进行分析。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Pod</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Command</span></span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Update</span> &lt; Command</span></span><br><span class="line">      <span class="keyword">include</span> RepoUpdate</span><br><span class="line">      <span class="keyword">include</span> ProjectDirectory</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">run</span></span></span><br><span class="line">        verify_podfile_exists!</span><br><span class="line"></span><br><span class="line">        installer = installer_for_config</span><br><span class="line">        installer.repo_update = repo_update?(<span class="symbol">:default</span> =&gt; <span class="literal">true</span>)</span><br><span class="line">        installer.clean_install = @clean_install</span><br><span class="line">        <span class="keyword">if</span> @pods.any? <span class="params">||</span> @excluded_pods.any? <span class="params">||</span> @source_pods.any?</span><br><span class="line">          verify_lockfile_exists!</span><br><span class="line">          verify_pods_are_installed!</span><br><span class="line">          verify_excluded_pods_are_installed!</span><br><span class="line"></span><br><span class="line">          @pods += @source_pods.select &#123; <span class="params">|pod|</span> config.lockfile.pod_names.<span class="keyword">include</span>?(pod) &#125;</span><br><span class="line">          @pods = config.lockfile.pod_names.dup <span class="keyword">if</span> @pods.empty?</span><br><span class="line">          @pods -= @excluded_pods</span><br><span class="line"></span><br><span class="line">          installer.update = &#123; <span class="symbol">:pods</span> =&gt; @pods &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          UI.puts <span class="string">'Update all pods'</span>.yellow</span><br><span class="line">          installer.update = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        installer.install!</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+          @pods += @source_pods.select { |pod| config.lockfile.pod_names.include?(pod) }
+          @pods = config.lockfile.pod_names.dup if @pods.empty?
+          @pods -= @excluded_pods
 
+          installer.update = { :pods =&gt; @pods }
+        else
+          UI.puts &#39;Update all pods&#39;.yellow
+          installer.update = true
+        end
+        installer.install!
+      end
+    end
+  end
+end</code></pre>
 <h5 id="1-installer-for-config"><a href="#1-installer-for-config" class="headerlink" title="1.  installer_for_config"></a>1.  installer_for_config</h5><p>Podfile的解析是由<a href="https://github.com/CocoaPods/Core">Core</a>这个模块来完成的。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">installer_for_config</span></span></span><br><span class="line">  Installer.new(config.sandbox, config.podfile, config.lockfile)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">def installer_for_config
+  Installer.new(config.sandbox, config.podfile, config.lockfile)
+end</code></pre>
 <p><code>installer_for_config</code>方法获取config中的podfile、lockfile等信息实例一个<code>installer</code>。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">podfile</span></span></span><br><span class="line">  @podfile <span class="params">||</span>= Podfile.from_file(podfile_path) <span class="keyword">if</span> podfile_path</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def podfile
+  @podfile ||= Podfile.from_file(podfile_path) if podfile_path
+end</code></pre>
+<pre><code class="ruby">def self.from_file(path)
+  path = Pathname.new(path)
+  unless path.exist?
+    raise Informative, &quot;No Podfile exists at path `#{path}`.&quot;
+  end
 
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">from_file</span><span class="params">(path)</span></span></span><br><span class="line">  path = Pathname.new(path)</span><br><span class="line">  <span class="keyword">unless</span> path.exist?</span><br><span class="line">    raise Informative, <span class="string">"No Podfile exists at path `<span class="subst">#&#123;path&#125;</span>`."</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">case</span> path.extname</span><br><span class="line">  <span class="keyword">when</span> <span class="string">''</span>, <span class="string">'.podfile'</span>, <span class="string">'.rb'</span></span><br><span class="line">    Podfile.from_ruby(path)</span><br><span class="line">  <span class="keyword">when</span> <span class="string">'.yaml'</span></span><br><span class="line">    Podfile.from_yaml(path)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    raise Informative, <span class="string">"Unsupported Podfile format `<span class="subst">#&#123;path&#125;</span>`."</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+  case path.extname
+  when &#39;&#39;, &#39;.podfile&#39;, &#39;.rb&#39;
+    Podfile.from_ruby(path)
+  when &#39;.yaml&#39;
+    Podfile.from_yaml(path)
+  else
+    raise Informative, &quot;Unsupported Podfile format `#{path}`.&quot;
+  end
+end</code></pre>
 <p>在Cocoapods/lib/cocoapods/config.rb中取出一个<code>Podfile</code>类的实例。<code>from_file</code>这个方法会根据Podfile类型的不同而选择不同的调用路径。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">from_ruby</span><span class="params">(path, contents = <span class="literal">nil</span>)</span></span></span><br><span class="line">  contents <span class="params">||</span>= File.open(path, <span class="string">'r:utf-8'</span>, &amp;<span class="symbol">:read</span>) </span><br><span class="line">  podfile = Podfile.new(path) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      eval(contents, <span class="literal">nil</span>, path.to_s)</span><br><span class="line">    <span class="keyword">rescue</span> Exception =&gt; e</span><br><span class="line">      message = <span class="string">"Invalid `<span class="subst">#&#123;path.basename&#125;</span>` file: <span class="subst">#&#123;e.message&#125;</span>"</span></span><br><span class="line">      raise DSLError.new(message, path, e, contents)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  podfile</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">def self.from_ruby(path, contents = nil)
+  contents ||= File.open(path, &#39;r:utf-8&#39;, &amp;:read) 
+  podfile = Podfile.new(path) do
+    begin
+      eval(contents, nil, path.to_s)
+    rescue Exception =&gt; e
+      message = &quot;Invalid `#{path.basename}` file: #{e.message}&quot;
+      raise DSLError.new(message, path, e, contents)
+    end
+  end
+  podfile
+end</code></pre>
 <p><code>a ||= b</code>是一个条件赋值运算符，当a是未被定义或者为<code>false</code>，则计算b的值并将结果赋值给a，如果a是并定义且值为<code>true</code>，那么b则不会被计算。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Pod</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Podfile</span></span></span><br><span class="line">    <span class="class"><span class="keyword">module</span> <span class="title">DSL</span></span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">install!</span><span class="params">(installation_method, options = &#123;&#125;)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">pod</span><span class="params">(name = <span class="literal">nil</span>, *requirements)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">podspec</span><span class="params">(options = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">target</span><span class="params">(name, options = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">script_phase</span><span class="params">(options)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">platform</span><span class="params">(name, target = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">project</span><span class="params">(path, build_configurations = &#123;&#125;)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">link_with</span><span class="params">(*)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">use_modular_headers!</span> <span class="title">end</span></span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">use_frameworks!</span><span class="params">(option = <span class="literal">true</span>)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">source</span><span class="params">(source)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">pre_install</span><span class="params">(&amp;block)</span></span> <span class="keyword">end</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">post_install</span><span class="params">(&amp;block)</span></span> <span class="keyword">end</span></span><br><span class="line">      ...</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">module Pod
+  class Podfile
+    module DSL
+      def install!(installation_method, options = {}) end
+      def pod(name = nil, *requirements) end
+      def podspec(options = nil) end
+      def target(name, options = nil) end
+      def script_phase(options) end
+      def platform(name, target = nil) end
+      def project(path, build_configurations = {}) end
+      def link_with(*) end
+      def use_modular_headers! end
+      def use_frameworks!(option = true) end
+      def source(source) end
+      def pre_install(&amp;block) end
+      def post_install(&amp;block) end
+      ...
+    end
+  end
+end</code></pre>
 <p>在Podfile这个类的顶部，导入<code>include Pod::Podfile::DSL</code> 这行代码，这个<code>DSL</code>模块中定义了Podfile中所有方法。当使用<code>eval</code>执行文件中的代码时，就会执行这个模块里的方法。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">target</span><span class="params">(name, options = <span class="literal">nil</span>)</span></span></span><br><span class="line">  <span class="keyword">if</span> options</span><br><span class="line">    raise Informative, <span class="string">"Unsupported options `<span class="subst">#&#123;options&#125;</span>` for "</span> \</span><br><span class="line">    <span class="string">"target `<span class="subst">#&#123;name&#125;</span>`."</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  parent = current_target_definition</span><br><span class="line">  definition = TargetDefinition.new(name, parent)</span><br><span class="line">  <span class="keyword">self</span>.current_target_definition = definition</span><br><span class="line">  <span class="keyword">yield</span> <span class="keyword">if</span> block_given?</span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">  <span class="keyword">self</span>.current_target_definition = parent</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def target(name, options = nil)
+  if options
+    raise Informative, &quot;Unsupported options `#{options}` for &quot; \
+    &quot;target `#{name}`.&quot;
+  end
 
+  parent = current_target_definition
+  definition = TargetDefinition.new(name, parent)
+  self.current_target_definition = definition
+  yield if block_given?
+ensure
+  self.current_target_definition = parent
+end</code></pre>
 <p>这个方法会创建一个<code>TargetDefinition</code>类的实例，然后将它赋值给当前环境<code>current_target_definition</code>，这样之后使用<code>pod</code>定义的依赖都会填充在当前的<code>TargetDefinition</code>。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pod</span><span class="params">(name = <span class="literal">nil</span>, *requirements)</span></span></span><br><span class="line">	<span class="keyword">unless</span> name</span><br><span class="line">		raise StandardError, <span class="string">'A dependency requires a name.'</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	current_target_definition.store_pod(name, *requirements)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def pod(name = nil, *requirements)
+    unless name
+        raise StandardError, &#39;A dependency requires a name.&#39;
+    end
 
+    current_target_definition.store_pod(name, *requirements)
+end</code></pre>
 <p>pod 主要是指定target依赖项的名称和版本等，如以下方式：</p>
 <ul>
 <li>指定版本号，其中<code>~&gt; 0.1.2</code>表示版本等于<code>&#39;&gt;= 0.1.2&#39; &amp;&amp; &#39;&lt; 0.2.0&#39;</code>，且在符合要求的情况下总是匹配最新的版本。</li>
@@ -252,84 +454,339 @@
 <li><code>pod &#39;xx&#39;, :git =&gt; &#39;xx&#39;, :branch =&gt; &#39;dev&#39;</code> 或者<code>:tag =&gt; &#39;&#39;</code>、<code>:commit =&gt; &#39;&#39;</code></li>
 </ul>
 <p>当<code>pod</code>方法被调用时，会执行target_definition.rb中的<code>store_pod</code>方法，将依赖储存到当前的<code>target</code>的<code>dependencies</code>数组中：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">store_pod</span><span class="params">(name, *requirements)</span></span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">if</span> parse_subspecs(name, requirements) <span class="comment"># This parse method must be called first</span></span><br><span class="line">  parse_inhibit_warnings(name, requirements)</span><br><span class="line">  parse_modular_headers(name, requirements)</span><br><span class="line">  parse_configuration_whitelist(name, requirements)</span><br><span class="line">  parse_project_name(name, requirements)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> requirements &amp;&amp; !requirements.empty?</span><br><span class="line">    pod = &#123; name =&gt; requirements &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    pod = name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  get_hash_value(<span class="string">'dependencies'</span>, []) &lt;&lt; pod</span><br><span class="line">  <span class="literal">nil</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def store_pod(name, *requirements)
+  return if parse_subspecs(name, requirements) # This parse method must be called first
+  parse_inhibit_warnings(name, requirements)
+  parse_modular_headers(name, requirements)
+  parse_configuration_whitelist(name, requirements)
+  parse_project_name(name, requirements)
 
+  if requirements &amp;&amp; !requirements.empty?
+    pod = { name =&gt; requirements }
+  else
+    pod = name
+  end
+
+  get_hash_value(&#39;dependencies&#39;, []) &lt;&lt; pod
+  nil
+end
+</code></pre>
 <p>总结：Cocoapods对Podfile的解析简单概括就是构建了一个包含一些方法的上下文<code>DSL</code>，然后直接执行<code>eval</code>方法将文件的内容当做代码来执行，并将相应解析出来的数据储存到具体的类中。</p>
 <p>在<code>installer</code>实例组装完成后，调用其<code>installer.install!</code>方法，进入<code>pod install</code>命令执行的主体部分。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">install!</span></span></span><br><span class="line">  <span class="comment"># 检测是否在Pods内部，如果不是则做一些install前准备工作</span></span><br><span class="line">  prepare</span><br><span class="line">  <span class="comment"># 依赖图的解析</span></span><br><span class="line">  resolve_dependencies</span><br><span class="line">  <span class="comment"># 依赖下载</span></span><br><span class="line">  download_dependencies</span><br><span class="line">  <span class="comment"># 检验之前流程中的产物Pod所生成的Targets的合法性</span></span><br><span class="line">  validate_targets</span><br><span class="line">  <span class="keyword">if</span> installation_options.skip_pods_project_generation?</span><br><span class="line">    show_skip_pods_project_generation_message</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    integrate</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  write_lockfiles</span><br><span class="line">  <span class="comment"># 执行任何install 后的操作， 例如一些plugin 可以插入在这里</span></span><br><span class="line">  perform_post_install_actions</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="ruby">def install!
+  # 检测是否在Pods内部，如果不是则做一些install前准备工作
+  prepare
+  # 依赖图的解析
+  resolve_dependencies
+  # 依赖下载
+  download_dependencies
+  # 检验之前流程中的产物Pod所生成的Targets的合法性
+  validate_targets
+  if installation_options.skip_pods_project_generation?
+    show_skip_pods_project_generation_message
+  else
+    integrate
+  end
+  write_lockfiles
+  # 执行任何install 后的操作， 例如一些plugin 可以插入在这里
+  perform_post_install_actions
+end</code></pre>
 <h5 id="2-prepare"><a href="#2-prepare" class="headerlink" title="2. prepare"></a>2. prepare</h5><p><code>prepare</code>方法的实现如下：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prepare</span></span></span><br><span class="line">  <span class="comment"># Raise if pwd is inside Pods</span></span><br><span class="line">  <span class="comment"># 检测当前目录是项目根目录，直接抛出错误</span></span><br><span class="line">  <span class="keyword">if</span> Dir.pwd.start_with?(sandbox.root.to_path)</span><br><span class="line">    message = <span class="string">'Command should be run from a directory outside Pods directory.'</span></span><br><span class="line">    message &lt;&lt; <span class="string">"\n\n\tCurrent directory is <span class="subst">#&#123;UI.path(Pathname.pwd)&#125;</span>\n"</span></span><br><span class="line">    raise Informative, message</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  UI.message <span class="string">'Preparing'</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 如果lock文件的Cocoapods版本和当前的版本不同，需要使用新版本依赖的xcodeproj对工程文件进行更新</span></span><br><span class="line">    deintegrate_if_different_major_version</span><br><span class="line">    <span class="comment"># 对sandbox（Pods）目录建立子目录结构</span></span><br><span class="line">    sandbox.prepare</span><br><span class="line">    <span class="comment"># 检测PluginManager 是否有pre-install的plugin</span></span><br><span class="line">    ensure_plugins_are_installed!</span><br><span class="line">    <span class="comment"># 执行插件中的pre-install的所有hooks方法</span></span><br><span class="line">    run_plugins_pre_install_hooks</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">def prepare
+  # Raise if pwd is inside Pods
+  # 检测当前目录是项目根目录，直接抛出错误
+  if Dir.pwd.start_with?(sandbox.root.to_path)
+    message = &#39;Command should be run from a directory outside Pods directory.&#39;
+    message &lt;&lt; &quot;\n\n\tCurrent directory is #{UI.path(Pathname.pwd)}\n&quot;
+    raise Informative, message
+  end
+  UI.message &#39;Preparing&#39; do
+    # 如果lock文件的Cocoapods版本和当前的版本不同，需要使用新版本依赖的xcodeproj对工程文件进行更新
+    deintegrate_if_different_major_version
+    # 对sandbox（Pods）目录建立子目录结构
+    sandbox.prepare
+    # 检测PluginManager 是否有pre-install的plugin
+    ensure_plugins_are_installed!
+    # 执行插件中的pre-install的所有hooks方法
+    run_plugins_pre_install_hooks
+  end
+end</code></pre>
 <p>在<code>prepare</code>阶段会将<code>pod install</code>的准备工作完成，包括版本一致性、Pods目录结构创建以及<code>pre-install</code>相关的plugins 脚本执行。</p>
-<h5 id="3-依赖分析"><a href="#3-依赖分析" class="headerlink" title="3. 依赖分析"></a>3. 依赖分析</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resolve_dependencies</span></span></span><br><span class="line">  plugin_sources = run_source_provider_hooks</span><br><span class="line">  <span class="comment"># Analyzer 是通过分析Podfile、Podfile.lock，沙盒中的manifest，从而生成了一张依赖关系表</span></span><br><span class="line">  analyzer = create_analyzer(plugin_sources)</span><br><span class="line"></span><br><span class="line">  UI.section <span class="string">'Updating local specs repositories'</span> <span class="keyword">do</span></span><br><span class="line">    analyzer.update_repositories</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span> repo_update? <span class="comment">#pod install --repo-update</span></span><br><span class="line"></span><br><span class="line">  UI.section <span class="string">'Analyzing dependencies'</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 从analyzer取出最新的分析结果</span></span><br><span class="line">    analyze(analyzer)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调试使用~</span></span><br><span class="line">    @analysis_result.podfile_dependency_cache.podfile_dependencies.each &#123; <span class="params">|item|</span> </span><br><span class="line">      p item</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    p <span class="string">"------analysis_result-------"</span></span><br><span class="line">    p @analysis_result.podfile_state</span><br><span class="line">    p @analysis_result.sandbox_state</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Sepicat工程中各个target对应的spec情况</span></span><br><span class="line">    @analysis_result.specs_by_target.keys.each <span class="keyword">do</span> <span class="params">|item|</span></span><br><span class="line">      puts <span class="string">"----<span class="subst">#&#123;item&#125;</span>----"</span></span><br><span class="line">      @analysis_result.specs_by_target[item].each <span class="keyword">do</span> <span class="params">|sub_item|</span> <span class="comment">#specs_by_target查看各个target相关的specs</span></span><br><span class="line">        p sub_item</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 校验pod白名单的configuration的有效性 如拼写错误降级识别，白名单过滤</span></span><br><span class="line">    validate_build_configurations</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># pod install --deployment</span></span><br><span class="line">  <span class="comment"># 禁止在install 过程中变更 Podfile/Podfile.lock</span></span><br><span class="line">  UI.section <span class="string">'Verifying no changes'</span> <span class="keyword">do</span></span><br><span class="line">    verify_no_podfile_changes!</span><br><span class="line">    verify_no_lockfile_changes!</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span> deployment?</span><br><span class="line"></span><br><span class="line">  analyzer</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-依赖分析"><a href="#3-依赖分析" class="headerlink" title="3. 依赖分析"></a>3. 依赖分析</h5><pre><code class="ruby">def resolve_dependencies
+  plugin_sources = run_source_provider_hooks
+  # Analyzer 是通过分析Podfile、Podfile.lock，沙盒中的manifest，从而生成了一张依赖关系表
+  analyzer = create_analyzer(plugin_sources)
 
+  UI.section &#39;Updating local specs repositories&#39; do
+    analyzer.update_repositories
+  end if repo_update? #pod install --repo-update
+
+  UI.section &#39;Analyzing dependencies&#39; do
+    # 从analyzer取出最新的分析结果
+    analyze(analyzer)
+
+    # 调试使用~
+    @analysis_result.podfile_dependency_cache.podfile_dependencies.each { |item| 
+      p item
+    }
+
+    p &quot;------analysis_result-------&quot;
+    p @analysis_result.podfile_state
+    p @analysis_result.sandbox_state
+
+    # Sepicat工程中各个target对应的spec情况
+    @analysis_result.specs_by_target.keys.each do |item|
+      puts &quot;----#{item}----&quot;
+      @analysis_result.specs_by_target[item].each do |sub_item| #specs_by_target查看各个target相关的specs
+        p sub_item
+      end
+    end
+
+
+    # 校验pod白名单的configuration的有效性 如拼写错误降级识别，白名单过滤
+    validate_build_configurations
+  end
+
+  # pod install --deployment
+  # 禁止在install 过程中变更 Podfile/Podfile.lock
+  UI.section &#39;Verifying no changes&#39; do
+    verify_no_podfile_changes!
+    verify_no_lockfile_changes!
+  end if deployment?
+
+  analyzer
+end</code></pre>
 <p>依赖解析过程会通过<code>Podfile</code>、<code>Podfild.lock</code>、<code>manifest</code>文件来生成一个<code>Analyzer</code>对象，在<code>Analyzer</code>内部会使用<strong>Molinillo</strong>。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(analyzer = create_analyzer)</span></span></span><br><span class="line">  @analysis_result = analyzer.analyze</span><br><span class="line">  @aggregate_targets = @analysis_result.targets</span><br><span class="line">  @pod_targets = @analysis_result.pod_targets</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">def analyze(analyzer = create_analyzer)
+  @analysis_result = analyzer.analyze
+  @aggregate_targets = @analysis_result.targets
+  @pod_targets = @analysis_result.pod_targets
+end</code></pre>
 <p><code>analyzer.analyze</code>会调用<code>resolve_dependencies</code>方法，最终会调用<code>Resolver</code>的<code>resolve</code>方法：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resolve</span></span></span><br><span class="line">  dependencies = @podfile_dependency_cache.target_definition_list.flat_map <span class="keyword">do</span> <span class="params">|target|</span></span><br><span class="line">    @podfile_dependency_cache.target_definition_dependencies(target).each <span class="keyword">do</span> <span class="params">|dep|</span></span><br><span class="line">      <span class="keyword">next</span> <span class="keyword">unless</span> target.platform</span><br><span class="line">      @platforms_by_dependency[dep].push(target.platform)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span>.uniq</span><br><span class="line">  @platforms_by_dependency.each_value(&amp;<span class="symbol">:uniq!</span>)</span><br><span class="line">  @activated = Molinillo::Resolver.new(<span class="keyword">self</span>, <span class="keyword">self</span>).resolve(dependencies, locked_dependencies)</span><br><span class="line">  resolver_specs_by_target</span><br><span class="line"><span class="keyword">rescue</span> Molinillo::ResolverError =&gt; e</span><br><span class="line">  handle_resolver_error(e)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">def resolve
+  dependencies = @podfile_dependency_cache.target_definition_list.flat_map do |target|
+    @podfile_dependency_cache.target_definition_dependencies(target).each do |dep|
+      next unless target.platform
+      @platforms_by_dependency[dep].push(target.platform)
+    end
+  end.uniq
+  @platforms_by_dependency.each_value(&amp;:uniq!)
+  @activated = Molinillo::Resolver.new(self, self).resolve(dependencies, locked_dependencies)
+  resolver_specs_by_target
+rescue Molinillo::ResolverError =&gt; e
+  handle_resolver_error(e)
+end</code></pre>
 <p>这里的<code>Molinillo::Resolver</code>就是用于解决依赖关系的类。 <code>Milinillo</code>算法的核心是回溯(Backtracking)、向前检查(forward check)，整个过程会追踪栈中的两个状态（依赖和可能性）。</p>
 <p>Resolver的大概过程如下：</p>
 <p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" srcset="/img/loading.gif" alt=""></p>
 <p>下面是调试输出的日志：</p>
 <p><code>podfile_dependency_cache.podfile_dependencies</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Pod::Dependency name&#x3D;AFNetworking requirements&#x3D;&#x3D; 1.3.3 source&#x3D;nil external_source&#x3D;nil&gt;</span><br><span class="line">&lt;Pod::Dependency name&#x3D;SDWebImage requirements&#x3D;&gt;&#x3D; 0 source&#x3D;nil external_source&#x3D;nil&gt;</span><br><span class="line">&lt;Pod::Dependency name&#x3D;Moya requirements&#x3D;&gt;&#x3D; 0 source&#x3D;nil external_source&#x3D;nil&gt;</span><br><span class="line">&lt;Pod::Dependency name&#x3D;SnapKit requirements&#x3D;&gt;&#x3D; 0 source&#x3D;nil external_source&#x3D;nil&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>@analysis_result.podfile_state</code>和 <code>@analysis_result.sandbox_state</code>分别的输出是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#&lt;Pod::Installer::Analyzer::SpecsState:0x00007ff58bbb5fc0 @added&#x3D;#&lt;Set: &#123;&#125;&gt;, @deleted&#x3D;#&lt;Set: &#123;&#125;&gt;, @changed&#x3D;#&lt;Set: &#123;&#125;&gt;, @unchanged&#x3D;#&lt;Set: &#123;&quot;AFNetworking&quot;, &quot;Moya&quot;, &quot;SDWebImage&quot;, &quot;SnapKit&quot;&#125;&gt;&gt;</span><br><span class="line">#&lt;Pod::Installer::Analyzer::SpecsState:0x00007ff58bbec980 @added&#x3D;#&lt;Set: &#123;&#125;&gt;, @deleted&#x3D;#&lt;Set: &#123;&#125;&gt;, @changed&#x3D;#&lt;Set: &#123;&#125;&gt;, @unchanged&#x3D;#&lt;Set: &#123;&quot;AFNetworking&quot;, &quot;Alamofire&quot;, &quot;Moya&quot;, &quot;Result&quot;, &quot;SDWebImage&quot;, &quot;SnapKit&quot;&#125;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>analysis_result.specs_by_target</code>查看各个target相关的specs</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">----Pods-AFNetworking Example----</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;AFNetworking&quot;&gt;</span><br><span class="line">----Pods-AFNetworking iOS Example----</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;AFNetworking&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;Alamofire&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;Moya&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;Moya&#x2F;Core&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;Result&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;SDWebImage&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;SDWebImage&#x2F;Core&quot;&gt;</span><br><span class="line">#&lt;Pod::Specification name&#x3D;&quot;SnapKit&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="4-依赖下载"><a href="#4-依赖下载" class="headerlink" title="4. 依赖下载"></a>4. 依赖下载</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_dependencies</span></span></span><br><span class="line">  UI.section <span class="string">'Downloading dependencies'</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 构造Pod Source Installer</span></span><br><span class="line">    install_pod_sources</span><br><span class="line">    <span class="comment"># 执行pre install 的hooks</span></span><br><span class="line">    run_podfile_pre_install_hooks</span><br><span class="line">    clean_pod_sources</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;Pod::Dependency name=AFNetworking requirements== 1.3.3 source=nil external_source=nil&gt;
+&lt;Pod::Dependency name=SDWebImage requirements=&gt;= 0 source=nil external_source=nil&gt;
+&lt;Pod::Dependency name=Moya requirements=&gt;= 0 source=nil external_source=nil&gt;
+&lt;Pod::Dependency name=SnapKit requirements=&gt;= 0 source=nil external_source=nil&gt;</code></pre><p><code>@analysis_result.podfile_state</code>和 <code>@analysis_result.sandbox_state</code>分别的输出是：</p>
+<pre><code>#&lt;Pod::Installer::Analyzer::SpecsState:0x00007ff58bbb5fc0 @added=#&lt;Set: {}&gt;, @deleted=#&lt;Set: {}&gt;, @changed=#&lt;Set: {}&gt;, @unchanged=#&lt;Set: {&quot;AFNetworking&quot;, &quot;Moya&quot;, &quot;SDWebImage&quot;, &quot;SnapKit&quot;}&gt;&gt;
+#&lt;Pod::Installer::Analyzer::SpecsState:0x00007ff58bbec980 @added=#&lt;Set: {}&gt;, @deleted=#&lt;Set: {}&gt;, @changed=#&lt;Set: {}&gt;, @unchanged=#&lt;Set: {&quot;AFNetworking&quot;, &quot;Alamofire&quot;, &quot;Moya&quot;, &quot;Result&quot;, &quot;SDWebImage&quot;, &quot;SnapKit&quot;}&gt;&gt;</code></pre><p><code>analysis_result.specs_by_target</code>查看各个target相关的specs</p>
+<pre><code>----Pods-AFNetworking Example----
+#&lt;Pod::Specification name=&quot;AFNetworking&quot;&gt;
+----Pods-AFNetworking iOS Example----
+#&lt;Pod::Specification name=&quot;AFNetworking&quot;&gt;
+#&lt;Pod::Specification name=&quot;Alamofire&quot;&gt;
+#&lt;Pod::Specification name=&quot;Moya&quot;&gt;
+#&lt;Pod::Specification name=&quot;Moya/Core&quot;&gt;
+#&lt;Pod::Specification name=&quot;Result&quot;&gt;
+#&lt;Pod::Specification name=&quot;SDWebImage&quot;&gt;
+#&lt;Pod::Specification name=&quot;SDWebImage/Core&quot;&gt;
+#&lt;Pod::Specification name=&quot;SnapKit&quot;&gt;</code></pre><h5 id="4-依赖下载"><a href="#4-依赖下载" class="headerlink" title="4. 依赖下载"></a>4. 依赖下载</h5><pre><code class="ruby">def download_dependencies
+  UI.section &#39;Downloading dependencies&#39; do
+    # 构造Pod Source Installer
+    install_pod_sources
+    # 执行pre install 的hooks
+    run_podfile_pre_install_hooks
+    clean_pod_sources
+  end
+end</code></pre>
 <p>下面是<code>install_pod_sources</code>方法的实现：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">install_pod_sources</span></span></span><br><span class="line">  @installed_specs = []</span><br><span class="line">  <span class="comment"># install的Pod只需要两种状态：added和changed状态的并集</span></span><br><span class="line">  pods_to_install = sandbox_state.added <span class="params">| sandbox_state.changed</span></span><br><span class="line"><span class="params">  title_options = &#123; :verbose_prefix =&gt; '-&gt; '.green &#125;</span></span><br><span class="line"><span class="params"></span></span><br><span class="line"><span class="params"></span></span><br><span class="line"><span class="params">  # 将Podfile解析后排序处理</span></span><br><span class="line"><span class="params">  root_specs.sort_by(&amp;:name).each <span class="keyword">do</span> |</span>spec<span class="params">|</span></span><br><span class="line"><span class="params">    # 如果Pod是added或者changed状态</span></span><br><span class="line"><span class="params">    <span class="keyword">if</span> pods_to_install.<span class="keyword">include</span>?(spec.name)</span></span><br><span class="line"><span class="params">      # 如果是changed状态并且是manifest 已经有记录</span></span><br><span class="line"><span class="params">      <span class="keyword">if</span> sandbox_state.changed.<span class="keyword">include</span>?(spec.name) &amp;&amp; sandbox.manifest</span></span><br><span class="line"><span class="params">        # 版本更新</span></span><br><span class="line"><span class="params">        current_version = spec.version</span></span><br><span class="line"><span class="params">        # 被更新版本记录</span></span><br><span class="line"><span class="params">        previous_version = sandbox.manifest.version(spec.name)</span></span><br><span class="line"><span class="params">        # 变动记录</span></span><br><span class="line"><span class="params">        has_changed_version = current_version != previous_version</span></span><br><span class="line"><span class="params">        # 找到第一个包含spec.name的Pod，获取对应的Repo</span></span><br><span class="line"><span class="params">        current_repo = analysis_result.specs_by_source.detect &#123; |</span>key, values<span class="params">| <span class="keyword">break</span> key <span class="keyword">if</span> values.map(&amp;:name).<span class="keyword">include</span>?(spec.name) &#125;</span></span><br><span class="line"><span class="params">        # 获取当前的仓库</span></span><br><span class="line"><span class="params">        current_repo &amp;&amp;= current_repo.url |</span><span class="params">| current_repo.name</span></span><br><span class="line"><span class="params">        # 是否仓库有变动</span></span><br><span class="line"><span class="params">        previous_spec_repo = sandbox.manifest.spec_repo(spec.name)</span></span><br><span class="line"><span class="params">        has_changed_repo = !previous_spec_repo.<span class="literal">nil</span>? &amp;&amp; current_repo &amp;&amp; !current_repo.casecmp(previous_spec_repo).zero?</span></span><br><span class="line"><span class="params">        title = "Installing #&#123;spec.name&#125; #&#123;spec.version&#125;"</span></span><br><span class="line"><span class="params">        title &lt;&lt; " (was #&#123;previous_version&#125; <span class="keyword">and</span> source changed to `#&#123;current_repo&#125;` from `#&#123;previous_spec_repo&#125;`)" <span class="keyword">if</span> has_changed_version &amp;&amp; has_changed_repo</span></span><br><span class="line"><span class="params">        title &lt;&lt; " (was #&#123;previous_version&#125;)" <span class="keyword">if</span> has_changed_version &amp;&amp; !has_changed_repo</span></span><br><span class="line"><span class="params">        title &lt;&lt; " (source changed to `#&#123;current_repo&#125;` from `#&#123;previous_spec_repo&#125;`)" <span class="keyword">if</span> !has_changed_version &amp;&amp; has_changed_repo</span></span><br><span class="line"><span class="params">      <span class="keyword">else</span></span></span><br><span class="line"><span class="params">        # 非changed状态</span></span><br><span class="line"><span class="params">        title = "Installing #&#123;spec&#125;"</span></span><br><span class="line"><span class="params">      <span class="keyword">end</span></span></span><br><span class="line"><span class="params">      UI.titled_section(title.green, title_options) <span class="keyword">do</span></span></span><br><span class="line"><span class="params">        # 通过name拿到对应的installer，记录到@pod_installer中</span></span><br><span class="line"><span class="params">        install_source_of_pod(spec.name)</span></span><br><span class="line"><span class="params">      <span class="keyword">end</span></span></span><br><span class="line"><span class="params">    <span class="keyword">else</span></span></span><br><span class="line"><span class="params">      #如果没有changed情况,则创建一个PodSourceInstaller实例</span></span><br><span class="line"><span class="params">      UI.section("Using #&#123;spec&#125;".red, title_options[:verbose_prefix]) <span class="keyword">do</span></span></span><br><span class="line"><span class="params">        create_pod_installer(spec.name)</span></span><br><span class="line"><span class="params">      <span class="keyword">end</span></span></span><br><span class="line"><span class="params">    <span class="keyword">end</span></span></span><br><span class="line"><span class="params">  <span class="keyword">end</span></span></span><br><span class="line"><span class="params"><span class="keyword">end</span></span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def install_pod_sources
+  @installed_specs = []
+  # install的Pod只需要两种状态：added和changed状态的并集
+  pods_to_install = sandbox_state.added | sandbox_state.changed
+  title_options = { :verbose_prefix =&gt; &#39;-&gt; &#39;.green }
 
+
+  # 将Podfile解析后排序处理
+  root_specs.sort_by(&amp;:name).each do |spec|
+    # 如果Pod是added或者changed状态
+    if pods_to_install.include?(spec.name)
+      # 如果是changed状态并且是manifest 已经有记录
+      if sandbox_state.changed.include?(spec.name) &amp;&amp; sandbox.manifest
+        # 版本更新
+        current_version = spec.version
+        # 被更新版本记录
+        previous_version = sandbox.manifest.version(spec.name)
+        # 变动记录
+        has_changed_version = current_version != previous_version
+        # 找到第一个包含spec.name的Pod，获取对应的Repo
+        current_repo = analysis_result.specs_by_source.detect { |key, values| break key if values.map(&amp;:name).include?(spec.name) }
+        # 获取当前的仓库
+        current_repo &amp;&amp;= current_repo.url || current_repo.name
+        # 是否仓库有变动
+        previous_spec_repo = sandbox.manifest.spec_repo(spec.name)
+        has_changed_repo = !previous_spec_repo.nil? &amp;&amp; current_repo &amp;&amp; !current_repo.casecmp(previous_spec_repo).zero?
+        title = &quot;Installing #{spec.name} #{spec.version}&quot;
+        title &lt;&lt; &quot; (was #{previous_version} and source changed to `#{current_repo}` from `#{previous_spec_repo}`)&quot; if has_changed_version &amp;&amp; has_changed_repo
+        title &lt;&lt; &quot; (was #{previous_version})&quot; if has_changed_version &amp;&amp; !has_changed_repo
+        title &lt;&lt; &quot; (source changed to `#{current_repo}` from `#{previous_spec_repo}`)&quot; if !has_changed_version &amp;&amp; has_changed_repo
+      else
+        # 非changed状态
+        title = &quot;Installing #{spec}&quot;
+      end
+      UI.titled_section(title.green, title_options) do
+        # 通过name拿到对应的installer，记录到@pod_installer中
+        install_source_of_pod(spec.name)
+      end
+    else
+      #如果没有changed情况,则创建一个PodSourceInstaller实例
+      UI.section(&quot;Using #{spec}&quot;.red, title_options[:verbose_prefix]) do
+        create_pod_installer(spec.name)
+      end
+    end
+  end
+end</code></pre>
 <p>这个方法主要是根据依赖分析的结果，根据Pod的状态的不同进行不同的处理，如果在<code>pods_to_install</code>里面则安装Pod<code>install_source_of_pod</code>，否则直接走<code>create_pod_installer</code>方法，直接从缓存中取。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过缓存返回PodSourceInstaller实例</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_pod_installer</span><span class="params">(pod_name)</span></span></span><br><span class="line">  specs_by_platform = specs_for_pod(pod_name)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> specs_by_platform.empty?</span><br><span class="line">    requiring_targets = pod_targets.select &#123; <span class="params">|pt|</span> pt.recursive_dependent_targets.any? &#123; <span class="params">|dt|</span> dt.pod_name == pod_name &#125; &#125;</span><br><span class="line">    message = <span class="string">"Could not install '<span class="subst">#&#123;pod_name&#125;</span>' pod"</span></span><br><span class="line">    message += <span class="string">", dependended upon by <span class="subst">#&#123;requiring_targets.to_sentence&#125;</span>"</span> <span class="keyword">unless</span> requiring_targets.empty?</span><br><span class="line">    message += <span class="string">'. There is either no platform to build for, or no target to build.'</span></span><br><span class="line">    raise StandardError, message</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 通过sandbox，specs的platform信息生成Installer实例</span></span><br><span class="line">  pod_installer = PodSourceInstaller.new(sandbox, podfile, specs_by_platform, <span class="symbol">:can_cache</span> =&gt; installation_options.clean?)</span><br><span class="line">  pod_installers &lt;&lt; pod_installer</span><br><span class="line">  pod_installer</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Pods,如果resolver声明一个Pod已经安装或者已经存在则将其删除并重新安装</span></span><br><span class="line"><span class="comment"># 如果不存在则直接安装</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">install_source_of_pod</span><span class="params">(pod_name)</span></span></span><br><span class="line">  pod_installer = create_pod_installer(pod_name)</span><br><span class="line">  pod_installer.install!</span><br><span class="line">  @installed_specs.concat(pod_installer.specs_by_platform.values.flatten.uniq)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby"># 通过缓存返回PodSourceInstaller实例
+def create_pod_installer(pod_name)
+  specs_by_platform = specs_for_pod(pod_name)
 
+  if specs_by_platform.empty?
+    requiring_targets = pod_targets.select { |pt| pt.recursive_dependent_targets.any? { |dt| dt.pod_name == pod_name } }
+    message = &quot;Could not install &#39;#{pod_name}&#39; pod&quot;
+    message += &quot;, dependended upon by #{requiring_targets.to_sentence}&quot; unless requiring_targets.empty?
+    message += &#39;. There is either no platform to build for, or no target to build.&#39;
+    raise StandardError, message
+  end
+
+  # 通过sandbox，specs的platform信息生成Installer实例
+  pod_installer = PodSourceInstaller.new(sandbox, podfile, specs_by_platform, :can_cache =&gt; installation_options.clean?)
+  pod_installers &lt;&lt; pod_installer
+  pod_installer
+end
+
+# 安装Pods,如果resolver声明一个Pod已经安装或者已经存在则将其删除并重新安装
+# 如果不存在则直接安装
+def install_source_of_pod(pod_name)
+  pod_installer = create_pod_installer(pod_name)
+  pod_installer.install!
+  @installed_specs.concat(pod_installer.specs_by_platform.values.flatten.uniq)
+end</code></pre>
 <p><code>pod_installer</code>会调用<code>install!</code>方法(pod_source_installer.rb)：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">install!</span></span></span><br><span class="line">  <span class="comment"># 如果未经历过pre-download阶段或者local阶段的Pod，则通过对应的Source下载</span></span><br><span class="line">  download_source <span class="keyword">unless</span> predownloaded? <span class="params">||</span> local?</span><br><span class="line">  <span class="comment"># 执行Spec 中的Prepar Command</span></span><br><span class="line">  PodSourcePreparer.new(root_spec, root).prepare! <span class="keyword">if</span> local?</span><br><span class="line">  sandbox.remove_local_podspec(name) <span class="keyword">unless</span> predownloaded? <span class="params">||</span> local? <span class="params">||</span> external?</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_source</span></span></span><br><span class="line">  verify_source_is_secure(root_spec)</span><br><span class="line">  download_result = Downloader.download(download_request, root, <span class="symbol">:can_cache</span> =&gt; can_cache?)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (specific_source = download_result.checkout_options) &amp;&amp; specific_source != root_spec.source</span><br><span class="line">    sandbox.store_checkout_source(root_spec.name, specific_source)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def install!
+  # 如果未经历过pre-download阶段或者local阶段的Pod，则通过对应的Source下载
+  download_source unless predownloaded? || local?
+  # 执行Spec 中的Prepar Command
+  PodSourcePreparer.new(root_spec, root).prepare! if local?
+  sandbox.remove_local_podspec(name) unless predownloaded? || local? || external?
+end
 
+def download_source
+  verify_source_is_secure(root_spec)
+  download_result = Downloader.download(download_request, root, :can_cache =&gt; can_cache?)
+
+  if (specific_source = download_result.checkout_options) &amp;&amp; specific_source != root_spec.source
+    sandbox.store_checkout_source(root_spec.name, specific_source)
+  end
+end</code></pre>
 <p>上面的方法主要是将Pod通过对应的source下载下来，会去调用<code>Downloader</code>组件处理所有的下载的逻辑</p>
 <h5 id="5-targets-校验"><a href="#5-targets-校验" class="headerlink" title="5. targets 校验"></a>5. targets 校验</h5><p><code>validate_targets</code>过程是用来验证之前流程中的产物Pod所生成的targets的合法性方法。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate_targets</span></span></span><br><span class="line">  validator = Xcode::TargetValidator.new(aggregate_targets, pod_targets, installation_options)</span><br><span class="line">  validator.validate!</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># target_validator.rb</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate!</span></span></span><br><span class="line">  <span class="comment"># 重名检测</span></span><br><span class="line">  verify_no_duplicate_framework_and_library_names</span><br><span class="line">  <span class="comment"># 用来验证动态库是否有静态库或者framework静态库</span></span><br><span class="line">  verify_no_static_framework_transitive_dependencies</span><br><span class="line">  <span class="comment"># 验证Pod中是否指明多个Swift版本，如果有的话需要检测这些依赖是否需要进行build</span></span><br><span class="line">  verify_swift_pods_swift_version</span><br><span class="line">  <span class="comment"># 验证Swift 的Pod是否有module依赖</span></span><br><span class="line">  verify_swift_pods_have_module_dependencies</span><br><span class="line">  verify_no_multiple_project_names <span class="keyword">if</span> installation_options.generate_multiple_pod_projects?</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def validate_targets
+  validator = Xcode::TargetValidator.new(aggregate_targets, pod_targets, installation_options)
+  validator.validate!
+end
 
+# target_validator.rb
+def validate!
+  # 重名检测
+  verify_no_duplicate_framework_and_library_names
+  # 用来验证动态库是否有静态库或者framework静态库
+  verify_no_static_framework_transitive_dependencies
+  # 验证Pod中是否指明多个Swift版本，如果有的话需要检测这些依赖是否需要进行build
+  verify_swift_pods_swift_version
+  # 验证Swift 的Pod是否有module依赖
+  verify_swift_pods_have_module_dependencies
+  verify_no_multiple_project_names if installation_options.generate_multiple_pod_projects?
+end</code></pre>
 <p><code>verify_no_static_framework_transitive_dependencies</code>这个方法是用来验证动态库中是否有.a或.framework的静态库，场景：A组件依赖B组件，B组件中通过<code>vendored_libraries</code>方式加载的静态库(.a、.framework)，如果此时在Podfile里面使用了<code>use_framework!</code>,在打包的时候<code>framework</code>会将<code>vendored_libraries</code>中的内容包括进来，这个时候就在符号决议的时候产生冲突，在混合开发的项目里面，动态库中依赖静态库的场景还是很常见的，可以查看这篇组件化的文章：<a href="https://www.valiantcat.cn/index.php/2017/04/24/45.html" target="_blank" rel="noopener">组件化-动态库实战</a>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The &#39;Pods-xx&#39; target has transitive dependencies that include static binaries: (static_libs.to_sentence)</span><br></pre></td></tr></table></figure>
-
-<p>在swift项目中，必须使用<code>use_framework!</code>（目前Cocoapods1.5宣布已经支持Swift使用静态库），因此经常会遇到上述的问题。  </p>
+<pre><code>The &#39;Pods-xx&#39; target has transitive dependencies that include static binaries: (static_libs.to_sentence)
+</code></pre><p>在swift项目中，必须使用<code>use_framework!</code>（目前Cocoapods1.5宣布已经支持Swift使用静态库），因此经常会遇到上述的问题。  </p>
 <p>除了文章中这种处理方式，还可以通过修改cocoapods相关的参数达到目的：  </p>
 <p>1.修改pod库中的<code>podspec</code>，增加<code>pod_target_xcconfig</code>(表示pod本身被依赖时，修改的编译选项，而user_target_xcconfig表示修改依赖pod的项目的编译选项)</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s.pod_target_xcconfig = &#123;</span><br><span class="line">    <span class="string">'FRAMEWORK_SEARCH_PATHS'</span> =&gt; <span class="string">'$(inherited) $(PODS_ROOT)/AlipaySDKIniOS'</span>,</span><br><span class="line">    <span class="string">'OTHER_LDFLAGS'</span>          =&gt; <span class="string">'$(inherited) -undefined dynamic_lookup'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="ruby">s.pod_target_xcconfig = {
+    &#39;FRAMEWORK_SEARCH_PATHS&#39; =&gt; &#39;$(inherited) $(PODS_ROOT)/AlipaySDKIniOS&#39;,
+    &#39;OTHER_LDFLAGS&#39;          =&gt; &#39;$(inherited) -undefined dynamic_lookup&#39;
+}</code></pre>
 <p>2.hook    <code>verify_no_static_framework_transitive_dependencies</code>方法，不对动态库依赖静态做检测</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pre_install <span class="keyword">do</span> <span class="params">|installer|</span></span><br><span class="line">    <span class="comment"># workaround for https://github.com/CocoaPods/CocoaPods/issues/3289</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">installer</span>.<span class="title">verify_no_static_framework_transitive_dependencies</span>;</span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="ruby">pre_install do |installer|
+    # workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
+    def installer.verify_no_static_framework_transitive_dependencies; end
+end</code></pre>
 <p>特别说明下<code>vendored_libraries</code>是用来在<code>podspec</code>中指定依赖的静态库.a或.framework，如``s.vendored_libraries = ‘libWeiboSDK/libWeiboSDK.a’`。</p>
 <h5 id="6-集成"><a href="#6-集成" class="headerlink" title="6. 集成"></a>6. 集成</h5><p> <code>generate_pods_project</code>会把所有的组件通过Project文件的形式组织起啦，并且对Project做一些用户指定的配置。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">integrate</span></span></span><br><span class="line">  <span class="comment"># 生成外层项目</span></span><br><span class="line">  generate_pods_project</span><br><span class="line">  <span class="keyword">if</span> installation_options.integrate_targets?</span><br><span class="line">    <span class="comment"># 集成用户配置，读取依赖项，使用xcconfig来配置</span></span><br><span class="line">    integrate_user_project</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    UI.section <span class="string">'Skipping User Project Integration'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_pods_project</span></span></span><br><span class="line">  stage_sandbox(sandbox, pod_targets)</span><br><span class="line"></span><br><span class="line">  cache_analysis_result = analyze_project_cache</span><br><span class="line">  pod_targets_to_generate = cache_analysis_result.pod_targets_to_generate</span><br><span class="line">  aggregate_targets_to_generate = cache_analysis_result.aggregate_targets_to_generate</span><br><span class="line"></span><br><span class="line">  clean_sandbox(pod_targets_to_generate)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">  create_and_save_projects(pod_targets_to_generate, aggregate_targets_to_generate,</span><br><span class="line">                           cache_analysis_result.build_configurations, cache_analysis_result.project_object_version)</span><br><span class="line">  SandboxDirCleaner.new(sandbox, pod_targets, aggregate_targets).clean!</span><br><span class="line"></span><br><span class="line">  update_project_cache(cache_analysis_result, target_installation_results)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">integrate_user_project</span></span></span><br><span class="line">  UI.section <span class="string">"Integrating client <span class="subst">#&#123;<span class="string">'project'</span>.pluralize(aggregate_targets.map(&amp;<span class="symbol">:user_project_path</span>).uniq.count)&#125;</span>"</span> <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">    installation_root = config.installation_root</span><br><span class="line">    integrator = UserProjectIntegrator.new(podfile, sandbox, installation_root, aggregate_targets, generated_aggregate_targets,</span><br><span class="line">                                           <span class="symbol">:use_input_output_paths</span> =&gt; !installation_options.disable_input_output_paths?)</span><br><span class="line">    integrator.integrate!</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<pre><code class="ruby">def integrate
+  # 生成外层项目
+  generate_pods_project
+  if installation_options.integrate_targets?
+    # 集成用户配置，读取依赖项，使用xcconfig来配置
+    integrate_user_project
+  else
+    UI.section &#39;Skipping User Project Integration&#39;
+  end
+end
 
+def generate_pods_project
+  stage_sandbox(sandbox, pod_targets)
+
+  cache_analysis_result = analyze_project_cache
+  pod_targets_to_generate = cache_analysis_result.pod_targets_to_generate
+  aggregate_targets_to_generate = cache_analysis_result.aggregate_targets_to_generate
+
+  clean_sandbox(pod_targets_to_generate)
+
+  # 
+  create_and_save_projects(pod_targets_to_generate, aggregate_targets_to_generate,
+                           cache_analysis_result.build_configurations, cache_analysis_result.project_object_version)
+  SandboxDirCleaner.new(sandbox, pod_targets, aggregate_targets).clean!
+
+  update_project_cache(cache_analysis_result, target_installation_results)
+end
+
+def integrate_user_project
+  UI.section &quot;Integrating client #{&#39;project&#39;.pluralize(aggregate_targets.map(&amp;:user_project_path).uniq.count)}&quot; do
+
+    installation_root = config.installation_root
+    integrator = UserProjectIntegrator.new(podfile, sandbox, installation_root, aggregate_targets, generated_aggregate_targets,
+                                           :use_input_output_paths =&gt; !installation_options.disable_input_output_paths?)
+    integrator.integrate!
+  end
+end</code></pre>
 <p>在<code>~/lib/cocoapods/installer/user_project_integrator.rb</code>文件中的<code>integrate</code>方法：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">integrate!</span></span></span><br><span class="line">  create_workspace</span><br><span class="line">  deintegrated_projects = deintegrate_removed_targets</span><br><span class="line">  integrate_user_targets</span><br><span class="line">  warn_about_xcconfig_overrides</span><br><span class="line">  projects_to_save = (user_projects_to_integrate + deintegrated_projects).uniq</span><br><span class="line">  save_projects(projects_to_save)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="ruby">def integrate!
+  create_workspace
+  deintegrated_projects = deintegrate_removed_targets
+  integrate_user_targets
+  warn_about_xcconfig_overrides
+  projects_to_save = (user_projects_to_integrate + deintegrated_projects).uniq
+  save_projects(projects_to_save)
+end</code></pre>
 <h3 id="pod-install-vs-pod-update"><a href="#pod-install-vs-pod-update" class="headerlink" title="pod install vs pod update"></a>pod install vs pod update</h3><p>在<a href="https://guides.cocoapods.org/using/pod-install-vs-update.html" target="_blank" rel="noopener">cocoapods guides</a> 中对于<code>pod install</code> vs <code>pod update</code>区别的翻译如下：</p>
 <p>1.在项目中第一次使用Cocoapods时（即没有<code>Podfile.lock</code>文件的情况），或者在podfile中添加、删除、更新pods时，可使用<code>pod install</code>下载安装pod。</p>
 <p>2.<code>pod update [PODNAME]</code>用在需要更新pods的最新版本时</p>
 <h4 id="pod-install"><a href="#pod-install" class="headerlink" title="pod install"></a>pod install</h4><p>除了在新建工程时，需用到<code>pod install</code>，在后续执行<code>pod install</code>时，对于已经列在<code>podfile.lock</code>中的pod，它会下载lock锁定的版本，而不会去检查是否有最新的可用版本，对于没有在podfile.lock中文件的库，会根据podfile文件中指定的版本去下载符合指定返回内最新的版本。</p>
-<h5 id="pod-update"><a href="#pod-update" class="headerlink" title="pod update"></a>pod update</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># update.rb</span></span><br><span class="line">installer.repo_update = repo_update?(<span class="symbol">:default</span> =&gt; <span class="literal">true</span>)</span><br><span class="line">installer.update = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># analyzer.rb</span></span><br><span class="line">deleted_and_changed += pods_to_update[<span class="symbol">:pods</span>] <span class="keyword">if</span> update_mode == <span class="symbol">:selected</span></span><br></pre></td></tr></table></figure>
+<h5 id="pod-update"><a href="#pod-update" class="headerlink" title="pod update"></a>pod update</h5><pre><code class="ruby"># update.rb
+installer.repo_update = repo_update?(:default =&gt; true)
+installer.update = false
 
+# analyzer.rb
+deleted_and_changed += pods_to_update[:pods] if update_mode == :selected</code></pre>
 <p><code>pod update [PODNAME]</code>命令，首先会更新本地的spec 仓库，<code>pod install</code>默认的<code>repo_update</code>为<code>false</code>。其次会忽略podfile.lock中的锁定的版本，更新到podfile中指定的版本。</p>
 
             <hr>

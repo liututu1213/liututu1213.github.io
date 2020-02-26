@@ -155,7 +155,15 @@
         <div class="index-excerpt" >
           <div class="index-text mb-1">对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。
 MoyaMoya的目录结构如下：
-12345678910111213141516171819202122232425262728293031├── Moya│   ├── AnyEncodable.swift│   ├── Cancellable.swift│   ├── Endpoint.swift│   ├── Image.swift│   ├── Moya+Alamofire.swift│   ├── MoyaError.swift│   ├── MoyaProvider</div>
+├── Moya
+│   ├── AnyEncodable.swift
+│   ├── Cancellable.swift
+│   ├── Endpoint.swift
+│   ├── Image.swift
+│   ├── Moya+Alamofire.swift
+│   ├── MoyaError.swift
+│   ├── MoyaProvider+Defaults.swift
+│   ├── MoyaProvider+Internal.</div>
         </div>
       </a>
 
@@ -238,14 +246,19 @@ CocoaPods/Xcodeproj
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">1. Ruby 面向对象概览1.1 基础变量12345x = 1y = 1.0puts x.classputs y.class
+          <div class="index-text mb-1">1. Ruby 面向对象概览1.1 基础变量x = 1
+y = 1.0
 
+puts x.class
+puts y.class
 打印结果：
-12IntegerFloat
-
-在Ruby中，变量可以包含Ruby可以理解的任何概念，==在Ruby中所有的元素，包括基本类型都是对象，这个内置类有定义好的方法来执行数字类的操作==，同时也不存在==运算符==的概念，所谓的1 + 1，其实只不过是1. + (1)的语法糖而已。
+Integer
+Float在Ruby中，变量可以包含Ruby可以理解的任何概念，==在Ruby中所有的元素，包括基本类型都是对象，这个内置类有定义好的方法来执行数字类的操作==，同时也不存在==运算符==的概念，所谓的1 + 1，其实只不过是1. + (1)的语法糖而已。
 1.2 Ruby 对象和类1.2.1 对象Ruby是一个面向对象的编程语言
-12345678910class Person	attr_accessor :name, :age, </div>
+class Person
+    attr_accessor :name, :age, :gender
+end
+</div>
         </div>
       </a>
 
@@ -322,11 +335,14 @@ UTC协调世界时间（又称世界标准时间），与GMT一样都是本初�
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">Promise中的swift用法使用type inference推导泛型参数123456public final class Promise&lt;T&gt;: Thenable, CatchMixin &#123;  public init&lt;U: Thenable&gt;(_ bridge: U) where U.T == T &#123;    box = EmptyBox()    bridge.pipe(to: box.seal)  &#125;&#125;
-
-1class EmptyBox&lt;T&gt;: Box&lt;T&gt; &#123;&#125;
-
-在Promis</div>
+          <div class="index-text mb-1">Promise中的swift用法使用type inference推导泛型参数public final class Promise&lt;T&gt;: Thenable, CatchMixin {
+  public init&lt;U: Thenable&gt;(_ bridge: U) where U.T == T {
+    box = EmptyBox()
+    bridge.pipe(to: box.seal)
+  }
+}
+class EmptyBox&lt;T&gt;: Box&lt;T&gt; {}
+在Promise.swift中，EmptyBox是一个泛型类，init方法创建Em</div>
         </div>
       </a>
 
