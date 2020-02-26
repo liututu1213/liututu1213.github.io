@@ -5,9 +5,9 @@
   
   <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="https://github.com/liututu1213/liututu1213.github.io/"/>
+  <link href="https://github.com/liututu1213/liututu1213.github.io/blog/"/>
   <updated>2020-02-26T03:09:01.393Z</updated>
-  <id>https://github.com/liututu1213/liututu1213.github.io/</id>
+  <id>https://github.com/liututu1213/liututu1213.github.io/blog/</id>
   
   <author>
     <name>liututu1213</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://github.com/liututu1213/liututu1213.github.io/2020/02/26/hello-world/"/>
-    <id>https://github.com/liututu1213/liututu1213.github.io/2020/02/26/hello-world/</id>
+    <link href="https://github.com/liututu1213/liututu1213.github.io/blog/2020/02/26/hello-world/"/>
+    <id>https://github.com/liututu1213/liututu1213.github.io/blog/2020/02/26/hello-world/</id>
     <published>2020-02-26T03:09:01.392Z</published>
     <updated>2020-02-26T03:09:01.393Z</updated>
     
