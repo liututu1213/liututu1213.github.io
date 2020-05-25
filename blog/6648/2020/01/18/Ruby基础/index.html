@@ -1,176 +1,210 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-
-
-
-
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
-  <link rel="icon" type="image/png" href="/img/avatar.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. Ruby 面向对象概览1.1 基础变量x &#x3D; 1 y &#x3D; 1.0  puts x.class puts y.class 打印结果： Integer Float在Ruby中，变量可以包含Ruby可以理解的任何概念，&#x3D;&#x3D;在Ruby中所有的元素，包括基本类型都是对象，这个内置类有定义好的方法来执行数字类的操作&#x3D;&#x3D;，同时也不存在&#x3D;&#x3D;运算符&#x3D;&#x3D;的概念，所谓的1 + 1，其实只不过是1. + (1)的语">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ruby基础">
+<meta property="og:url" content="https://github.com/liututu1213/liututu1213.github.io/blog/6648/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="渣渣程序员">
+<meta property="og:description" content="1. Ruby 面向对象概览1.1 基础变量x &#x3D; 1 y &#x3D; 1.0  puts x.class puts y.class 打印结果： Integer Float在Ruby中，变量可以包含Ruby可以理解的任何概念，&#x3D;&#x3D;在Ruby中所有的元素，包括基本类型都是对象，这个内置类有定义好的方法来执行数字类的操作&#x3D;&#x3D;，同时也不存在&#x3D;&#x3D;运算符&#x3D;&#x3D;的概念，所谓的1 + 1，其实只不过是1. + (1)的语">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-17T16:56:10.000Z">
+<meta property="article:modified_time" content="2020-05-25T14:30:30.052Z">
+<meta property="article:author" content="liututu1213">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/liututu1213/liututu1213.github.io/blog/6648/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ruby基础 | 渣渣程序员</title>
   
-  <meta name="description" content="">
-  <meta name="author" content="liututu1213">
-  <meta name="keywords" content="">
-  <title>Ruby基础 ~ 渣渣程序员</title>
-
-  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css"  >
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css"  >
-<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"  >
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="/css/main.css"  >
 
 
-  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="渣渣程序员" type="application/atom+xml">
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="渣渣程序员" type="application/atom+xml">
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>渣渣程序员</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/">首页</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">归档</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">分类</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">标签</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">关于</a>
-          </li>
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">渣渣程序员</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
 </nav>
 
-    <div class="view intro-2" id="background" false
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/liututu1213/liututu1213.github.io/blog/6648/2020/01/18/Ruby%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="liututu1213">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="渣渣程序员">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ruby基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-18 00:56:10" itemprop="dateCreated datePublished" datetime="2020-01-18T00:56:10+08:00">2020-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-25 22:30:30" itemprop="dateModified" datetime="2020-05-25T22:30:30+08:00">2020-05-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+                </span>
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期六, 一月 18日 2020, 12:56 凌晨
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    4.1k 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      18 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
-            
-          </div>
-
           
+
         </div>
-      </div>
-    </div>
-  </header>
+      </header>
 
-  <main>
     
-      
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h3 id="1-Ruby-面向对象概览"><a href="#1-Ruby-面向对象概览" class="headerlink" title="1. Ruby 面向对象概览"></a>1. Ruby 面向对象概览</h3><h4 id="1-1-基础变量"><a href="#1-1-基础变量" class="headerlink" title="1.1 基础变量"></a>1.1 基础变量</h4><pre><code class="ruby">x = 1
+      
+        <h3 id="1-Ruby-面向对象概览"><a href="#1-Ruby-面向对象概览" class="headerlink" title="1. Ruby 面向对象概览"></a>1. Ruby 面向对象概览</h3><h4 id="1-1-基础变量"><a href="#1-1-基础变量" class="headerlink" title="1.1 基础变量"></a>1.1 基础变量</h4><pre><code class="ruby">x = 1
 y = 1.0
 
 puts x.class
@@ -718,221 +752,177 @@ this is b1
 this is Sample</code></pre><p>前面提到的<code>Kernel</code>模块包含所有的标准命令，在Ruby中无须指定对象或者类，如<code>load</code>、<code>require</code>、<code>exit</code>等，它们是特殊的方法，通过<code>Kernel</code>模块，被默认包含所有类（包括主程序作用）中。</p>
 <p>除了<code>Kernel</code>模块，系统还提供了<code>Enmerable</code>、<code>Comparable</code>模块，<code>Enmerable</code>提供的主要是与迭代瞎相关的功能，如<code>each</code>、<code>sort</code>、<code>max</code>、<code>min</code>等，<code>Comparable</code>为其他类提供比较运算符。</p>
 <h3 id="4-部署Ruby应用和程序库"><a href="#4-部署Ruby应用和程序库" class="headerlink" title="4. 部署Ruby应用和程序库"></a>4. 部署Ruby应用和程序库</h3><h4 id="4-1-Ruby程序发布"><a href="#4-1-Ruby程序发布" class="headerlink" title="4.1 Ruby程序发布"></a>4.1 Ruby程序发布</h4><h4 id="4-2-检测Ruby运行环境"><a href="#4-2-检测Ruby运行环境" class="headerlink" title="4.2 检测Ruby运行环境"></a>4.2 检测Ruby运行环境</h4><h4 id="4-3-以gem包形式发布Ruby程序库"><a href="#4-3-以gem包形式发布Ruby程序库" class="headerlink" title="4.3 以gem包形式发布Ruby程序库"></a>4.3 以gem包形式发布Ruby程序库</h4><h3 id="5-Ruby的高级功能"><a href="#5-Ruby的高级功能" class="headerlink" title="5. Ruby的高级功能"></a>5. Ruby的高级功能</h3><h4 id="5-1-动态代码执行"><a href="#5-1-动态代码执行" class="headerlink" title="5.1 动态代码执行"></a>5.1 动态代码执行</h4><h4 id="5-2-Ruby运行其他程序"><a href="#5-2-Ruby运行其他程序" class="headerlink" title="5.2 Ruby运行其他程序"></a>5.2 Ruby运行其他程序</h4><h3 id="6-Ruby-on-Rails-Ruby的杀手级应用"><a href="#6-Ruby-on-Rails-Ruby的杀手级应用" class="headerlink" title="6. Ruby on Rails: Ruby的杀手级应用"></a>6. Ruby on Rails: Ruby的杀手级应用</h3>
-            <hr>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/1442/2020/01/05/Date/" rel="prev" title="Date">
+      <i class="fa fa-chevron-left"></i> Date
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/31010/2020/02/12/Cocoapods/" rel="next" title="Cocoapods源码分析">
+      Cocoapods源码分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
           </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/Ruby/">Ruby</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
+          
 
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-  </div>
-</div>
-
-    
-  </main>
-
-  
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
-    <br>
-
-    
-  
-    <!-- 不蒜子统计PV -->
-    
-    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
-          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
-  
-  
-    <!-- 不蒜子统计UV -->
-    
-    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
-            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
-  
-  <br>
-
-
-
-    
-
-
-    <!-- cnzz Analytics icon -->
-    
-
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
-<script src="/js/main.js" ></script>
-
-
-  <script src="/js/lazyload.js" ></script>
-
-
-
-  <script src="/js/post.js" ></script>
-  
-    <script src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
-    <script>
-      $(document).ready(function () {
-        tocbot.init({
-          tocSelector: '#tocbot',
-          contentSelector: '.post-content',
-          headingSelector: 'h1,h2,h3,h4,h5,h6',
-          linkClass: 'tocbot-link',
-          activeLinkClass: 'tocbot-active-link',
-          listClass: 'tocbot-list',
-          isCollapsedClass: 'tocbot-is-collapsed',
-          collapsibleClass: 'tocbot-is-collapsible',
-          scrollSmooth: true,
-        });
-      });
-    </script>
-  
-
-
-
-
-
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-<!-- Plugins -->
-
-
-
-
-
-  <script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Ruby基础&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      getSearchFile(path);
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
-      function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
-        $(this).wrap(element);
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
-    );
-  </script>
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Ruby-面向对象概览"><span class="nav-number">1.</span> <span class="nav-text">1. Ruby 面向对象概览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-基础变量"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 基础变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Ruby-对象和类"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Ruby 对象和类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-1-对象"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-2-继承"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 继承</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-Kernel模块的方法"><span class="nav-number">1.3.</span> <span class="nav-text">1.2.3 Kernel模块的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Ruby的构造元素：数据、表达式和流程控制"><span class="nav-number">2.</span> <span class="nav-text">2. Ruby的构造元素：数据、表达式和流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-数字与表达式"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 数字与表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-比较运算符和表达式"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 比较运算符和表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-常量"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 常量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-文本与字符串"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 文本与字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-字面字符串"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 字面字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-字符串表达式"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 字符串表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-字符串-占位符"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 字符串 占位符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-4-字符串方法"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.2.4 字符串方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-5-正则表达式与字符操作"><span class="nav-number">2.2.5.</span> <span class="nav-text">2.2.5 正则表达式与字符操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-数组与列表"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 数组与列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-基本数组"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 基本数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-数组迭代"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 数组迭代</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-散列表"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-1-散列表的基础方法"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 散列表的基础方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-流程控制"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-1-if与unless"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1 if与unless</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-2-elsif-与case"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2 elsif 与case</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-3-代码块"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3 代码块</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-其他构造元素"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 其他构造元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-1-日期与时间"><span class="nav-number">2.6.1.</span> <span class="nav-text">2.6.1 日期与时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-类、对象和模块"><span class="nav-number">3.</span> <span class="nav-text">3. 类、对象和模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-面向对象的基础知识"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 面向对象的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-1-局部变量、全局变量、实例变量和类变量"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 局部变量、全局变量、实例变量和类变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-2-类方法和对象方法"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 类方法和对象方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-3-继承"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 继承</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-4-覆写现有方法"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4 覆写现有方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-5-对象方法的反射和发现"><span class="nav-number">3.1.5.</span> <span class="nav-text">3.1.5 对象方法的反射和发现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-6-封装"><span class="nav-number">3.1.6.</span> <span class="nav-text">3.1.6 封装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-7-多态"><span class="nav-number">3.1.7.</span> <span class="nav-text">3.1.7 多态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-8-嵌套类"><span class="nav-number">3.1.8.</span> <span class="nav-text">3.1.8 嵌套类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-8-常量的作用域"><span class="nav-number">3.1.9.</span> <span class="nav-text">3.1.8 常量的作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-9-判断对象的类型"><span class="nav-number">3.1.10.</span> <span class="nav-text">3.1.9 判断对象的类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-模块、命名空间和渗入"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 模块、命名空间和渗入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-1-命名空间"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 命名空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-2-渗入"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 渗入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-部署Ruby应用和程序库"><span class="nav-number">4.</span> <span class="nav-text">4. 部署Ruby应用和程序库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-Ruby程序发布"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Ruby程序发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-检测Ruby运行环境"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 检测Ruby运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-以gem包形式发布Ruby程序库"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 以gem包形式发布Ruby程序库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Ruby的高级功能"><span class="nav-number">5.</span> <span class="nav-text">5. Ruby的高级功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-动态代码执行"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 动态代码执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-Ruby运行其他程序"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Ruby运行其他程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Ruby-on-Rails-Ruby的杀手级应用"><span class="nav-number">6.</span> <span class="nav-text">6. Ruby on Rails: Ruby的杀手级应用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">liututu1213</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liututu1213</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
 
 
 
@@ -944,6 +934,13 @@ this is Sample</code></pre><p>前面提到的<code>Kernel</code>模块包含所�
 
 
 
+
+
+
+
+  
+
+  
 
 </body>
 </html>
