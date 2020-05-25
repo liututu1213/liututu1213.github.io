@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="liututu1213">
+  <meta name="keywords" content="">
+  <title>Ruby基础 ~ 渣渣程序员</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="渣渣程序员" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>渣渣程序员</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 一月 18日 2020, 12:56 凌晨
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    4.1k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      18 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="1-Ruby-面向对象概览"><a href="#1-Ruby-面向对象概览" class="headerlink" title="1. Ruby 面向对象概览"></a>1. Ruby 面向对象概览</h3><h4 id="1-1-基础变量"><a href="#1-1-基础变量" class="headerlink" title="1.1 基础变量"></a>1.1 基础变量</h4><pre><code class="ruby">x = 1
+y = 1.0
+
+puts x.class
+puts y.class</code></pre>
+<p>打印结果：</p>
+<pre><code>Integer
+Float</code></pre><p>在Ruby中，变量可以包含Ruby可以理解的任何概念，==在Ruby中所有的元素，包括基本类型都是对象，这个内置类有定义好的方法来执行数字类的操作==，同时也不存在==运算符==的概念，所谓的<code>1 + 1</code>，其实只不过是<code>1. + (1)</code>的语法糖而已。</p>
+<h4 id="1-2-Ruby-对象和类"><a href="#1-2-Ruby-对象和类" class="headerlink" title="1.2 Ruby 对象和类"></a>1.2 Ruby 对象和类</h4><h5 id="1-2-1-对象"><a href="#1-2-1-对象" class="headerlink" title="1.2.1 对象"></a>1.2.1 对象</h5><p>Ruby是一个面向对象的编程语言</p>
+<pre><code class="ruby">class Person
+    attr_accessor :name, :age, :gender
+end
+
+p = Person.new
+p.name = &quot;小明&quot;
+p.age = 10
+p.gender = &quot;woman&quot;
+
+puts &quot;#{ p.name }&quot;</code></pre>
+<p><code>attr_accessor</code>创建了三个属性(attributes)，其中accessor表示让这些属性可访问，可被修改和设置，除此之外，还有attr_reader<code>表示只可读，</code>attr_writer`表示只可写入。</p>
+<h5 id="1-2-2-继承"><a href="#1-2-2-继承" class="headerlink" title="1.2.2 继承"></a>1.2.2 继承</h5><p>面向对象编程的特点之一就是：继承。</p>
+<pre><code class="ruby">class Pet
+    attr_accessor :name, :age, :color
+end
+
+class Cat &lt;Pet
+end
+
+class Dog &lt;Pet
+    def bark
+        puts &quot;Woof !&quot;
+    end
+end
+
+class Snake &lt;Pet
+    attr_accessor :length
+end</code></pre>
+<h4 id="1-2-3-Kernel模块的方法"><a href="#1-2-3-Kernel模块的方法" class="headerlink" title="1.2.3 Kernel模块的方法"></a>1.2.3 Kernel模块的方法</h4><p>Kernel是一个特殊的类，前面使用到的<code>puts</code>方法没有完整的类或者对象的前缀，实际上，<code>puts</code>是来自Kernel模块的方法，当调用<code>puts</code>时，Ruby发现没有指定任何类或对象，就在默认的、预定义的类和模块中查到相同名的方法，在Kernel模块中进行查找，并进行调用，也可以显式地调用<code>Kernel.puts &quot;hi&quot;</code>。</p>
+<h3 id="2-Ruby的构造元素：数据、表达式和流程控制"><a href="#2-Ruby的构造元素：数据、表达式和流程控制" class="headerlink" title="2. Ruby的构造元素：数据、表达式和流程控制"></a>2. Ruby的构造元素：数据、表达式和流程控制</h3><h4 id="2-1-数字与表达式"><a href="#2-1-数字与表达式" class="headerlink" title="2.1 数字与表达式"></a>2.1 数字与表达式</h4><h5 id="2-1-1-比较运算符和表达式"><a href="#2-1-1-比较运算符和表达式" class="headerlink" title="2.1.1 比较运算符和表达式"></a>2.1.1 比较运算符和表达式</h5><table>
+<thead>
+<tr>
+<th align="center">比较运算</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x &gt;  y</td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center">x &lt; y</td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center">x == y</td>
+<td align="center">等于</td>
+</tr>
+<tr>
+<td align="center">x &gt;= y</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">x &lt;= y</td>
+<td align="center">小于等于</td>
+</tr>
+<tr>
+<td align="center">x &lt;=&gt; y</td>
+<td align="center">比较，如果x==y则返回0，x大于y则返回1，如果x小于y则返回-1</td>
+</tr>
+<tr>
+<td align="center">x != y</td>
+<td align="center">不等于</td>
+</tr>
+</tbody></table>
+<pre><code class="ruby">x = 10 
+y = 3
+puts x.to_f / y.to_f
+
+z = 3.845
+puts z.to_i
+puts z.round
+
+f = 3.9
+puts f.floor
+
+c = 10.1
+puts c.ceil</code></pre>
+<p>打印结果：</p>
+<pre><code>3.3333333333333335
+3
+3.85
+3
+11</code></pre><p>Ruby中提供函数用于浮点数（Float）和整数（Integer）之间的转换。<code>to_i</code>会直接去掉小数点，<code>round</code>为四舍五入，<code>floor</code>返回比接受者小的最大整数，<code>ceil</code>返回比接受者大的最大整数</p>
+<h5 id="2-1-2-常量"><a href="#2-1-2-常量" class="headerlink" title="2.1.2 常量"></a>2.1.2 常量</h5><p>常量在Ruby中的表达形式是以大写字母开头的变量名。</p>
+<pre><code class="ruby">Pi = 3.141592
+Pi = 3</code></pre>
+<p>运行结果：</p>
+<pre><code>constant.rb:2: warning: already initialized constant Pi
+constant.rb:1: warning: previous definition of Pi was here</code></pre><p>对于常量的值，Ruby提供了完全的控制权，在前面定义的Dog等class 以大写字母开头的名字来引用类，是因为类一旦定义之后，就是程序的固化部分，与常量的性质类似。</p>
+<h4 id="2-2-文本与字符串"><a href="#2-2-文本与字符串" class="headerlink" title="2.2 文本与字符串"></a>2.2 文本与字符串</h4><h5 id="2-2-1-字面字符串"><a href="#2-2-1-字面字符串" class="headerlink" title="2.2.1 字面字符串"></a>2.2.1 字面字符串</h5><p>在Ruby中所有的字符串都是String类的对象，<code>&quot;hello&quot;</code>这种构造的字符串称为字面字符串。</p>
+<p>把字符串包含在程序中有许多方式，如用引号只适合于单行文本，如果是多行文本则可以使用如下的方式：</p>
+<pre><code class="ruby">x = %q{this is string  
+of the multi line capabilities}
+puts x</code></pre>
+<p>在上面的例子中，引号被替换成<code>%q{}</code>,并且也可以用<code>&lt;&gt;</code>、<code>()</code>或其他自选的两个分解符代替引号。</p>
+<h5 id="2-2-2-字符串表达式"><a href="#2-2-2-字符串表达式" class="headerlink" title="2.2.2 字符串表达式"></a>2.2.2 字符串表达式</h5><table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“a” + “b”</td>
+<td align="center">“ab”</td>
+</tr>
+<tr>
+<td align="center">“abc” * 2</td>
+<td align="center">“abcabc”</td>
+</tr>
+<tr>
+<td align="center">puts “x” &gt; “y”      =&gt; false</td>
+<td align="center">大小比较</td>
+</tr>
+</tbody></table>
+<h5 id="2-2-3-字符串-占位符"><a href="#2-2-3-字符串-占位符" class="headerlink" title="2.2.3 字符串 占位符"></a>2.2.3 字符串 占位符</h5><pre><code class="ruby">x = 10
+y = 20
+puts &quot;#{x} + #{y} = #{x+y}&quot;</code></pre>
+<p>插写一段重复的字符串，可以使用以下方式：</p>
+<pre><code class="ruby">puts &quot;it&#39;s a #{&quot;bad &quot; * 5} world&quot;</code></pre>
+<h5 id="2-2-4-字符串方法"><a href="#2-2-4-字符串方法" class="headerlink" title="2.2.4 字符串方法"></a>2.2.4 字符串方法</h5><p>对字符串”Test”调用不同的方法的结果</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“Test”.capitalize</td>
+<td align="center">Test</td>
+</tr>
+<tr>
+<td align="center">puts “Test”.downcase</td>
+<td align="center">Test</td>
+</tr>
+<tr>
+<td align="center">“Test”.chop</td>
+<td align="center">Tes</td>
+</tr>
+<tr>
+<td align="center">“Test”.hash</td>
+<td align="center">3285097822602877765</td>
+</tr>
+<tr>
+<td align="center">“Test”.next</td>
+<td align="center">Tesu</td>
+</tr>
+<tr>
+<td align="center">“Test”.reverse</td>
+<td align="center">tseT</td>
+</tr>
+<tr>
+<td align="center">“Test”.sum</td>
+<td align="center">416</td>
+</tr>
+<tr>
+<td align="center">“Test”.swapcase</td>
+<td align="center">tEST</td>
+</tr>
+<tr>
+<td align="center">“Test”.upcase</td>
+<td align="center">TEST</td>
+</tr>
+</tbody></table>
+<h5 id="2-2-5-正则表达式与字符操作"><a href="#2-2-5-正则表达式与字符操作" class="headerlink" title="2.2.5 正则表达式与字符操作"></a>2.2.5 正则表达式与字符操作</h5><pre><code class="ruby">puts &quot;foobar&quot;.sub(&quot;bar&quot;, &quot;foo&quot;)</code></pre>
+<p><code>sub</code>将第一个参数替换成第二个参数。</p>
+<pre><code class="ruby">puts &quot;this is a test string&quot;.gsub(&quot;i&quot;, &quot;&quot;)</code></pre>
+<p><code>gsub</code>方法会对所有匹配文本进行多次替换。</p>
+<pre><code class="ruby">x = &quot;this is a test&quot;
+puts x.sub(/^../, &quot;Hello&quot;)
+puts x.sub(/..$/, &quot;Hello&quot;)</code></pre>
+<p>运行结果：</p>
+<pre><code>Hellois is a test
+this is a teHello</code></pre><p>在正则表达式中<code>^</code>，称为锚，表示正则表达式将从字符串中的任一行开头进行匹配，<code>..</code>中每一个点表示”任何字符“，整个表达式表达的是某行开始的开头两个字符，<code>$</code>为另一种锚，表示行尾。</p>
+<h4 id="2-3-数组与列表"><a href="#2-3-数组与列表" class="headerlink" title="2.3 数组与列表"></a>2.3 数组与列表</h4><h5 id="2-3-1-基本数组"><a href="#2-3-1-基本数组" class="headerlink" title="2.3.1 基本数组"></a>2.3.1 基本数组</h5><p>在Ruby中，可以用数组(array)来表示对象的有序集合。</p>
+<pre><code class="ruby">x = [1, 2, 3, 4]
+x[2] = &quot;Fish&quot; * 3
+x &lt;&lt; &quot;word&quot;
+x.push(5)
+puts x</code></pre>
+<p>对于数组来说，<code>&lt;&lt;</code>就是把数据放到数组末尾的运算符，也可以调用<code>push</code>,具有相同的效果，<code>x.pop</code>表示一处末尾元素。</p>
+<pre><code class="ruby">x = [1, 2, 3, 4]
+puts x.join(&quot;,&quot;)</code></pre>
+<p><code>join</code>表示把数组元素以指定的字符串连接起来。</p>
+<pre><code class="ruby">x = &quot;this is a test&quot;
+puts x.split(&quot; &quot;)</code></pre>
+<p><code>split</code>表示将字符串以特定的字符串，分割成字符串数组。</p>
+<h5 id="2-3-2-数组迭代"><a href="#2-3-2-数组迭代" class="headerlink" title="2.3.2 数组迭代"></a>2.3.2 数组迭代</h5><pre><code class="ruby">x = [1, &quot;test&quot;, 2, 3, 4]
+x.each {|element| puts element.to_s + &quot;X&quot;}
+
+y = x.collect {|element| element * 2}
+puts y</code></pre>
+<p><code>each</code> 方法遍历数组的每个元素，<code>collect</code>方法对数组进行实时转换。</p>
+<pre><code class="ruby">x = [1, 2, 3, 4]
+y = [1, 2]
+z = x + y
+puts x.empty?
+puts x.first
+puts x.last
+puts x.reverse.inspect</code></pre>
+<p>运行结果：</p>
+<pre><code>false
+1
+4
+[4, 3, 2, 1]</code></pre><pre><code class="ruby">x = [1, 2, 3, 4]
+y = [1, 2]
+z = x + y
+puts z.uniq.inspect</code></pre>
+<p>打印结果：</p>
+<pre><code>[1, 2, 3, 4]</code></pre><p><code>uniq</code>这个方法是用来移除重复的元素。</p>
+<h4 id="2-4-散列表"><a href="#2-4-散列表" class="headerlink" title="2.4 散列表"></a>2.4 散列表</h4><p>数组是对象的集合，散列表亦是。散列表中的对象不在列表给定位置，而是给定一个指向对象的键(key)。</p>
+<pre><code class="ruby">dictionary = {&#39;cat&#39; =&gt; &#39;feline animal&#39;, &#39;dog&#39; =&gt; &#39;canine animal&#39;}
+puts dictionary
+puts dictionary.size</code></pre>
+<p>运行结果：</p>
+<pre><code>{&quot;cat&quot;=&gt;&quot;feline animal&quot;, &quot;dog&quot;=&gt;&quot;canine animal&quot;}
+2</code></pre><h5 id="2-4-1-散列表的基础方法"><a href="#2-4-1-散列表的基础方法" class="headerlink" title="2.4.1 散列表的基础方法"></a>2.4.1 散列表的基础方法</h5><p>获取散列表元素信息</p>
+<pre><code class="ruby">x = {&#39;a&#39; =&gt; 1, &#39;b&#39; =&gt; 2}
+x.each { |key, value|
+    puts &quot;#{key} equals #{value}&quot;
+}
+puts &quot;keys: #{x.keys.inspect} \nvalue: #{x.values.inspect}&quot;</code></pre>
+<p>删除元素</p>
+<pre><code class="ruby">x = {&#39;a&#39; =&gt; 1, &#39;b&#39; =&gt; 2}
+x.delete(&quot;a&quot;)</code></pre>
+<p> 有条件地删除元素</p>
+<pre><code class="ruby">x = {&#39;a&#39; =&gt; 1, &#39;b&#39; =&gt; 2}
+x.delete_if{|key, value| value &lt; 2}
+puts x.inspect</code></pre>
+<h4 id="2-5-流程控制"><a href="#2-5-流程控制" class="headerlink" title="2.5 流程控制"></a>2.5 流程控制</h4><h5 id="2-5-1-if与unless"><a href="#2-5-1-if与unless" class="headerlink" title="2.5.1 if与unless"></a>2.5.1 if与unless</h5><pre><code class="ruby">age = 10
+puts &quot;you are too young to use this system&quot; if age &lt; 18
+if age &lt; 18 
+    puts &quot;you are too young to use this system&quot; 
+end</code></pre>
+<p>上面这两种方式功能等同。</p>
+<pre><code class="ruby">age = 10
+puts &quot;so we are going to exit your program now&quot; unless age &gt; 18</code></pre>
+<p><code>unless</code> 是<code>if</code>的反义词。</p>
+<h5 id="2-5-2-elsif-与case"><a href="#2-5-2-elsif-与case" class="headerlink" title="2.5.2 elsif 与case"></a>2.5.2 elsif 与case</h5><pre><code class="ruby">color = &quot;orange&quot;
+if color == &quot;orange&quot;
+    puts &quot;i like this color&quot;
+elsif color == &#39;green&#39;
+    puts &quot;i not like&quot;
+else 
+    puts &quot;normal&quot;
+end</code></pre>
+<p><code>case</code>块首先处理表达式，然后找出匹配该表达式的<code>when</code>块并执行，如果匹配不到<code>when</code>则执行<code>case</code>中的<code>else</code>块</p>
+<pre><code class="ruby">case color
+when &quot;orange&quot;
+    puts &quot;i like this color&quot;
+when &quot;green&quot;
+    puts &quot;i not like&quot;
+else
+    puts &quot;normal&quot;    
+end</code></pre>
+<h5 id="2-5-3-代码块"><a href="#2-5-3-代码块" class="headerlink" title="2.5.3 代码块"></a>2.5.3 代码块</h5><pre><code class="ruby">def each_vowel(&amp;code_block)
+    %w{a e i o u}.each { |vowel| code_block.call(vowel)}
+end
+
+each_vowel { |vowel|
+    puts vowel
+}</code></pre>
+<p><code>each_vowel</code>接受代码块作为参数，<code>&amp;</code>表示该参数是代码块，<code>call</code>执行传递进来的代码块。</p>
+<pre><code class="ruby">def each_vowel(&amp;code_block)
+    %w{a e i o u}.each { |vowel| yield vowel}
+end</code></pre>
+<p><code>yield</code>会自动检测传递给它的代码块，并将控制权移交给该代码块。</p>
+<p>ps：一次只能传递一个代码块，任何方法都不可能接受两个及以上的代码块作为参数，但代码块本身可以接受多个参数。</p>
+<pre><code class="ruby">print_param = lambda { |x| puts x}
+print_param.call(100)</code></pre>
+<p>可以用<code>lambda</code>方法把代码块储存在变量中，用lambda对象的<code>call</code>方法来执行代码块，以及接受传递来的任何参数。</p>
+<h4 id="2-6-其他构造元素"><a href="#2-6-其他构造元素" class="headerlink" title="2.6 其他构造元素"></a>2.6 其他构造元素</h4><h5 id="2-6-1-日期与时间"><a href="#2-6-1-日期与时间" class="headerlink" title="2.6.1 日期与时间"></a>2.6.1 日期与时间</h5><p>Ruby提供了<code>Time</code>这个类来处理时间和日期，<code>Time</code>内部机制是用微妙值来保存时间，根据UNIX的时间基准：格林尼治标准时间(GMT)/协调世界时(UTC) 1970年元月1日0时0分0秒。</p>
+<pre><code class="ruby">puts Time.now</code></pre>
+<p>打印结果：</p>
+<pre><code>2020-01-28 19:18:51 +0800</code></pre><p><code>+0800</code>表示当前时区的时间 </p>
+<pre><code class="ruby">puts Time.local(&quot;2020&quot;, &quot;01&quot;, &quot;27&quot;, &quot;19&quot;, &quot;22&quot;, &quot;00&quot;)</code></pre>
+<p><code>Time</code>允许根据当前时区创建一个<code>Time</code>对象，从month开始所有的参数都是可选的。</p>
+<pre><code class="ruby">puts Time.utc(&quot;2020&quot;, &quot;01&quot;, &quot;27&quot;, &quot;19&quot;, &quot;22&quot;, &quot;00&quot;)</code></pre>
+<p>根据GMT/UTC创建<code>Time</code>对象，所需参数与<code>local</code>方法类似。</p>
+<pre><code class="ruby">seconds = Time.now.to_i
+time = Time.at(seconds)
+
+puts time
+puts time.year, time.month</code></pre>
+<p>基准时间和<code>Time</code>对象互转，以及获取日期的年、月等相关属性。</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">方法的返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">hour</td>
+<td align="center">表示24小时格式的数字</td>
+</tr>
+<tr>
+<td align="center">min</td>
+<td align="center">分钟数</td>
+</tr>
+<tr>
+<td align="center">sec</td>
+<td align="center">秒数</td>
+</tr>
+<tr>
+<td align="center">usec</td>
+<td align="center">微秒数</td>
+</tr>
+<tr>
+<td align="center">day</td>
+<td align="center">该月第几天</td>
+</tr>
+<tr>
+<td align="center">mday</td>
+<td align="center">与day同义</td>
+</tr>
+<tr>
+<td align="center">wday</td>
+<td align="center">按周计的天数</td>
+</tr>
+<tr>
+<td align="center">yday</td>
+<td align="center">按年计的天数</td>
+</tr>
+<tr>
+<td align="center">month</td>
+<td align="center">当年月份</td>
+</tr>
+<tr>
+<td align="center">year</td>
+<td align="center">年份</td>
+</tr>
+<tr>
+<td align="center">zone</td>
+<td align="center">返回时间关联的时区名</td>
+</tr>
+<tr>
+<td align="center">utc?</td>
+<td align="center">根据time判断是否在UTC/GMT时区</td>
+</tr>
+<tr>
+<td align="center">gmt?</td>
+<td align="center">与utc?方法同义</td>
+</tr>
+</tbody></table>
+<h3 id="3-类、对象和模块"><a href="#3-类、对象和模块" class="headerlink" title="3. 类、对象和模块"></a>3. 类、对象和模块</h3><h4 id="3-1-面向对象的基础知识"><a href="#3-1-面向对象的基础知识" class="headerlink" title="3.1 面向对象的基础知识"></a>3.1 面向对象的基础知识</h4><h5 id="3-1-1-局部变量、全局变量、实例变量和类变量"><a href="#3-1-1-局部变量、全局变量、实例变量和类变量" class="headerlink" title="3.1.1 局部变量、全局变量、实例变量和类变量"></a>3.1.1 局部变量、全局变量、实例变量和类变量</h5><p>全局变量在程序的任何地方都可以访问，包括在类或对象中，在Ruby中全局变量并不常用，因为它违背了面向对象的思想，在Ruby使用<code>$</code>符号来定义全局变量。</p>
+<pre><code class="ruby">$x = 10
+def basic_mehod
+    puts $x
+end
+
+basic_mehod</code></pre>
+<p>实例变量其作用域关联于当前对象，实例变量有一个<code>@</code>符号前缀。</p>
+<p>类变量的作用域处于整个类中，类变量以<code>@@</code>符号为前缀表示。</p>
+<h5 id="3-1-2-类方法和对象方法"><a href="#3-1-2-类方法和对象方法" class="headerlink" title="3.1.2 类方法和对象方法"></a>3.1.2 类方法和对象方法</h5><pre><code class="ruby">class Square
+    def test_method
+        puts &quot;from an instance of the class&quot;
+    end
+
+    def self.test_method
+        puts &quot;from the Square class&quot;
+    end
+end</code></pre>
+<p><code>self.test_method</code>为类方法，类方法由<code>self.</code>前缀标识，或者也可以使用<code>Square.test_method</code>来定义类方法。</p>
+<h5 id="3-1-3-继承"><a href="#3-1-3-继承" class="headerlink" title="3.1.3 继承"></a>3.1.3 继承</h5><p>Ruby中任何类都可以继承另一个类的功能特性，Ruby只支持单继承。</p>
+<pre><code class="ruby">class Person
+    def initialize(name)
+        @name = name
+    end
+
+    def name
+        @name
+    end
+end
+
+class Doctor &lt; Person
+    def name
+        &quot;Dr. &quot; + super
+    end
+end</code></pre>
+<p><code>Doctor</code>类覆写<code>name</code>方法，并调用<code>super</code>。</p>
+<h5 id="3-1-4-覆写现有方法"><a href="#3-1-4-覆写现有方法" class="headerlink" title="3.1.4 覆写现有方法"></a>3.1.4 覆写现有方法</h5><p>Ruby是一门动态语言，可以覆写现有的类和方法。</p>
+<pre><code class="ruby">class String
+    def length
+        20
+    end
+end
+puts &quot;test string&quot;.length</code></pre>
+<p>Ruby的一些程序库和扩展（插件）覆写了核心类的方法，以扩展Ruby的通用功能，对于覆写系统提供的方法，还是要小心慎重。</p>
+<h5 id="3-1-5-对象方法的反射和发现"><a href="#3-1-5-对象方法的反射和发现" class="headerlink" title="3.1.5 对象方法的反射和发现"></a>3.1.5 对象方法的反射和发现</h5><p>反射是指计算机程序在运行和使用中，检视、分析并修改自身的过程，而Ruby把这种反射用到了极致，允许在运行自己的代码时，修改语言自身的大部分功能。在Ruby中，可以查询几乎任何对象定义的方法。</p>
+<pre><code class="ruby">puts &quot;test&quot;.methods.join(&quot; &quot;)</code></pre>
+<p>运行结果：</p>
+<pre><code>encode encode! unpack unpack1 include? % * + count partition to_c sum next casecmp casecmp? insert bytesize match match? succ! &lt;=&gt; next! upto index replace == === chr =~ rindex [] []= byteslice getbyte setbyte clear scrub empty? eql? -@ downcase scrub! dump undump upcase +@ capitalize swapcase upcase! downcase! capitalize! swapcase! hex oct freeze inspect bytes chars codepoints lines reverse reverse! concat split crypt ord length size grapheme_clusters succ start_with? center prepend strip rjust rstrip ljust chomp delete_suffix sub to_str to_sym intern sub! lstrip &lt;&lt; to_s to_i to_f gsub! chop! chomp! delete_prefix gsub chop end_with? scan tr strip! lstrip! rstrip! delete_prefix! delete_suffix! delete! tr_s delete squeeze tr! tr_s! each_grapheme_cluster squeeze! each_line each_byte each_char each_codepoint b slice slice! hash encoding force_encoding unicode_normalize valid_encoding? ascii_only? rpartition unicode_normalize! unicode_normalized? to_r between? &lt;= &gt;= clamp &lt; &gt; instance_variable_defined? remove_instance_variable instance_of? kind_of? is_a? tap instance_variable_get instance_variable_set instance_variables singleton_method method public_send define_singleton_method public_method extend to_enum enum_for !~ respond_to? object_id send display nil? class singleton_class clone dup itself yield_self then taint tainted? untaint untrust untrusted? trust frozen? methods singleton_methods protected_methods private_methods public_methods equal? ! __id__ instance_exec != instance_eval __send__</code></pre><p>对于任何对象，methods方法都返回该对象可用方法的数组。</p>
+<h5 id="3-1-6-封装"><a href="#3-1-6-封装" class="headerlink" title="3.1.6 封装"></a>3.1.6 封装</h5><p>封装是指对象将其组成数据隐藏在抽象接口之后的能力，封装的基本原理是向类之外尽可能少地减少暴露方法。</p>
+<pre><code class="ruby">class Person
+    def initialize(name)
+        set_name(name)
+    end
+
+    def name
+        @first_name + &#39; &#39;+ @last_name
+    end
+
+    private
+    def set_name(name)
+        first_name, last_name = name.split(/\s+/)
+        set_first_name(first_name)
+        set_last_name(last_name)
+    end
+
+    def set_first_name(name)
+        @first_name = name
+    end
+
+    def set_last_name(name)
+        @last_name = name
+    end
+end</code></pre>
+<p><code>private</code>关键字的作用就是class之外的代码无法访问，与其他语言的类似。</p>
+<pre><code class="ruby">private :set_name, :set_first_name, :set_last_name</code></pre>
+<p>也可以把<code>private</code>当成命令使用，向其传递一组符号参数，表示想把这些符号表示的方法设置为私有。</p>
+<h5 id="3-1-7-多态"><a href="#3-1-7-多态" class="headerlink" title="3.1.7 多态"></a>3.1.7 多态</h5><p>多态的概念是指编写代码可以同时适用于多种类型和类的对象，如 <code>+</code>方法适用于数据相加、字符串相连以及数组合并等，<code>+</code>方法具体操作什么，完全依赖于具体类型。</p>
+<h5 id="3-1-8-嵌套类"><a href="#3-1-8-嵌套类" class="headerlink" title="3.1.8 嵌套类"></a>3.1.8 嵌套类</h5><p>在Ruby中，可以把类放入其他类中，这样的类称为嵌套(nested)类。</p>
+<pre><code class="ruby">class Drawing
+    def self.get_circle
+        Circle.new
+    end
+
+    class Line
+    end
+
+    class Circle
+        def desc
+            &quot;this is a circle&quot;
+        end
+    end
+end
+
+d = Drawing.get_circle
+c = Drawing::Circle.new
+
+puts d.desc
+puts c.desc</code></pre>
+<p>嵌套类只能以<code>::</code>的形式创建。</p>
+<h5 id="3-1-8-常量的作用域"><a href="#3-1-8-常量的作用域" class="headerlink" title="3.1.8 常量的作用域"></a>3.1.8 常量的作用域</h5><pre><code class="ruby">Pi = 3.141592
+class Planet
+    Pi = 3.14
+    def circle(radius)
+        2 * Pi * radius
+    end
+end
+puts Planet::Pi
+puts Pi</code></pre>
+<p>在类中定义的常量，其作用域在类的环境中，通过<code>Planet::Pi</code>方式调用。</p>
+<h5 id="3-1-9-判断对象的类型"><a href="#3-1-9-判断对象的类型" class="headerlink" title="3.1.9 判断对象的类型"></a>3.1.9 判断对象的类型</h5><pre><code class="ruby">puts &quot;hello&quot;.is_a? Object
+puts &quot;hello&quot;.kind_of? Object
+puts &quot;hello&quot;.instance_of?Object
+puts &quot;hello&quot;.instance_of? String</code></pre>
+<p>打印结果：</p>
+<pre><code>true
+true
+false
+true</code></pre><p><code>is_a?</code>和<code>kind_of?</code>是同义的，<code>instance_of?</code>与这个两个不同的是，只在对象是那个类的实例而不是子类时才返回true。</p>
+<h4 id="3-2-模块、命名空间和渗入"><a href="#3-2-模块、命名空间和渗入" class="headerlink" title="3.2 模块、命名空间和渗入"></a>3.2 模块、命名空间和渗入</h4><p>模块提供了一种结构，用来把Ruby类、方法和常量收集到单独命名和定义的单元中，这样可以避免与现有类、方法和常量发生命名冲突。</p>
+<h5 id="3-2-1-命名空间"><a href="#3-2-1-命名空间" class="headerlink" title="3.2.1 命名空间"></a>3.2.1 命名空间</h5><p>在number_stuff.rb和letter_stuff.rb分别分别存在<code>random</code>方法如下：</p>
+<pre><code class="ruby"># number_stuff.rb
+def random
+    rand(100)
+end</code></pre>
+<pre><code class="ruby"># letter_stuff.rb
+def random
+    (rand(26) + 65).chr
+end</code></pre>
+<p>遇到如下的场景，加载的两个文件都存在同一个方法<code>random</code>:</p>
+<pre><code class="ruby">require &#39;./number_stuff.rb&#39;
+require &#39;./letter_stuff.rb&#39;
+
+puts random</code></pre>
+<p>打印结果:</p>
+<pre><code>M</code></pre><p>由于最后一个文件(letter_stuff.rb)被载入，因此结果时使用最后一个版本的<code>random</code>方法。</p>
+<pre><code class="ruby">module NumberStuff
+    def NumberStuff.random
+        rand(100)
+    end
+end
+
+module LetterStuff
+    def LetterStuff.random
+        (rand(26) + 65).chr
+    end
+end</code></pre>
+<p>可以用<code>module</code>来解决命名冲突的问题，它提供了命名空间。</p>
+<h5 id="3-2-2-渗入"><a href="#3-2-2-渗入" class="headerlink" title="3.2.2 渗入"></a>3.2.2 渗入</h5><p>在Ruby中不支持多继承，但在某些情况，需要从不同的类中共享功能，类似swift中的协议，在这种意义上，模块像某种“超级”类，可被包含到其他类中，用模块提供的功能来扩展其他类。</p>
+<pre><code class="ruby">module UsefulFeatures
+    def class_name
+        self.class.to_s
+    end
+end
+
+class Person
+    include UsefulFeatures
+
+end
+
+p = Person.new
+puts p.class_name</code></pre>
+<p><code>UsefulFeatures</code>模块看起来几乎像个“类”，不过模块本身就是组织工具，而不是类，<code>class_name</code>方法位于模块中，因此随即被包含在<code>Person</code>类中。<code>include</code>命名是把模块的内容放到当前作用域中。</p>
+<pre><code class="ruby">module A
+    def a1
+        puts &quot;this is a1&quot;
+    end
+end
+
+module B
+    def b1
+        puts &quot;this is b1&quot;
+    end
+end
+
+class Sample
+    include A
+    include B
+    def s1
+        puts &quot;this is Sample&quot;
+    end
+end
+
+s = Sample.new
+s.a1
+s.b1
+s.s1</code></pre>
+<p>打印结果：</p>
+<pre><code>this is a1
+this is b1
+this is Sample</code></pre><p>前面提到的<code>Kernel</code>模块包含所有的标准命令，在Ruby中无须指定对象或者类，如<code>load</code>、<code>require</code>、<code>exit</code>等，它们是特殊的方法，通过<code>Kernel</code>模块，被默认包含所有类（包括主程序作用）中。</p>
+<p>除了<code>Kernel</code>模块，系统还提供了<code>Enmerable</code>、<code>Comparable</code>模块，<code>Enmerable</code>提供的主要是与迭代瞎相关的功能，如<code>each</code>、<code>sort</code>、<code>max</code>、<code>min</code>等，<code>Comparable</code>为其他类提供比较运算符。</p>
+<h3 id="4-部署Ruby应用和程序库"><a href="#4-部署Ruby应用和程序库" class="headerlink" title="4. 部署Ruby应用和程序库"></a>4. 部署Ruby应用和程序库</h3><h4 id="4-1-Ruby程序发布"><a href="#4-1-Ruby程序发布" class="headerlink" title="4.1 Ruby程序发布"></a>4.1 Ruby程序发布</h4><h4 id="4-2-检测Ruby运行环境"><a href="#4-2-检测Ruby运行环境" class="headerlink" title="4.2 检测Ruby运行环境"></a>4.2 检测Ruby运行环境</h4><h4 id="4-3-以gem包形式发布Ruby程序库"><a href="#4-3-以gem包形式发布Ruby程序库" class="headerlink" title="4.3 以gem包形式发布Ruby程序库"></a>4.3 以gem包形式发布Ruby程序库</h4><h3 id="5-Ruby的高级功能"><a href="#5-Ruby的高级功能" class="headerlink" title="5. Ruby的高级功能"></a>5. Ruby的高级功能</h3><h4 id="5-1-动态代码执行"><a href="#5-1-动态代码执行" class="headerlink" title="5.1 动态代码执行"></a>5.1 动态代码执行</h4><h4 id="5-2-Ruby运行其他程序"><a href="#5-2-Ruby运行其他程序" class="headerlink" title="5.2 Ruby运行其他程序"></a>5.2 Ruby运行其他程序</h4><h3 id="6-Ruby-on-Rails-Ruby的杀手级应用"><a href="#6-Ruby-on-Rails-Ruby的杀手级应用" class="headerlink" title="6. Ruby on Rails: Ruby的杀手级应用"></a>6. Ruby on Rails: Ruby的杀手级应用</h3>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/Ruby/">Ruby</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  <script src="/js/post.js" ></script>
+  
+    <script src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+
+
+  <script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Ruby基础&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="liututu1213">
+  <meta name="keywords" content="">
+  <title>Date ~ 渣渣程序员</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="渣渣程序员" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>渣渣程序员</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 一月 5日 2020, 12:05 凌晨
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.5k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      11 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h4 id="1-UTC、GMT和时间戳介绍"><a href="#1-UTC、GMT和时间戳介绍" class="headerlink" title="1. UTC、GMT和时间戳介绍"></a>1. UTC、GMT和时间戳介绍</h4><h5 id="GMT"><a href="#GMT" class="headerlink" title="GMT"></a>GMT</h5><p>格林尼治标准时间（Greenwich Mean Time）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，即本初子午线时间。</p>
+<p>由于地球在椭圆轨道里的运动速度不均匀，这个时刻可能与实际的太阳时有误差，所以有了UTC时间出现。</p>
+<h5 id="UTC"><a href="#UTC" class="headerlink" title="UTC"></a>UTC</h5><p>协调世界时间（又称世界标准时间），与GMT一样都是本初子午时间，只不过UTC是经过协调后的世界时间，比GMT更加准确。全球一共有24个时区。</p>
+<p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png" srcset="/img/loading.gif" alt="timezone"></p>
+<p>而北京时间位于东八区，与格林尼治时间相差八小时，也就是我们经常在开发中遇到8小时时差的问题。</p>
+<h4 id="2-swift中Date与Calender关系"><a href="#2-swift中Date与Calender关系" class="headerlink" title="2. swift中Date与Calender关系"></a>2. swift中Date与Calender关系</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png" srcset="/img/loading.gif" alt=""></p>
+<p>首先Date可以通过DateFormatter进行互转，Date通过格式化可以转化成自定义的样式，反过来同样成立。在iOS中，没办法像其他语言一样直接time.year这样的api获取年份等信息，想要获取Date的年月日信息需要使用Calende+DateCompontents来完成，反之，也可以通过DateComponents对各个组件进行组装，通过Calender对象变成date。</p>
+<p>Calender封装了有关计算时间的系统的信息，其中定义了年的开始、长度和分割，提供了关于日历的信息和日历计算的支持。</p>
+<h4 id="3-Date"><a href="#3-Date" class="headerlink" title="3. Date"></a>3. Date</h4><p>iOS中的Date是用来表示公历的GMT时间，Date是没有存储时区等信息，所以不管你在哪个时区打印的Date()都是一样的，这一点非常重要。</p>
+<pre><code class="swift">let date = Date()
+print(date)</code></pre>
+<p>打印结果：</p>
+<pre><code>2020-01-04 10:03:01 +0000</code></pre><p>Date()获取的是零时区的时间(格林尼治的时间)，而如果你系统所在的时区是东八区即北京时间，则实际系统时间与打印出来的时间相差八小时。</p>
+<p>Date的初始化方法：</p>
+<pre><code class="Swift">public init()
+public init(timeIntervalSinceNow: TimeInterval) //以当前时间的偏移秒数来初始化
+public init(timeIntervalSince1970: TimeInterval) //以GMT时间的偏移秒数来初始化
+public init(timeInterval: TimeInterval, since date: Date) //以给定秒数返回相对于另一个给定日期初始化的“日期”
+...</code></pre>
+<p>时间比较相关方法：</p>
+<pre><code class="Swift">public func compare(_ other: Date) -&gt; ComparisonResult
+public static func == (lhs: Date, rhs: Date) -&gt; Bool
+public static func &lt; (lhs: Date, rhs: Date) -&gt; Bool
+public static func &gt; (lhs: Date, rhs: Date) -&gt; Bool
+public static func + (lhs: Date, rhs: TimeInterval) -&gt; Date
+...</code></pre>
+<h5 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h5><p>时间戳是指1970-01-01 00:00:00到当前时间的秒数。</p>
+<pre><code>date.timeIntervalSince1970 
+date.timeIntervalSinceNow
+date.timeIntervalSince(xx)</code></pre><h4 id="4-DateFormatter-Date-与String-互相转换"><a href="#4-DateFormatter-Date-与String-互相转换" class="headerlink" title="4. DateFormatter: Date 与String 互相转换"></a>4. DateFormatter: Date 与String 互相转换</h4><p>DateFormatter 是Formatter的子类，Formatter是将数据在字符串与特定类型的对象之间转换，目前Formatter有两个子类NumberFormatter和DateFormatter。</p>
+<p>DateFormatter用来在日期和字符串之间的转换，DateFormatter格式其实是遵守了Unicode Technical Standard。</p>
+<pre><code class="swift">open var dateFormat: String!
+open var dateStyle: DateFormatter.Style
+open var timeStyle: DateFormatter.Style
+open var locale: Locale!
+open var timeZone: TimeZone!
+open var calendar: Calendar! //如果未指定则使用当前用户的逻辑日历</code></pre>
+<p>下面将会来一一介绍这些相关的属性。</p>
+<p>DateFormatter提供了许多定义好的时间格式，如dateStyle和timeStyle。</p>
+<pre><code class="swift">public enum Style : UInt {
+    case none
+    case short
+    case medium
+    case long
+    case full
+}</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">格式类型</th>
+<th align="center">dateStyle</th>
+<th align="center">timeStyle</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">none</td>
+<td align="center">/</td>
+<td align="center">/</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">1/4/20</td>
+<td align="center">7:37 PM</td>
+</tr>
+<tr>
+<td align="center">medium</td>
+<td align="center">Jan 4, 2020</td>
+<td align="center">7:38:51 PM</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">January 4, 2020</td>
+<td align="center">7:39:50 PM GMT+8</td>
+</tr>
+<tr>
+<td align="center">full</td>
+<td align="center">Saturday, January 4, 2020</td>
+<td align="center">7:40:40 PM China Standard Time</td>
+</tr>
+</tbody></table>
+<p>DateFormatter有一个local的属性，Local是与国际化相关的基础类。</p>
+<h4 id="5-Local"><a href="#5-Local" class="headerlink" title="5. Local"></a>5. Local</h4><p>Local是是与国际化相关的基础类，在OS X中，可以到”系统偏好设置-&gt;语言与地区”中设置当前的local。Local是包含所有地区的语言与文化习俗的基础类，一个Local实例包含了针对这个地区内特定一群人的所有语言文化基准，其中包括：</p>
+<ul>
+<li>语言</li>
+<li>键盘</li>
+<li>数字、日期和时间格式</li>
+<li>货币  如USD</li>
+<li>排序和分类</li>
+<li>符号、颜色与头像的使用</li>
+</ul>
+<p>每一个Local的实例对应着一个地区标识符，如en_US、zh_CN等，这些标识符包含 语言码(en)和地区码(US)。</p>
+<pre><code class="swift">Locale.preferredLanguages //返回用户偏好设置的语言列表</code></pre>
+<h4 id="6-TimeZone"><a href="#6-TimeZone" class="headerlink" title="6. TimeZone"></a>6. TimeZone</h4><p>TimeZone表示时区信息，上面提到过世界上有24是个时区，任何时区都是GMT为基准，TimeZone对象所代表的时区都是相对于GMT的。</p>
+<pre><code class="swift">public static var current: TimeZone { get }
+public init?(identifier: String) //用给定的标识符初始化timeZone对象
+public init?(secondsFromGMT seconds: Int) //通过相对于GMT时间偏移量(时差)来获取时区</code></pre>
+<p>一般应用程序的默认时区，是和手机系统设置的时区一致的。</p>
+<pre><code>TimeZone.current</code></pre><p>打印结果如下：</p>
+<pre><code>▿ Asia/Shanghai (current)
+  - identifier : &quot;Asia/Shanghai&quot;
+  - kind : &quot;current&quot;
+  ▿ abbreviation : Optional&lt;String&gt;
+    - some : &quot;GMT+8&quot;
+  - secondsFromGMT : 28800 //相对于GMT的时差 秒
+  - isDaylightSavingTime : false</code></pre><h4 id="7-DateComponents"><a href="#7-DateComponents" class="headerlink" title="7. DateComponents"></a>7. DateComponents</h4><p>这个类可用于计算未来或过去的日期，Calender用它来实现Date和DateComponents相互转换</p>
+<h4 id="8-Calendar"><a href="#8-Calendar" class="headerlink" title="8. Calendar"></a>8. Calendar</h4><p>在iOS中，没办法像其他语言一样直接time.year这样的api获取年份等信息，想要获取Date的年月日需要使用Calender的日历对象。Calender封装了有关计算时间的系统的信息，其中定义了年的开始、长度和分割，提供了关于日历的信息和日历计算的支持。</p>
+<pre><code class="swift">public static var current: Calendar { get }
+public static var autoupdatingCurrent: Calendar { get } //当前系统设置的日历的值
+public init(identifier: Calendar.Identifier) //Identifier 是一个枚举，提供了各种类型的日历
+public func component(_ component: Calendar.Component, from date: Date) -&gt; Int //返回一个给定date的日期组件</code></pre>
+<p>先来介绍Calender的相关的api</p>
+<h5 id="8-1-Calendar-Identifier"><a href="#8-1-Calendar-Identifier" class="headerlink" title="8.1  Calendar.Identifier"></a>8.1  Calendar.Identifier</h5><pre><code class="swift">public enum Identifier {
+    case gregorian //公历 Calender的默认值
+    case buddhist
+    case chinese //农历
+    case coptic
+    case ethiopicAmeteMihret
+    case ethiopicAmeteAlem
+    case hebrew
+    case iso8601
+    case indian
+    case islamic
+    case islamicCivil
+    case japanese
+    case persian
+    case republicOfChina
+}</code></pre>
+<h5 id="8-2-Calendar-Component"><a href="#8-2-Calendar-Component" class="headerlink" title="8.2 Calendar.Component"></a>8.2 Calendar.Component</h5><pre><code class="swift">public enum Component {
+    case era // 特定时期的时代，取决于日期的日历系统
+    case year
+    case month
+    case day
+    case hour
+    case minute
+    case second
+    case weekday //星期几，默认情况下周日为1，周一为2，以此类推
+    case weekdayOrdinal //表示指定日期是当前这个月的第几个星期几，如2020-02-13，星期四，是这个月的第2个星期四
+    case quarter //返回季度单位的数字，但不同地区季度的起始时间不同，因此此属性默认是0，除非赋值。
+    case weekOfMonth //Identifier for the week of the month calendar unit.
+    case weekOfYear// Identifier for the week of the year unit.
+    case yearForWeekOfYear //Identifier for the week-counting year unit.
+    case nanosecond
+    case calendar
+    case timeZone
+}</code></pre>
+<p>Date类是无法单独来获取每一个元素的信息，必须使用component方法获取给定日期的日期组件即Calendar.Component，获取某个时间点对应的”年”、”月”、”日”、”第几周”、”周几”等信息。</p>
+<h5 id="8-3-Calender相关函数"><a href="#8-3-Calender相关函数" class="headerlink" title="8.3 Calender相关函数"></a>8.3 Calender相关函数</h5><p><code>public func minimumRange(of component: Calendar.Component) -&gt; Range&lt;Int&gt;?</code></p>
+<pre><code class="swift">let calendar = Calendar.current
+let range = calendar.minimumRange(of: .day)
+print(range) //Range(1..&lt;29)</code></pre>
+<p>返回指定组件最小的限制范围，如Day Components 最小的范围是1-28</p>
+<p><code>public func maximumRange(of component: Calendar.Component) -&gt; Range&lt;Int&gt;?</code></p>
+<pre><code class="swift">let calendar = Calendar.current
+let range = calendar.maximumRange(of: .day)
+print(range) // Range(1..&lt;32)</code></pre>
+<p>date所在的小组件在 大组件里的范围。</p>
+<p><code>public func range(of smaller: Calendar.Component, in larger: Calendar.Component, for date: Date) -&gt; Range&lt;Int&gt;?</code></p>
+<pre><code class="swift">let date = Date() ///&quot;Feb 14, 2020 at 1:10 AM&quot;
+let calendar = Calendar.current
+let range = calendar.range(of: .day, in: .month, for: date)
+print(range) /// Range(1..&lt;30)</code></pre>
+<p>返回指定日期所在的小组件在大组件的一个时间范围。</p>
+<p><code>public func dateInterval(of component: Calendar.Component, start: inout Date, interval: inout TimeInterval, for date: Date) -&gt; Bool</code></p>
+<pre><code class="swift">let date = Date() ///Feb 14, 2020 at 1:14 AM
+let calendar = Calendar.current
+var d: Date = Date()
+var time: Double = 0
+
+/// 当前时间所在的一周的开始时间，周日为每周的开始时间
+calendar.dateInterval(of: .weekOfMonth, start: &amp;d, interval: &amp;time, for: date)
+print(d)
+print(time)</code></pre>
+<p>打印结果：</p>
+<pre><code>2020-02-08 16:00:00 +0000
+604800.0</code></pre><p>通过两个inout参数返回包含给定日期、组件的开始时间和时间长。</p>
+<p><code>public func ordinality(of smaller: Calendar.Component, in larger: Calendar.Component, for date: Date) -&gt; Int?</code></p>
+<p> 返回指定的日期 指定的较小日历组件(Day)在较大日历组件(weekOfMonth) 的序号。</p>
+<p><code>public func date(byAdding components: DateComponents, to date: Date, wrappingComponents: Bool = false) -&gt; Date?</code></p>
+<pre><code class="swift">let date = Date() ///2020-02-13 17:29:35 +0000
+let calendar = Calendar.current
+var dateComponets = DateComponents()
+dateComponets.day = 18
+let day = calendar.date(byAdding: dateComponets, to: date)!
+print(day) 2020-03-02 17:29:35 +0000
+
+let day2 = calendar.date(byAdding: dateComponets, to: date, wrappingComponents: true)!
+print(day2) ///2020-02-02 17:29:35 +0000</code></pre>
+<p>向给定日期添加组件计算出新的日期，其中<code>wrappingComponents</code>为true表示组件在增加的时候溢出时，不是向更高的组件”进位”</p>
+<p><code>public func date(from components: DateComponents) -&gt; Date?</code></p>
+<p>用指定的DateComponents创建一个新的日期，如果匹配不到组件的日期，则返回nil。</p>
+<pre><code class="swift">public func dateComponents(_ components: Set&lt;Calendar.Component&gt;, from date: Date) -&gt; DateComponents
+public func dateComponents(in timeZone: TimeZone, from date: Date) -&gt; DateComponent</code></pre>
+<p>返回这个日历时区所有的日历组件，第一个是传入指定的Calendar.Component数组，第二个是传入TimeZone</p>
+<pre><code class="swift">public func dateComponents(_ components: Set&lt;Calendar.Component&gt;, from start: Date, to end: Date) -&gt; DateComponents
+
+public func dateComponents(_ components: Set&lt;Calendar.Component&gt;, from start: DateComponents, to end: DateComponents) -&gt; DateComponents</code></pre>
+<pre><code>public func component(_ component: Calendar.Component, from date: Date) -&gt; Int</code></pre><pre><code class="swift">let date = Date() //2020-02-15 07:14:06 +0000
+let calendar = Calendar.current
+let startOfDay = calendar.startOfDay(for: date)
+print(startOfDay) //2020-02-14 16:00:00 +0000</code></pre>
+<p>返回给定日期的第一个时刻。</p>
+<pre><code class="swift">public func compare(_ date1: Date, to date2: Date, toGranularity component: Calendar.Component) -&gt; ComparisonResult
+public func isDate(_ date1: Date, equalTo date2: Date, toGranularity component: Calendar.Component) -&gt; Bool </code></pre>
+<p>component用于比较的粒度，如.hour 判断两个日期是否在相同的小时内。</p>
+<pre><code class="swift">public func isDate(_ date1: Date, inSameDayAs date2: Date) -&gt; Bool
+public func isDateInToday(_ date: Date) -&gt; Bool
+public func isDateInYesterday(_ date: Date) -&gt; Bool
+public func isDateInTomorrow(_ date: Date) -&gt; Bool
+public func isDateInWeekend(_ date: Date) -&gt; Bool</code></pre>
+<pre><code>public func dateIntervalOfWeekend(containing date: Date) -&gt; DateInterval?</code></pre><p>使用Calender和Components对Date进行的扩展：</p>
+<pre><code class="swift">extension Date {
+     var startOfWeek: Date {
+        var calendar = Calendar.current
+        let component = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear, .hour], from: self)
+        calendar.firstWeekday = 2
+        return calendar.date(from: component)!
+    }
+
+    var startOfCurrentMonth: Date {
+         let calendar = NSCalendar.current
+         let components = calendar.dateComponents([.year, .month, .hour], from: self)
+         let startOfMonth = calendar.date(from: components)!
+         return startOfMonth
+     }
+}</code></pre>
+<p>startOfWeek获取一周开始的日期，<code>calendar.firstWeekday = 2</code>用于设置一周从周一开始算起；startOfCurrentMonth获取当前日期所在的月开始时间。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/swift/">swift</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/liu/">liu</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  <script src="/js/post.js" ></script>
+  
+    <script src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+
+
+  <script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Date&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
