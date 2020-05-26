@@ -12,20 +12,20 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。 MoyaMoya的目录结构如下： ├── Moya │   ├── AnyEncodable.swift │   ├── Cancellable.swift │   ├── Endpoint.swift │   ├── Image.swift │   ├── Moya+Alamof">
+  <meta name="description" content="对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。 MoyaMoya的目录结构如下： ├── Moya│   ├── AnyEncodable.swift│   ├── Cancellable.swift│   ├── Endpoint.swift│   ├── Image.swift│   ├── Moya+Alamofire.s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Moya &amp;&amp; Alamofire">
 <meta property="og:url" content="https://github.com/liututu1213/liututu1213.github.io/blog/44783/2020/02/26/Moya/index.html">
 <meta property="og:site_name" content="渣渣程序员">
-<meta property="og:description" content="对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。 MoyaMoya的目录结构如下： ├── Moya │   ├── AnyEncodable.swift │   ├── Cancellable.swift │   ├── Endpoint.swift │   ├── Image.swift │   ├── Moya+Alamof">
+<meta property="og:description" content="对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。 MoyaMoya的目录结构如下： ├── Moya│   ├── AnyEncodable.swift│   ├── Cancellable.swift│   ├── Endpoint.swift│   ├── Image.swift│   ├── Moya+Alamofire.s">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png">
 <meta property="article:published_time" content="2020-02-25T16:05:39.000Z">
 <meta property="article:modified_time" content="2020-05-25T14:30:30.051Z">
-<meta property="article:author" content="liututu1213">
+<meta property="article:author" content="渣渣程序员">
 <meta property="article:tag" content="liu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png">
@@ -170,8 +170,8 @@
     <link itemprop="mainEntityOfPage" href="https://github.com/liututu1213/liututu1213.github.io/blog/44783/2020/02/26/Moya/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="liututu1213">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/liututu1213/imageForSource/master/Common/avatar.png">
+      <meta itemprop="name" content="渣渣程序员">
       <meta itemprop="description" content="">
     </span>
 
@@ -222,37 +222,11 @@
       
         <p>对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。</p>
 <h2 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h2><p>Moya的目录结构如下：</p>
-<pre><code>├── Moya
-│   ├── AnyEncodable.swift
-│   ├── Cancellable.swift
-│   ├── Endpoint.swift
-│   ├── Image.swift
-│   ├── Moya+Alamofire.swift
-│   ├── MoyaError.swift
-│   ├── MoyaProvider+Defaults.swift
-│   ├── MoyaProvider+Internal.swift
-│   ├── MoyaProvider.swift
-│   ├── MultiTarget.swift
-│   ├── MultipartFormData.swift
-│   ├── Plugin.swift
-│   ├── Plugins
-│   │   ├── AccessTokenPlugin.swift
-│   │   ├── CredentialsPlugin.swift
-│   │   ├── NetworkActivityPlugin.swift
-│   │   └── NetworkLoggerPlugin.swift
-│   ├── Response.swift
-│   ├── TargetType.swift
-│   ├── Task.swift
-│   ├── URL+Moya.swift
-│   ├── URLRequest+Encoding.swift
-│   └── ValidationType.swift
-├── ReactiveMoya
-│   ├── MoyaProvider+Reactive.swift
-│   └── SignalProducer+Response.swift
-└── RxMoya
-    ├── MoyaProvider+Rx.swift
-    ├── Observable+Response.swift
-    └── Single+Response.swift</code></pre><h3 id="Moya介绍"><a href="#Moya介绍" class="headerlink" title="Moya介绍"></a>Moya介绍</h3><p>Moya是基于Alamofire的更高一层的网络请求封装抽象层，在Moya中使用Enum来管理API，每一个网络请求接口都是枚举的一种case，下面是Moya的大概流程图：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">├── Moya</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">AnyEncodable</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">Cancellable</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">Endpoint</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">Image</span>.</span></span>swift</span><br><span class="line">│   ├── Moya+<span class="module-access"><span class="module"><span class="identifier">Alamofire</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">MoyaError</span>.</span></span>swift</span><br><span class="line">│   ├── MoyaProvider+<span class="module-access"><span class="module"><span class="identifier">Defaults</span>.</span></span>swift</span><br><span class="line">│   ├── MoyaProvider+<span class="module-access"><span class="module"><span class="identifier">Internal</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">MoyaProvider</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">MultiTarget</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">MultipartFormData</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">Plugin</span>.</span></span>swift</span><br><span class="line">│   ├── Plugins</span><br><span class="line">│   │   ├── <span class="module-access"><span class="module"><span class="identifier">AccessTokenPlugin</span>.</span></span>swift</span><br><span class="line">│   │   ├── <span class="module-access"><span class="module"><span class="identifier">CredentialsPlugin</span>.</span></span>swift</span><br><span class="line">│   │   ├── <span class="module-access"><span class="module"><span class="identifier">NetworkActivityPlugin</span>.</span></span>swift</span><br><span class="line">│   │   └── <span class="module-access"><span class="module"><span class="identifier">NetworkLoggerPlugin</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">Response</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">TargetType</span>.</span></span>swift</span><br><span class="line">│   ├── <span class="module-access"><span class="module"><span class="identifier">Task</span>.</span></span>swift</span><br><span class="line">│   ├── URL+<span class="module-access"><span class="module"><span class="identifier">Moya</span>.</span></span>swift</span><br><span class="line">│   ├── URLRequest+<span class="module-access"><span class="module"><span class="identifier">Encoding</span>.</span></span>swift</span><br><span class="line">│   └── <span class="module-access"><span class="module"><span class="identifier">ValidationType</span>.</span></span>swift</span><br><span class="line">├── ReactiveMoya</span><br><span class="line">│   ├── MoyaProvider+<span class="module-access"><span class="module"><span class="identifier">Reactive</span>.</span></span>swift</span><br><span class="line">│   └── SignalProducer+<span class="module-access"><span class="module"><span class="identifier">Response</span>.</span></span>swift</span><br><span class="line">└── RxMoya</span><br><span class="line">    ├── MoyaProvider+<span class="module-access"><span class="module"><span class="identifier">Rx</span>.</span></span>swift</span><br><span class="line">    ├── Observable+<span class="module-access"><span class="module"><span class="identifier">Response</span>.</span></span>swift</span><br><span class="line">    └── Single+<span class="module-access"><span class="module"><span class="identifier">Response</span>.</span></span>swift</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Moya介绍"><a href="#Moya介绍" class="headerlink" title="Moya介绍"></a>Moya介绍</h3><p>Moya是基于Alamofire的更高一层的网络请求封装抽象层，在Moya中使用Enum来管理API，每一个网络请求接口都是枚举的一种case，下面是Moya的大概流程图：</p>
 <p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" alt=""></p>
 <h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p>request部分主要是包含请求相关的代码，定义了TargetType协议，通过TargetType来定义一个请求。</p>
 <ul>
@@ -262,65 +236,39 @@
 <li>Cancellable：请求取消相关协议</li>
 </ul>
 <h3 id="MoyaProvider"><a href="#MoyaProvider" class="headerlink" title="MoyaProvider"></a>MoyaProvider</h3><h4 id="Provider初始化"><a href="#Provider初始化" class="headerlink" title="Provider初始化"></a>Provider初始化</h4><p>MoyaProvider是Moya的核心处理类，Moya中所有的API请求都是通过Provider来发起的。Provider真正做的事情可以用一个流来表示：Target-&gt;Endpoint-&gt;Request,这个过程中Provider会一步步生层一个NSURLRequest来交给Alamofire发起请求。</p>
-<pre><code class="swift">public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
-            requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
-            stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
-            callbackQueue: DispatchQueue? = nil,
-            manager: Manager = MoyaProvider&lt;Target&gt;.defaultAlamofireManager(),
-            plugins: [PluginType] = [],
-            trackInflights: Bool = false) {}
-</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(endpointClosure: @escaping <span class="type">EndpointClosure</span> = <span class="type">MoyaProvider</span>.defaultEndpointMapping,</span><br><span class="line">            requestClosure: @escaping <span class="type">RequestClosure</span> = <span class="type">MoyaProvider</span>.defaultRequestMapping,</span><br><span class="line">            stubClosure: @escaping <span class="type">StubClosure</span> = <span class="type">MoyaProvider</span>.neverStub,</span><br><span class="line">            callbackQueue: <span class="type">DispatchQueue?</span> = <span class="literal">nil</span>,</span><br><span class="line">            manager: <span class="type">Manager</span> = <span class="type">MoyaProvider</span>&lt;<span class="type">Target</span>&gt;.defaultAlamofireManager(),</span><br><span class="line">            plugins: [<span class="type">PluginType</span>] = [],</span><br><span class="line">            trackInflights: <span class="type">Bool</span> = <span class="literal">false</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p>endpointClosure：负责从TargetType转成Endpoint，Moya对endpointClosure提供了默认的实现。</p>
-<pre><code class="swift">final class func defaultEndpointMapping(for target: Target) -&gt; Endpoint {
-    return Endpoint(
-        url: URL(target: target).absoluteString,
-        sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-        method: target.method,
-        task: target.task,
-        httpHeaderFields: target.headers
-    )
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultEndpointMapping</span>(<span class="title">for</span> <span class="title">target</span>: <span class="title">Target</span>) -&gt; <span class="title">Endpoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Endpoint</span>(</span><br><span class="line">        url: <span class="type">URL</span>(target: target).absoluteString,</span><br><span class="line">        sampleResponseClosure: &#123; .networkResponse(<span class="number">200</span>, target.sampleData) &#125;,</span><br><span class="line">        method: target.method,</span><br><span class="line">        task: target.task,</span><br><span class="line">        httpHeaderFields: target.headers</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在实际的项目中，可以自定义这个闭包来实现复杂的功能。</p>
 </li>
 </ul>
 <ul>
 <li><p>requestClosure：负责把Endpoint转换成NSURLRequest，同样也有默认的实现<code>MoyaProvider.defaultRequestMappin</code></p>
-<pre><code class="swift">final class func defaultRequestMapping(for endpoint: Endpoint, closure: RequestResultClosure) {
-    do {
-        let urlRequest = try endpoint.urlRequest()
-        closure(.success(urlRequest))
-    } catch MoyaError.requestMapping(let url) {
-        closure(.failure(MoyaError.requestMapping(url)))
-    } catch MoyaError.parameterEncoding(let error) {
-        closure(.failure(MoyaError.parameterEncoding(error)))
-    } catch {
-        closure(.failure(MoyaError.underlying(error, nil)))
-    }
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultRequestMapping</span>(<span class="title">for</span> <span class="title">endpoint</span>: <span class="title">Endpoint</span>, <span class="title">closure</span>: <span class="title">RequestResultClosure</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> urlRequest = <span class="keyword">try</span> endpoint.urlRequest()</span><br><span class="line">        closure(.success(urlRequest))</span><br><span class="line">    &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.requestMapping(<span class="keyword">let</span> url) &#123;</span><br><span class="line">        closure(.failure(<span class="type">MoyaError</span>.requestMapping(url)))</span><br><span class="line">    &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.parameterEncoding(<span class="keyword">let</span> error) &#123;</span><br><span class="line">        closure(.failure(<span class="type">MoyaError</span>.parameterEncoding(error)))</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        closure(.failure(<span class="type">MoyaError</span>.underlying(error, <span class="literal">nil</span>)))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <ul>
 <li><p>stubClosure：返回一个枚举StubBehavior，默认会返回never，如果需要假数据测试可以重写这个。</p>
-<pre><code class="swift">public enum StubBehavior {
-    case never
-    case immediate
-    case delayed(seconds: TimeInterval)
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">StubBehavior</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> never</span><br><span class="line">    <span class="keyword">case</span> immediate</span><br><span class="line">    <span class="keyword">case</span> delayed(seconds: <span class="type">TimeInterval</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <ul>
 <li><p>callbackQueue： 回调的线程，默认在主线程。</p>
 </li>
 <li><p>manager：真正用来请求的类，由Alamofire桥接过来的，Moya提供了一个默认的Manager实现。</p>
-<pre><code class="swift">final class func defaultAlamofireManager() -&gt; Manager {
-    let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultAlamofireManager</span>() -&gt; <span class="title">Manager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> configuration = <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span></span><br><span class="line">    configuration.httpAdditionalHeaders = <span class="type">Manager</span>.defaultHTTPHeaders</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> manager = <span class="type">Manager</span>(configuration: configuration)</span><br><span class="line">    manager.startRequestsImmediately = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">return</span> manager</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    let manager = Manager(configuration: configuration)
-    manager.startRequestsImmediately = false
-    return manager
-}</code></pre>
+
+
 </li>
 </ul>
 <ul>
@@ -329,15 +277,8 @@
 </ul>
 <h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" alt=""></p>
 <p>在初始化Provider实例对象之后，对外暴露<code>request</code>方法以便发起请求：</p>
-<pre><code class="swift">@discardableResult
-open func request(_ target: Target,
-                  callbackQueue: DispatchQueue? = .none,
-                  progress: ProgressBlock? = .none,
-                  completion: @escaping Completion) -&gt; Cancellable {
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@discardableResult</span></span><br><span class="line"><span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">(<span class="number">_</span> target: Target,</span></span></span><br><span class="line"><span class="function"><span class="params">                  callbackQueue: DispatchQueue? = .<span class="keyword">none</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                  progress: ProgressBlock? = .<span class="keyword">none</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                  completion: @escaping Completion)</span></span> -&gt; <span class="type">Cancellable</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> callbackQueue = callbackQueue ?? <span class="keyword">self</span>.callbackQueue</span><br><span class="line">    <span class="keyword">return</span> requestNormal(target, callbackQueue: callbackQueue, progress: progress, completion: completion)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    let callbackQueue = callbackQueue ?? self.callbackQueue
-    return requestNormal(target, callbackQueue: callbackQueue, progress: progress, completion: completion)
-}</code></pre>
 <p>在swift里面，如果没有接收某方法的返回值，Xcode会报出警告，使用<code>@discardableResult</code>关键字在不想接收方法返回值的时候，用来消除Xcode的警告。</p>
 <p>在MoyaProvider+Internal.swift文件中主要定义了十个方法,主要做的事如下图：</p>
 <p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" alt=""></p>
@@ -346,111 +287,59 @@ open func request(_ target: Target,
 <li><p>使用<strong>typealias</strong>对Alamofire相关的的API进行封装：Manager、Request、Method等</p>
 </li>
 <li><p>让Alamofire相关的类实现Moya定义的一些protocol</p>
-<pre><code class="swift">extension Request: RequestType { }
-extension DataRequest: Requestable {
-   ...
-}
-extension DownloadRequest: Requestable {
-   ...
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Request</span>: <span class="title">RequestType</span> </span>&#123; &#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">DataRequest</span>: <span class="title">Requestable</span> </span>&#123;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">DownloadRequest</span>: <span class="title">Requestable</span> </span>&#123;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <h3 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h3><p>Moya提供了非常好用的插件机制，可以通过插件在不修改源码的基础上，充分扩展Moya的功能。</p>
-<pre><code class="swift">public protocol PluginType {
-    /// Called to modify a request before sending.
-    func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest
-    /// Called immediately before a request is sent over the network (or stubbed).
-    func willSend(_ request: RequestType, target: TargetType)
-    /// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.
-    func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)
-    /// Called to modify a result before completion.
-    func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt;
-}
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">PluginType</span> </span>&#123;</span><br><span class="line">    <span class="comment">/// Called to modify a request before sending.</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> request: URLRequest, target: TargetType)</span></span> -&gt; <span class="type">URLRequest</span></span><br><span class="line">    <span class="comment">/// Called immediately before a request is sent over the network (or stubbed).</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">willSend</span><span class="params">(<span class="number">_</span> request: RequestType, target: TargetType)</span></span></span><br><span class="line">    <span class="comment">/// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span></span><br><span class="line">    <span class="comment">/// Called to modify a result before completion.</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span> -&gt; <span class="type">Result</span>&lt;<span class="type">Moya</span>.<span class="type">Response</span>, <span class="type">MoyaError</span>&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">PluginType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> request: URLRequest, target: TargetType)</span></span> -&gt; <span class="type">URLRequest</span> &#123; <span class="keyword">return</span> request &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">willSend</span><span class="params">(<span class="number">_</span> request: RequestType, target: TargetType)</span></span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span> -&gt; <span class="type">Result</span>&lt;<span class="type">Moya</span>.<span class="type">Response</span>, <span class="type">MoyaError</span>&gt; &#123; <span class="keyword">return</span> result &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public extension PluginType {
-    func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest { return request }
-    func willSend(_ request: RequestType, target: TargetType) { }
-    func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) { }
-    func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt; { return result }
-}</code></pre>
 <p>调用方可以实现上面的协议，来创建各种插件处理不同事情，从而保证Provider的单一职责。</p>
 <ul>
 <li><p>prepare：这个方法会在endpoint生成Request之后且请求发送前调用</p>
-<pre><code class="swift">let performNetworking = { (requestResult: Result&lt;URLRequest, MoyaError&gt;) in
-    // Allow plugins to modify request
-    let preparedRequest = self.plugins.reduce(request) { $1.prepare($0, target: target) }
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> performNetworking = &#123; (requestResult: <span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) <span class="keyword">in</span></span><br><span class="line">    <span class="comment">// Allow plugins to modify request</span></span><br><span class="line">    <span class="keyword">let</span> preparedRequest = <span class="keyword">self</span>.plugins.<span class="built_in">reduce</span>(request) &#123; $<span class="number">1</span>.prepare($<span class="number">0</span>, target: target) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>willSend：会在发送Alamofire请求前调用</p>
-<pre><code class="swift">func sendAlamofireRequest&lt;T&gt;(_ alamoRequest: T, target: Target, callbackQueue: DispatchQueue?, progress progressCompletion: Moya.ProgressBlock?, completion: @escaping Moya.Completion) -&gt; CancellableToken where T: Requestable, T: Request {
-    // Give plugins the chance to alter the outgoing request
-    let plugins = self.plugins
-    plugins.forEach { $0.willSend(alamoRequest, target: target) }
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sendAlamofireRequest</span>&lt;T&gt;<span class="params">(<span class="number">_</span> alamoRequest: T, target: Target, callbackQueue: DispatchQueue?, progress progressCompletion: Moya.ProgressBlock?, completion: @escaping Moya.Completion)</span></span> -&gt; <span class="type">CancellableToken</span> <span class="keyword">where</span> <span class="type">T</span>: <span class="type">Requestable</span>, <span class="type">T</span>: <span class="type">Request</span> &#123;</span><br><span class="line">    <span class="comment">// Give plugins the chance to alter the outgoing request</span></span><br><span class="line">    <span class="keyword">let</span> plugins = <span class="keyword">self</span>.plugins</span><br><span class="line">    plugins.forEach &#123; $<span class="number">0</span>.willSend(alamoRequest, target: target) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <ul>
 <li><p>didReceive：在收到Response的时候调用</p>
-<pre><code class="swift">let completionHandler: RequestableCompletion = { response, request, data, error in
-    let result = convertResponseToResult(response, request: request, data: data, error: error)
-    // Inform all plugins about the response
-    plugins.forEach { $0.didReceive(result, target: target) }
-    completion(result)
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> completionHandler: <span class="type">RequestableCompletion</span> = &#123; response, request, data, error <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">let</span> result = convertResponseToResult(response, request: request, data: data, error: error)</span><br><span class="line">    <span class="comment">// Inform all plugins about the response</span></span><br><span class="line">    plugins.forEach &#123; $<span class="number">0</span>.didReceive(result, target: target) &#125;</span><br><span class="line">    completion(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>process：在请求完成后修改Result。</p>
 </li>
 </ul>
 <h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><p>响应结果相关方法，以及字典，JSON等相关转换方法。</p>
-<pre><code class="swift">/// Represents a response to a `MoyaProvider.request`.
-public final class Response: CustomDebugStringConvertible, Equatable {
-    public let statusCode: Int
-    public let data: Data
-    public let request: URLRequest?
-    public let response: HTTPURLResponse?
-}</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Represents a response to a `MoyaProvider.request`.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Response</span>: <span class="title">CustomDebugStringConvertible</span>, <span class="title">Equatable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> statusCode: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> data: <span class="type">Data</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> request: <span class="type">URLRequest?</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> response: <span class="type">HTTPURLResponse?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="Cancel"><a href="#Cancel" class="headerlink" title="Cancel"></a>Cancel</h4><p>网络API请求是 可以被取消的，Moya返回协议Cancellable给客户端。</p>
-<pre><code class="swift">internal class CancellableWrapper: Cancellable {
-    internal var innerCancellable: Cancellable = SimpleCancellable()
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="class"><span class="keyword">class</span> <span class="title">CancellableWrapper</span>: <span class="title">Cancellable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">var</span> innerCancellable: <span class="type">Cancellable</span> = <span class="type">SimpleCancellable</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> isCancelled: <span class="type">Bool</span> &#123; <span class="keyword">return</span> innerCancellable.isCancelled &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">internal</span> <span class="function"><span class="keyword">func</span> <span class="title">cancel</span><span class="params">()</span></span> &#123;</span><br><span class="line">        innerCancellable.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    var isCancelled: Bool { return innerCancellable.isCancelled }
-
-    internal func cancel() {
-        innerCancellable.cancel()
-    }
-}</code></pre>
 <p>在内部实现中，引入了一个CancellableWrapper来进行实际的Cancel包装，返回的实际实现协议的类型就是它。</p>
 <p>使用一个CancellableWrapper包装的原因主要是对于没有实际发出的请求(参数错误)，cancel动作直接用SimpleCancellable即可，如果已经发出的请求，cancel则需要取消实际的网络请求。</p>
 <p>在<code>CancellableToken</code>中，取消网络请求：</p>
-<pre><code class="swift">public final class CancellableToken: Cancellable, CustomDebugStringConvertible {
-    fileprivate var lock: DispatchSemaphore = DispatchSemaphore(value: 1)
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">CancellableToken</span>: <span class="title">Cancellable</span>, <span class="title">CustomDebugStringConvertible</span> </span>&#123;</span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="keyword">var</span> lock: <span class="type">DispatchSemaphore</span> = <span class="type">DispatchSemaphore</span>(value: <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">cancel</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="number">_</span> = lock.wait(timeout: <span class="type">DispatchTime</span>.distantFuture)</span><br><span class="line">        <span class="keyword">defer</span> &#123; lock.signal() &#125;</span><br><span class="line">        <span class="keyword">guard</span> !isCancelled <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        isCancelled = <span class="literal">true</span></span><br><span class="line">        cancelAction()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">init</span>(request: <span class="type">Request</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.request = request</span><br><span class="line">        <span class="keyword">self</span>.cancelAction = &#123;</span><br><span class="line">            request.cancel()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    public func cancel() {
-        _ = lock.wait(timeout: DispatchTime.distantFuture)
-        defer { lock.signal() }
-        guard !isCancelled else { return }
-        isCancelled = true
-        cancelAction()
-    }
-    init(request: Request) {
-        self.request = request
-        self.cancelAction = {
-            request.cancel()
-        }
-    }
-}</code></pre>
 <p>这里用到了信号量，为了防止两个线程同时执行cancel操作。</p>
 <h3 id="Moya的设计原则"><a href="#Moya的设计原则" class="headerlink" title="Moya的设计原则"></a>Moya的设计原则</h3><p>1.面向协议</p>
 <p>swift是一个面向协议的语言，协议建立的是一个抽象的依赖关系，同时Swift协议支持扩展，可以通过扩展为协议中的方法提供默认的实现。</p>
-<pre><code>public protocol TargetType {} //表示一个API请求
-public protocol Cancellable {} // 唯一确定请求，只有一个接口用力爱取消
-public protocol PluginType {} // 插件类型
-public protocol RequestType {} // 对外提供的请求类型，隐藏Alamofire的细节</code></pre><p>2.不可变状态</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">TargetType</span> </span>&#123;&#125; <span class="comment">//表示一个API请求</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">Cancellable</span> </span>&#123;&#125; <span class="comment">// 唯一确定请求，只有一个接口用力爱取消</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">PluginType</span> </span>&#123;&#125; <span class="comment">// 插件类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">RequestType</span> </span>&#123;&#125; <span class="comment">// 对外提供的请求类型，隐藏Alamofire的细节</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.不可变状态</p>
 <p>不可变状态是函数式编程的一个核心概念，在Moya中，很多状态都是不可变的。</p>
-<pre><code>public protocol TargetType {
-    var baseURL: URL { get } // 只读
-    ...
-}</code></pre><p>3.高阶函数</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">TargetType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> baseURL: <span class="type">URL</span> &#123; <span class="keyword">get</span> &#125; <span class="comment">// 只读</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.高阶函数</p>
 <p>在swift中，函数是一等公民，可以作为函数的参数和返回值。高阶函数配合函数默认值，是swift开发中进行接口暴露的常用技巧。</p>
 <p>4.插件</p>
 <p>通过各个节点暴露出插件的接口，让Moya的日志、授权等功能无须耦合到核心代码里，让代码足够灵活性。</p>
@@ -458,331 +347,86 @@ public protocol RequestType {} // 对外提供的请求类型，隐藏Alamofire�
 <p>使用枚举来保证类型安全是swift中常用的技巧。</p>
 <p>6.错误处理</p>
 <p>通过Result类型来处理异步错误。</p>
-<pre><code class="swift">/// A public function responsible for converting the result of a `URLRequest` to a Result&lt;Moya.Response, MoyaError&gt;.
-public func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Swift.Error?) -&gt;
-    Result&lt;Moya.Response, MoyaError&gt; {
-        switch (response, data, error) {
-        case let (.some(response), data, .none):
-            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
-            return .success(response)
-        case let (.some(response), _, .some(error)):
-            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
-            let error = MoyaError.underlying(error, response)
-            return .failure(error)
-        case let (_, _, .some(error)):
-            let error = MoyaError.underlying(error, nil)
-            return .failure(error)
-        default:
-            let error = MoyaError.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), nil)
-            return .failure(error)
-        }
-}
-</code></pre>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// A public function responsible for converting the result of a `URLRequest` to a Result&lt;Moya.Response, MoyaError&gt;.</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">convertResponseToResult</span><span class="params">(<span class="number">_</span> response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Swift.Error?)</span></span> -&gt;</span><br><span class="line">    <span class="type">Result</span>&lt;<span class="type">Moya</span>.<span class="type">Response</span>, <span class="type">MoyaError</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">switch</span> (response, data, error) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> (.some(response), data, .<span class="keyword">none</span>):</span><br><span class="line">            <span class="keyword">let</span> response = <span class="type">Moya</span>.<span class="type">Response</span>(statusCode: response.statusCode, data: data ?? <span class="type">Data</span>(), request: request, response: response)</span><br><span class="line">            <span class="keyword">return</span> .success(response)</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> (.some(response), <span class="number">_</span>, .some(error)):</span><br><span class="line">            <span class="keyword">let</span> response = <span class="type">Moya</span>.<span class="type">Response</span>(statusCode: response.statusCode, data: data ?? <span class="type">Data</span>(), request: request, response: response)</span><br><span class="line">            <span class="keyword">let</span> error = <span class="type">MoyaError</span>.underlying(error, response)</span><br><span class="line">            <span class="keyword">return</span> .failure(error)</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> (<span class="number">_</span>, <span class="number">_</span>, .some(error)):</span><br><span class="line">            <span class="keyword">let</span> error = <span class="type">MoyaError</span>.underlying(error, <span class="literal">nil</span>)</span><br><span class="line">            <span class="keyword">return</span> .failure(error)</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">let</span> error = <span class="type">MoyaError</span>.underlying(<span class="type">NSError</span>(domain: <span class="type">NSURLErrorDomain</span>, code: <span class="type">NSURLErrorUnknown</span>, userInfo: <span class="literal">nil</span>), <span class="literal">nil</span>)</span><br><span class="line">            <span class="keyword">return</span> .failure(error)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>用Result类型最大的好处是可以不用每一步都处理错误，通过Result类型，可以在最后统一处理错误。</p>
-<pre><code>provider.request(...).filter().mapJSON.filter().{ result in
-    switch result {
-        case let .success(moyaResponse):
+<figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">provider.<span class="built_in">request</span>(...).<span class="built_in">filter</span>().mapJSON.<span class="built_in">filter</span>().&#123; result <span class="keyword">in</span></span><br><span class="line">    switch result &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .success(moyaResponse):</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .failure(<span class="keyword">error</span>):</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-        case let .failure(error):
-    }
- }</code></pre><h2 id="Alamofire"><a href="#Alamofire" class="headerlink" title="Alamofire"></a>Alamofire</h2><p>Alamofire的目录结构：</p>
-<pre><code>├── AFError.swift
-├── Alamofire.swift
-├── DispatchQueue+Alamofire.swift
-├── MultipartFormData.swift
-├── NetworkReachabilityManager.swift
-├── Notifications.swift
-├── ParameterEncoding.swift
-├── Request.swift
-├── Response.swift
-├── ResponseSerialization.swift
-├── Result.swift
-├── ServerTrustPolicy.swift
-├── SessionDelegate.swift
-├── SessionManager.swift
-├── TaskDelegate.swift
-├── Timeline.swift
-└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" alt=""></p>
+
+
+
+
+<h2 id="Alamofire"><a href="#Alamofire" class="headerlink" title="Alamofire"></a>Alamofire</h2><p>Alamofire的目录结构：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">AFError</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">Alamofire</span>.</span></span>swift</span><br><span class="line">├── DispatchQueue+<span class="module-access"><span class="module"><span class="identifier">Alamofire</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">MultipartFormData</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">NetworkReachabilityManager</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">Notifications</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">ParameterEncoding</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">Request</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">Response</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">ResponseSerialization</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">Result</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">ServerTrustPolicy</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">SessionDelegate</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">SessionManager</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">TaskDelegate</span>.</span></span>swift</span><br><span class="line">├── <span class="module-access"><span class="module"><span class="identifier">Timeline</span>.</span></span>swift</span><br><span class="line">└── <span class="module-access"><span class="module"><span class="identifier">Validation</span>.</span></span>swift</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" alt=""></p>
 <h3 id="Alamofire-swift"><a href="#Alamofire-swift" class="headerlink" title="Alamofire.swift"></a>Alamofire.swift</h3><p>该文件主要是给用户提供一些便利的调用方法<code>request</code>、<code>download</code>、<code>upload</code>、<code>stream</code>，以及定义了两个protocol接口，提供将其他类型转换成URL和URLRequest。</p>
-<pre><code class="swift">@discardableResult
-public func request(
-    _ url: URLConvertible,
-    method: HTTPMethod = .get,
-    parameters: Parameters? = nil,
-    encoding: ParameterEncoding = URLEncoding.default,
-    headers: HTTPHeaders? = nil)
-    -&gt; DataRequest
-{
-    return SessionManager.default.request(
-        url,
-        method: method,
-        parameters: parameters,
-        encoding: encoding,
-        headers: headers
-    )
-}
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@discardableResult</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="number">_</span> url: URLConvertible,</span></span></span><br><span class="line"><span class="function"><span class="params">    method: HTTPMethod = .<span class="keyword">get</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    parameters: Parameters? = <span class="literal">nil</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    encoding: ParameterEncoding = URLEncoding.<span class="keyword">default</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    headers: HTTPHeaders? = <span class="literal">nil</span>)</span></span></span><br><span class="line">    -&gt; <span class="type">DataRequest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">SessionManager</span>.<span class="keyword">default</span>.request(</span><br><span class="line">        url,</span><br><span class="line">        method: method,</span><br><span class="line">        parameters: parameters,</span><br><span class="line">        encoding: encoding,</span><br><span class="line">        headers: headers</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@discardableResult</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">(<span class="number">_</span> urlRequest: URLRequestConvertible)</span></span> -&gt; <span class="type">DataRequest</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">SessionManager</span>.<span class="keyword">default</span>.request(urlRequest)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//....</span></span><br></pre></td></tr></table></figure>
 
-@discardableResult
-public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
-    return SessionManager.default.request(urlRequest)
-}
-//....</code></pre>
 <p>上面是提供给外部发起网络请求的api。</p>
-<pre><code class="swift">public protocol URLConvertible {
-    func asURL() throws -&gt; URL
-}
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">URLConvertible</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">asURL</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">URL</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">URLRequestConvertible</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">asURLRequest</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">URLRequest</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public protocol URLRequestConvertible {
-    func asURLRequest() throws -&gt; URLRequest
-}</code></pre>
 <p>这个两个protocol主要是负责类型转换的接口。</p>
 <h3 id="SessionManager"><a href="#SessionManager" class="headerlink" title="SessionManager"></a>SessionManager</h3><h4 id="1-SessionManager的初始化"><a href="#1-SessionManager的初始化" class="headerlink" title="1.SessionManager的初始化"></a>1.SessionManager的初始化</h4><p>上面的便利方法主要是调用Manager类的单利，Manager类中主要负责Session和Request的初始化，并提供SessionDelegate代理方法的默认实现。在实现代理方法时提供相应的闭包以提供给用户使用该闭包来回调相应的代理方法。</p>
-<pre><code class="swift">public static let `default`: SessionManager = {
-    let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">let</span> `<span class="keyword">default</span>`: <span class="type">SessionManager</span> = &#123;</span><br><span class="line">    <span class="keyword">let</span> configuration = <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span></span><br><span class="line">    configuration.httpAdditionalHeaders = <span class="type">SessionManager</span>.defaultHTTPHeaders</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="type">SessionManager</span>(configuration: configuration)</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
 
-    return SessionManager(configuration: configuration)
-}()</code></pre>
 <p>Manager类是以单利的形式对外使用的，创建SessionManager对象时指定了一个默认的<code>URLSessionConfiguration</code>和<code>defaultHTTPHeaders</code>。</p>
-<pre><code class="swift">public init(
-    configuration: URLSessionConfiguration = URLSessionConfiguration.default,
-    delegate: SessionDelegate = SessionDelegate(),
-    serverTrustPolicyManager: ServerTrustPolicyManager? = nil) {
-    self.delegate = delegate
-    self.session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(</span><br><span class="line">    configuration: <span class="type">URLSessionConfiguration</span> = <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span>,</span><br><span class="line">    delegate: <span class="type">SessionDelegate</span> = <span class="type">SessionDelegate</span>(),</span><br><span class="line">    serverTrustPolicyManager: <span class="type">ServerTrustPolicyManager?</span> = <span class="literal">nil</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.delegate = delegate</span><br><span class="line">    <span class="keyword">self</span>.session = <span class="type">URLSession</span>(configuration: configuration, delegate: delegate, delegateQueue: <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">    commonInit(serverTrustPolicyManager: serverTrustPolicyManager)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">commonInit</span><span class="params">(serverTrustPolicyManager: ServerTrustPolicyManager?)</span></span> &#123;</span><br><span class="line">    session.serverTrustPolicyManager = serverTrustPolicyManager</span><br><span class="line"></span><br><span class="line">    delegate.sessionManager = <span class="keyword">self</span></span><br><span class="line"></span><br><span class="line">    delegate.sessionDidFinishEventsForBackgroundURLSession = &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] session <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> strongSelf = <span class="keyword">self</span> <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async &#123; strongSelf.backgroundCompletionHandler?() &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    commonInit(serverTrustPolicyManager: serverTrustPolicyManager)
-}
-private func commonInit(serverTrustPolicyManager: ServerTrustPolicyManager?) {
-    session.serverTrustPolicyManager = serverTrustPolicyManager
-
-    delegate.sessionManager = self
-
-    delegate.sessionDidFinishEventsForBackgroundURLSession = { [weak self] session in
-        guard let strongSelf = self else { return }
-        DispatchQueue.main.async { strongSelf.backgroundCompletionHandler?() }
-    }
-}</code></pre>
 <p>SessionManager的<code>init</code>方法中，初始化了SessionDelegate和URLSession，并并SessionDelegate对象作为URLSession的delegate。</p>
-<h4 id="2-Manager的request方法"><a href="#2-Manager的request方法" class="headerlink" title="2.Manager的request方法"></a>2.Manager的request方法</h4><pre><code class="swift">@discardableResult
-open func request(
-    _ url: URLConvertible,
-    method: HTTPMethod = .get,
-    parameters: Parameters? = nil,
-    encoding: ParameterEncoding = URLEncoding.default,
-    headers: HTTPHeaders? = nil)
-    -&gt; DataRequest {
-    var originalRequest: URLRequest?
+<h4 id="2-Manager的request方法"><a href="#2-Manager的request方法" class="headerlink" title="2.Manager的request方法"></a>2.Manager的request方法</h4><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@discardableResult</span></span><br><span class="line"><span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="number">_</span> url: URLConvertible,</span></span></span><br><span class="line"><span class="function"><span class="params">    method: HTTPMethod = .<span class="keyword">get</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    parameters: Parameters? = <span class="literal">nil</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    encoding: ParameterEncoding = URLEncoding.<span class="keyword">default</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    headers: HTTPHeaders? = <span class="literal">nil</span>)</span></span></span><br><span class="line">    -&gt; <span class="type">DataRequest</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> originalRequest: <span class="type">URLRequest?</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        originalRequest = <span class="keyword">try</span> <span class="type">URLRequest</span>(url: url, method: method, headers: headers)</span><br><span class="line">        <span class="comment">/// 对参数进行编码, 其中encoding方法会根据ParameterEncoding的类型不同返回不同的request</span></span><br><span class="line">        <span class="keyword">let</span> encodedURLRequest = <span class="keyword">try</span> encoding.encode(originalRequest!, with: parameters)</span><br><span class="line">        <span class="keyword">return</span> request(encodedURLRequest)</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> request(originalRequest, failedWith: error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    do {
-        originalRequest = try URLRequest(url: url, method: method, headers: headers)
-        /// 对参数进行编码, 其中encoding方法会根据ParameterEncoding的类型不同返回不同的request
-        let encodedURLRequest = try encoding.encode(originalRequest!, with: parameters)
-        return request(encodedURLRequest)
-    } catch {
-        return request(originalRequest, failedWith: error)
-    }
-}</code></pre>
 <p><code>url</code>是一个实现了<code>URLConvertible</code>的对象，<code>method</code>参数表示请求方式（GET、POST、PUT等），<code>parameters</code>就是请求参数，<code>encoding:ParameterEncoding</code>是请求参数的编码方式，在Alamofire的源码里面有URLEncoding、JSONEncoding、PropertyListEncoding，这里默认的是URL 编码。</p>
-<pre><code class="swift">@discardableResult
-open func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
-    var originalRequest: URLRequest?
-    do {
-        originalRequest = try urlRequest.asURLRequest()
-        let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)//return TaskConvertible
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@discardableResult</span></span><br><span class="line"><span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">(<span class="number">_</span> urlRequest: URLRequestConvertible)</span></span> -&gt; <span class="type">DataRequest</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> originalRequest: <span class="type">URLRequest?</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        originalRequest = <span class="keyword">try</span> urlRequest.asURLRequest()</span><br><span class="line">        <span class="keyword">let</span> originalTask = <span class="type">DataRequest</span>.<span class="type">Requestable</span>(urlRequest: originalRequest!)<span class="comment">//return TaskConvertible</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> task = <span class="keyword">try</span> originalTask.task(session: session, adapter: adapter, queue: queue)</span><br><span class="line">        <span class="keyword">let</span> request = <span class="type">DataRequest</span>(session: session, requestTask: .data(originalTask, task))</span><br><span class="line">        delegate[task] = request</span><br><span class="line">        <span class="keyword">if</span> startRequestsImmediately &#123; request.resume() &#125;</span><br><span class="line">        <span class="keyword">return</span> request</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> request(originalRequest, failedWith: error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
-        let request = DataRequest(session: session, requestTask: .data(originalTask, task))
-        delegate[task] = request
-        if startRequestsImmediately { request.resume() }
-        return request
-    } catch {
-        return request(originalRequest, failedWith: error)
-    }
-}</code></pre>
 <p>上面的<code>request</code>的方法主要是负责通过Session创建DataTask，并用task对象初始化DataRequest类的对象，并将request存入ManagerDelegate类的属性中<code>delegate[task] = request</code>，因为在delegate属性中的代理方法是调用相应的TaskDelegate类的方法。</p>
 <p>然后默认调用<code>request.resume</code>发起网络请求。</p>
 <h3 id="SessionDelegate"><a href="#SessionDelegate" class="headerlink" title="SessionDelegate"></a>SessionDelegate</h3><p>这个类主要是URLSessionDelegate以及相关子协议的代理类，其中给出了各个代理方法的默认实现，并将URLSessionDelegate的相关代理封装成闭包的形式提供给外部。如果闭包变量不为空则会执行闭包块的内容，而不会执行默认的实现。</p>
-<pre><code class="swift">// MARK: URLSessionDelegate Overrides
-open var sessionDidReceiveChallenge: ((URLSession, URLAuthenticationChallenge) -&gt; (URLSession.AuthChallengeDisposition, URLCredential?))?
-open var sessionDidReceiveChallengeWithCompletion: ((URLSession, URLAuthenticationChallenge, @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void) -&gt; Void)?
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MARK: URLSessionDelegate Overrides</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> sessionDidReceiveChallenge: ((<span class="type">URLSession</span>, <span class="type">URLAuthenticationChallenge</span>) -&gt; (<span class="type">URLSession</span>.<span class="type">AuthChallengeDisposition</span>, <span class="type">URLCredential?</span>))?</span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> sessionDidReceiveChallengeWithCompletion: ((<span class="type">URLSession</span>, <span class="type">URLAuthenticationChallenge</span>, @escaping (<span class="type">URLSession</span>.<span class="type">AuthChallengeDisposition</span>, <span class="type">URLCredential?</span>) -&gt; <span class="type">Void</span>) -&gt; <span class="type">Void</span>)?</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: URLSessionDataDelegate Overrides</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">var</span> dataTaskDidReceiveResponse: ((<span class="type">URLSession</span>, <span class="type">URLSessionDataTask</span>, <span class="type">URLResponse</span>) -&gt; <span class="type">URLSession</span>.<span class="type">ResponseDisposition</span>)?</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: URLSessionDownloadDelegate Overrides</span></span><br><span class="line"><span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> retrier: <span class="type">RequestRetrier?</span></span><br><span class="line"><span class="keyword">weak</span> <span class="keyword">var</span> sessionManager: <span class="type">SessionManager?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> requests: [<span class="type">Int</span>: <span class="type">Request</span>] = [:]</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> lock = <span class="type">NSLock</span>()</span><br><span class="line"><span class="comment">/// Access the task delegate for the specified task in a thread-safe manner.</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">subscript</span>(task: <span class="type">URLSessionTask</span>) -&gt; <span class="type">Request?</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123;</span><br><span class="line">        lock.lock() ; <span class="keyword">defer</span> &#123; lock.unlock() &#125;</span><br><span class="line">        <span class="keyword">return</span> requests[task.taskIdentifier]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123;</span><br><span class="line">        lock.lock() ; <span class="keyword">defer</span> &#123; lock.unlock() &#125;</span><br><span class="line">        requests[task.taskIdentifier] = newValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SessionDelegate</span>: <span class="title">URLSessionDelegate</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SessionDelegate</span>: <span class="title">URLSessionTaskDelegate</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SessionDelegate</span>: <span class="title">URLSessionDataDelegate</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SessionDelegate</span>: <span class="title">URLSessionDownloadDelegate</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SessionDelegate</span>: <span class="title">URLSessionStreamDelegate</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
-// MARK: URLSessionDataDelegate Overrides
-open var dataTaskDidReceiveResponse: ((URLSession, URLSessionDataTask, URLResponse) -&gt; URLSession.ResponseDisposition)?
-
-// MARK: URLSessionDownloadDelegate Overrides
-// ....
-
-var retrier: RequestRetrier?
-weak var sessionManager: SessionManager?
-
-var requests: [Int: Request] = [:]
-private let lock = NSLock()
-/// Access the task delegate for the specified task in a thread-safe manner.
-open subscript(task: URLSessionTask) -&gt; Request? {
-    get {
-        lock.lock() ; defer { lock.unlock() }
-        return requests[task.taskIdentifier]
-    }
-    set {
-        lock.lock() ; defer { lock.unlock() }
-        requests[task.taskIdentifier] = newValue
-    }
-}
-extension SessionDelegate: URLSessionDelegate {}
-extension SessionDelegate: URLSessionTaskDelegate {}
-extension SessionDelegate: URLSessionDataDelegate {}
-extension SessionDelegate: URLSessionDownloadDelegate {}
-extension SessionDelegate: URLSessionStreamDelegate {}</code></pre>
 <ul>
 <li><p><code>subscript</code>表示自定义下标，可以通过<code>delegate[task]</code>的形式进行访问；</p>
 </li>
 <li><p>使用到NSLock来保证线程安全以便在访问指定的task时；</p>
 </li>
 <li><p><code>requests</code>负责储存request对象，以便SessionDelegate在URLSessionDelegate相应的代理方法中通过<code>self[task]?.delegate</code>，获取到TaskDelegate对象来调用其方法，例如以下的代理方法中的实现：</p>
-<pre><code class="swift">open func urlSession(
-    _ session: URLSession,
-    task: URLSessionTask,
-    didReceive challenge: URLAuthenticationChallenge,
-    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void)
-{
-    guard taskDidReceiveChallengeWithCompletion == nil else {
-        taskDidReceiveChallengeWithCompletion?(session, task, challenge, completionHandler)
-        return
-    }
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">urlSession</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="number">_</span> session: URLSession,</span></span></span><br><span class="line"><span class="function"><span class="params">    task: URLSessionTask,</span></span></span><br><span class="line"><span class="function"><span class="params">    didReceive challenge: URLAuthenticationChallenge,</span></span></span><br><span class="line"><span class="function"><span class="params">    completionHandler: @escaping <span class="params">(URLSession.AuthChallengeDisposition, URLCredential?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">guard</span> taskDidReceiveChallengeWithCompletion == <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">        taskDidReceiveChallengeWithCompletion?(session, task, challenge, completionHandler)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> taskDidReceiveChallenge = taskDidReceiveChallenge &#123;</span><br><span class="line">        <span class="keyword">let</span> result = taskDidReceiveChallenge(session, task, challenge)</span><br><span class="line">        completionHandler(result.<span class="number">0</span>, result.<span class="number">1</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> delegate = <span class="keyword">self</span>[task]?.delegate &#123;</span><br><span class="line">        delegate.urlSession(</span><br><span class="line">            session,</span><br><span class="line">            task: task,</span><br><span class="line">            didReceive: challenge,</span><br><span class="line">            completionHandler: completionHandler</span><br><span class="line">        )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        urlSession(session, didReceive: challenge, completionHandler: completionHandler)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    if let taskDidReceiveChallenge = taskDidReceiveChallenge {
-        let result = taskDidReceiveChallenge(session, task, challenge)
-        completionHandler(result.0, result.1)
-    } else if let delegate = self[task]?.delegate {
-        delegate.urlSession(
-            session,
-            task: task,
-            didReceive: challenge,
-            completionHandler: completionHandler
-        )
-    } else {
-        urlSession(session, didReceive: challenge, completionHandler: completionHandler)
-    }
-}</code></pre>
 </li>
 </ul>
 <h3 id="Request相关类"><a href="#Request相关类" class="headerlink" title="Request相关类"></a>Request相关类</h3><h4 id="1-Request初始化"><a href="#1-Request初始化" class="headerlink" title="1.Request初始化"></a>1.Request初始化</h4><p>Request就是负责通过会话创建各种类型的Task，并给出相应的Task Delegate。</p>
-<pre><code class="swift">init(session: URLSession, requestTask: RequestTask, error: Error? = nil) {
-    self.session = session
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">init</span>(session: <span class="type">URLSession</span>, requestTask: <span class="type">RequestTask</span>, error: <span class="type">Error?</span> = <span class="literal">nil</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.session = session</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> requestTask &#123;</span><br><span class="line">    <span class="keyword">case</span> .data(<span class="keyword">let</span> originalTask, <span class="keyword">let</span> task):</span><br><span class="line">        taskDelegate = <span class="type">DataTaskDelegate</span>(task: task)</span><br><span class="line">        <span class="keyword">self</span>.originalTask = originalTask</span><br><span class="line">    <span class="keyword">case</span> .download(<span class="keyword">let</span> originalTask, <span class="keyword">let</span> task):</span><br><span class="line">        taskDelegate = <span class="type">DownloadTaskDelegate</span>(task: task)</span><br><span class="line">        <span class="keyword">self</span>.originalTask = originalTask</span><br><span class="line">    <span class="keyword">case</span> .upload(<span class="keyword">let</span> originalTask, <span class="keyword">let</span> task):</span><br><span class="line">        taskDelegate = <span class="type">UploadTaskDelegate</span>(task: task)</span><br><span class="line">        <span class="keyword">self</span>.originalTask = originalTask</span><br><span class="line">    <span class="keyword">case</span> .stream(<span class="keyword">let</span> originalTask, <span class="keyword">let</span> task):</span><br><span class="line">        taskDelegate = <span class="type">TaskDelegate</span>(task: task)</span><br><span class="line">        <span class="keyword">self</span>.originalTask = originalTask</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    delegate.error = error</span><br><span class="line">    delegate.queue.addOperation &#123; <span class="keyword">self</span>.endTime = <span class="type">CFAbsoluteTimeGetCurrent</span>() &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    switch requestTask {
-    case .data(let originalTask, let task):
-        taskDelegate = DataTaskDelegate(task: task)
-        self.originalTask = originalTask
-    case .download(let originalTask, let task):
-        taskDelegate = DownloadTaskDelegate(task: task)
-        self.originalTask = originalTask
-    case .upload(let originalTask, let task):
-        taskDelegate = UploadTaskDelegate(task: task)
-        self.originalTask = originalTask
-    case .stream(let originalTask, let task):
-        taskDelegate = TaskDelegate(task: task)
-        self.originalTask = originalTask
-    }
-
-    delegate.error = error
-    delegate.queue.addOperation { self.endTime = CFAbsoluteTimeGetCurrent() }
-}</code></pre>
 <p>初始化方法需要两个参数：第一个参数是URLSession对象，改对象时SessionManager单例持有的session，第二个参数同样是Manager中传过来的<code>RequestTask</code>枚举类型，根据RequestTask的类型来设置代理对象DataDelegate，例如如果是data类型则创建的是DataDelegate的实例。</p>
 <h4 id="Request的ProgressHandler闭包"><a href="#Request的ProgressHandler闭包" class="headerlink" title="Request的ProgressHandler闭包"></a>Request的ProgressHandler闭包</h4><p>在使用Request类的对象时，可以链式地调用Request中的方法，最常用的是获取相应任务执行的进度：</p>
-<pre><code class="swift">Alamofire.request(URL(string: &quot;https://httpbin.org/get&quot;)!).downloadProgress { (progress) in
-    /// progress
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Alamofire</span>.request(<span class="type">URL</span>(string: <span class="string">"https://httpbin.org/get"</span>)!).downloadProgress &#123; (progress) <span class="keyword">in</span></span><br><span class="line">    <span class="comment">/// progress</span></span><br><span class="line">    </span><br><span class="line">&#125;.response &#123; (response) <span class="keyword">in</span></span><br><span class="line">    <span class="comment">/// response</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-}.response { (response) in
-    /// response
-}</code></pre>
 <p>其中DataRequest和DownloadRequest定义的是downloadProgress，UploadRequest定义的是uploadProgress闭包，可以通过这个闭包监听下载或上传的进度。</p>
-<h4 id="resume方法"><a href="#resume方法" class="headerlink" title="resume方法"></a>resume方法</h4><pre><code class="swift">open func resume() {
-    guard let task = task else { delegate.queue.isSuspended = false ; return }
+<h4 id="resume方法"><a href="#resume方法" class="headerlink" title="resume方法"></a>resume方法</h4><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">resume</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> task = task <span class="keyword">else</span> &#123; delegate.queue.isSuspended = <span class="literal">false</span> ; <span class="keyword">return</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> startTime == <span class="literal">nil</span> &#123; startTime = <span class="type">CFAbsoluteTimeGetCurrent</span>() &#125;</span><br><span class="line">    </span><br><span class="line">    task.resume()</span><br><span class="line">    </span><br><span class="line">    <span class="type">NotificationCenter</span>.<span class="keyword">default</span>.post(</span><br><span class="line">        name: <span class="type">Notification</span>.<span class="type">Name</span>.<span class="type">Task</span>.<span class="type">DidResume</span>,</span><br><span class="line">        object: <span class="keyword">self</span>,</span><br><span class="line">        userInfo: [<span class="type">Notification</span>.<span class="type">Key</span>.<span class="type">Task</span>: task]</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    if startTime == nil { startTime = CFAbsoluteTimeGetCurrent() }
-
-    task.resume()
-
-    NotificationCenter.default.post(
-        name: Notification.Name.Task.DidResume,
-        object: self,
-        userInfo: [Notification.Key.Task: task]
-    )
-}
-</code></pre>
 <p><code>resume</code>方法主要是用来记录startTime，然后调用task的resume方法开始执行任务，并发出相应的通知。</p>
 <h3 id="ResponseSerialization"><a href="#ResponseSerialization" class="headerlink" title="ResponseSerialization"></a>ResponseSerialization</h3><p> ResponseSerialization是用来对Response返回的值进行序列化。在文件中定义了两个protocol：<code>DataResponseSerializerProtocol</code>和<code>DownloadResponseSerializerProtocol</code></p>
-<pre><code class="swift">public protocol DataResponseSerializerProtocol {
-    /// The type of serialized object to be created by this `DataResponseSerializerType`.
-    associatedtype SerializedObject
-    var serializeResponse: (URLRequest?, HTTPURLResponse?, Data?, Error?) -&gt; Result&lt;SerializedObject&gt; { get }
-}
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">DataResponseSerializerProtocol</span> </span>&#123;</span><br><span class="line">    <span class="comment">/// The type of serialized object to be created by this `DataResponseSerializerType`.</span></span><br><span class="line">    <span class="keyword">associatedtype</span> <span class="type">SerializedObject</span></span><br><span class="line">    <span class="keyword">var</span> serializeResponse: (<span class="type">URLRequest?</span>, <span class="type">HTTPURLResponse?</span>, <span class="type">Data?</span>, <span class="type">Error?</span>) -&gt; <span class="type">Result</span>&lt;<span class="type">SerializedObject</span>&gt; &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">DownloadResponseSerializerProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">associatedtype</span> <span class="type">SerializedObject</span></span><br><span class="line">    <span class="keyword">var</span> serializeResponse: (<span class="type">URLRequest?</span>, <span class="type">HTTPURLResponse?</span>, <span class="type">URL?</span>, <span class="type">Error?</span>) -&gt; <span class="type">Result</span>&lt;<span class="type">SerializedObject</span>&gt; &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public protocol DownloadResponseSerializerProtocol {
-    associatedtype SerializedObject
-    var serializeResponse: (URLRequest?, HTTPURLResponse?, URL?, Error?) -&gt; Result&lt;SerializedObject&gt; { get }
-}</code></pre>
 <p>这两个protocol分别由<code>DataResponseSerializer&lt;Value&gt;</code>和<code>DownloadResponseSerializer&lt;Value&gt;</code>来实现。</p>
 <p>在Alamofire中调用DataRequest的的<code>response</code>或者<code>responseJSON</code>等其他方法，就会在request结束时，添加一个操作<code>OperationQueue</code>来处理服务器的response。</p>
-<pre><code class="swift">@discardableResult
-public func response&lt;T: DataResponseSerializerProtocol&gt;(
-    queue: DispatchQueue? = nil,
-    responseSerializer: T,
-    completionHandler: @escaping (DataResponse&lt;T.SerializedObject&gt;) -&gt; Void)
-    -&gt; Self
-{
-    delegate.queue.addOperation {
-        let result = responseSerializer.serializeResponse(
-            self.request,
-            self.response,
-            self.delegate.data,
-            self.delegate.error
-        )
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@discardableResult</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">response</span>&lt;T: DataResponseSerializerProtocol&gt;<span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    queue: DispatchQueue? = <span class="literal">nil</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    responseSerializer: T,</span></span></span><br><span class="line"><span class="function"><span class="params">    completionHandler: @escaping <span class="params">(DataResponse&lt;T.SerializedObject&gt;)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">    -&gt; <span class="type">Self</span></span><br><span class="line">&#123;</span><br><span class="line">    delegate.queue.addOperation &#123;</span><br><span class="line">        <span class="keyword">let</span> result = responseSerializer.serializeResponse(</span><br><span class="line">            <span class="keyword">self</span>.request,</span><br><span class="line">            <span class="keyword">self</span>.response,</span><br><span class="line">            <span class="keyword">self</span>.delegate.data,</span><br><span class="line">            <span class="keyword">self</span>.delegate.error</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> dataResponse = <span class="type">DataResponse</span>&lt;<span class="type">T</span>.<span class="type">SerializedObject</span>&gt;(</span><br><span class="line">            request: <span class="keyword">self</span>.request,</span><br><span class="line">            response: <span class="keyword">self</span>.response,</span><br><span class="line">            data: <span class="keyword">self</span>.delegate.data,</span><br><span class="line">            result: result,</span><br><span class="line">            timeline: <span class="keyword">self</span>.timeline</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        dataResponse.add(<span class="keyword">self</span>.delegate.metrics)</span><br><span class="line"></span><br><span class="line">        (queue ?? <span class="type">DispatchQueue</span>.main).async &#123; completionHandler(dataResponse) &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        var dataResponse = DataResponse&lt;T.SerializedObject&gt;(
-            request: self.request,
-            response: self.response,
-            data: self.delegate.data,
-            result: result,
-            timeline: self.timeline
-        )
 
-        dataResponse.add(self.delegate.metrics)
 
-        (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
-    }
-
-    return self
-}</code></pre>
 <p>总结：</p>
 <p>在Alamofire框架中使用了协议、扩展、闭包以及枚举关联值，在解析网络数据的时，将闭包类型作为函数的参数，通过闭包变量来提供相应的解析方案。</p>
 <ul>
 <li><p>Alamofire对泛型的使用：</p>
-<pre><code>public enum Result&lt;Value&gt; {}
-public func validate&lt;S: Sequence&gt;(contentType acceptableContentTypes: S) -&gt; Self where S.Iterator.Element == String {}
-public struct DataResponse&lt;Value&gt; {}</code></pre></li>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">enum</span> <span class="title">Result</span>&lt;<span class="title">Value</span>&gt; &#123;&#125;</span></span><br><span class="line">public func validate&lt;<span class="symbol">S:</span> Sequence&gt;(contentType <span class="symbol">acceptableContentTypes:</span> S) -&gt; Self where S.Iterator.Element == String &#123;&#125;</span><br><span class="line">public <span class="class"><span class="keyword">struct</span> <span class="title">DataResponse</span>&lt;<span class="title">Value</span>&gt; &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>链式调用</p>
 <p>对于Request类。其中很多方法都使用了返回<code>-&gt;Self</code>方法</p>
-<pre><code>/// 鉴权
-open func authenticate(usingCredential credential: URLCredential) -&gt; Self {}
-/// 进度
-open func downloadProgress(queue: DispatchQueue = DispatchQueue.main, closure: @escaping ProgressHandler) -&gt; Self {}
-///响应
-public func response(queue: DispatchQueue? = nil, completionHandler: @escaping (DefaultDataResponse) -&gt; Void) -&gt; Self {}</code></pre></li>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 鉴权</span></span><br><span class="line"><span class="selector-tag">open</span> <span class="selector-tag">func</span> <span class="selector-tag">authenticate</span>(usingCredential <span class="attribute">credential</span>: URLCredential) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Self</span> &#123;&#125;</span><br><span class="line"><span class="comment">/// 进度</span></span><br><span class="line"><span class="selector-tag">open</span> <span class="selector-tag">func</span> <span class="selector-tag">downloadProgress</span>(<span class="attribute">queue</span>: DispatchQueue = DispatchQueue.main, <span class="attribute">closure</span>: <span class="variable">@escaping</span> ProgressHandler) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Self</span> &#123;&#125;</span><br><span class="line"><span class="comment">///响应</span></span><br><span class="line"><span class="selector-tag">public</span> <span class="selector-tag">func</span> <span class="selector-tag">response</span>(<span class="attribute">queue</span>: DispatchQueue? = nil, <span class="attribute">completionHandler</span>: <span class="variable">@escaping</span> (DefaultDataResponse) -&gt; Void) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Self</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>顺序创建Task，并保存所有的requests。</p>
-<pre><code>delegate[task] = request
-open subscript(task: URLSessionTask) -&gt; Request? {
-    get {
-        lock.lock() ; defer { lock.unlock() }
-        return requests[task.taskIdentifier]
-    }
-    set {
-        lock.lock() ; defer { lock.unlock() }
-        requests[task.taskIdentifier] = newValue
-    }
-}</code></pre></li>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delegate</span>[task] = request</span><br><span class="line"><span class="function">open <span class="title">subscript</span>(<span class="params">task: URLSessionTask</span>) -&gt; Request?</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123;</span><br><span class="line">        <span class="keyword">lock</span>.<span class="keyword">lock</span>() ; defer &#123; <span class="keyword">lock</span>.unlock() &#125;</span><br><span class="line">        <span class="keyword">return</span> requests[task.taskIdentifier]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123;</span><br><span class="line">        <span class="keyword">lock</span>.<span class="keyword">lock</span>() ; defer &#123; <span class="keyword">lock</span>.unlock() &#125;</span><br><span class="line">        requests[task.taskIdentifier] = newValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>在URLSession的回调中根据task把回调分发给对应的TaskDelegate</p>
 </li>
 </ul>
@@ -872,7 +516,9 @@ open subscript(task: URLSessionTask) -&gt; Request? {
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">liututu1213</p>
+    <img class="site-author-image" itemprop="image" alt="渣渣程序员"
+      src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/Common/avatar.png">
+  <p class="site-author-name" itemprop="name">渣渣程序员</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -924,7 +570,7 @@ open subscript(task: URLSessionTask) -&gt; Request? {
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">liututu1213</span>
+  <span class="author" itemprop="copyrightHolder">渣渣程序员</span>
 </div>
 
 <!--
