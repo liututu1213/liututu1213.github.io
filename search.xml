@@ -6,9 +6,9 @@
     <content><![CDATA[<h4 id="1-UTC、GMT和时间戳介绍"><a href="#1-UTC、GMT和时间戳介绍" class="headerlink" title="1. UTC、GMT和时间戳介绍"></a>1. UTC、GMT和时间戳介绍</h4><h5 id="GMT"><a href="#GMT" class="headerlink" title="GMT"></a>GMT</h5><p>格林尼治标准时间（Greenwich Mean Time）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，即本初子午线时间。</p>
 <p>由于地球在椭圆轨道里的运动速度不均匀，这个时刻可能与实际的太阳时有误差，所以有了UTC时间出现。</p>
 <h5 id="UTC"><a href="#UTC" class="headerlink" title="UTC"></a>UTC</h5><p>协调世界时间（又称世界标准时间），与GMT一样都是本初子午时间，只不过UTC是经过协调后的世界时间，比GMT更加准确。全球一共有24个时区。</p>
-<p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png" srcset="/img/loading.gif" alt="timezone"></p>
+<p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png" alt="timezone"></p>
 <p>而北京时间位于东八区，与格林尼治时间相差八小时，也就是我们经常在开发中遇到8小时时差的问题。</p>
-<h4 id="2-swift中Date与Calender关系"><a href="#2-swift中Date与Calender关系" class="headerlink" title="2. swift中Date与Calender关系"></a>2. swift中Date与Calender关系</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png" srcset="/img/loading.gif" alt=""></p>
+<h4 id="2-swift中Date与Calender关系"><a href="#2-swift中Date与Calender关系" class="headerlink" title="2. swift中Date与Calender关系"></a>2. swift中Date与Calender关系</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png" alt=""></p>
 <p>首先Date可以通过DateFormatter进行互转，Date通过格式化可以转化成自定义的样式，反过来同样成立。在iOS中，没办法像其他语言一样直接time.year这样的api获取年份等信息，想要获取Date的年月日信息需要使用Calende+DateCompontents来完成，反之，也可以通过DateComponents对各个组件进行组装，通过Calender对象变成date。</p>
 <p>Calender封装了有关计算时间的系统的信息，其中定义了年的开始、长度和分割，提供了关于日历的信息和日历计算的支持。</p>
 <h4 id="3-Date"><a href="#3-Date" class="headerlink" title="3. Date"></a>3. Date</h4><p>iOS中的Date是用来表示公历的GMT时间，Date是没有存储时区等信息，所以不管你在哪个时区打印的Date()都是一样的，这一点非常重要。</p>
@@ -525,7 +525,7 @@ public var result: Result&lt;T&gt;? {
 </code></pre>
 <p>在这个pipe的闭包里面，首先会检查Promise对象传递过来的Result&lt;T&gt;对象，如果Result包含的是错误，则提取这个错误并封装到rp.box中，否则Result&lt;T&gt;对象包含的是成功执行的结果。do里面的body(value)就是在执行提供给then的closure。</p>
 <p>重点是在对<code>rv.pipe(to: rp.box.seal)</code>的理解上，<code>rv.pipe</code>的closure参数，会在rv持有的box被密封的时候调用，而调用时，传递给<code>rp.box.seal</code>的参数就是<code>rv</code>被resolve时所封装的结果，即一个<code>Result&lt;U.T&gt;</code>对象，这就是可以一直wrapper串联各种操作的原因。</p>
-<h4 id="Promise框架总结"><a href="#Promise框架总结" class="headerlink" title="Promise框架总结"></a>Promise框架总结</h4><h5 id="一-创建一个Promise-lt-T-gt-的步骤"><a href="#一-创建一个Promise-lt-T-gt-的步骤" class="headerlink" title="一.创建一个Promise&lt;T&gt;的步骤"></a>一.创建一个Promise&lt;T&gt;的步骤</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise.png" srcset="/img/loading.gif" alt="promise"></p>
+<h4 id="Promise框架总结"><a href="#Promise框架总结" class="headerlink" title="Promise框架总结"></a>Promise框架总结</h4><h5 id="一-创建一个Promise-lt-T-gt-的步骤"><a href="#一-创建一个Promise-lt-T-gt-的步骤" class="headerlink" title="一.创建一个Promise&lt;T&gt;的步骤"></a>一.创建一个Promise&lt;T&gt;的步骤</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise.png" alt="promise"></p>
 <ul>
 <li><p>首先调用了Promise的init方法</p>
 <pre><code class="swift">public init(resolver body: (Resolver&lt;T&gt;) throws -&gt; Void) {
@@ -567,7 +567,7 @@ public var result: Result&lt;T&gt;? {
 }
 </code></pre></li>
 </ul>
-<h5 id="二-Promise的Wrapper操作"><a href="#二-Promise的Wrapper操作" class="headerlink" title="二.Promise的Wrapper操作"></a>二.Promise的Wrapper操作</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise-wrapper.png" srcset="/img/loading.gif" alt="image-20200121211615087"></p>
+<h5 id="二-Promise的Wrapper操作"><a href="#二-Promise的Wrapper操作" class="headerlink" title="二.Promise的Wrapper操作"></a>二.Promise的Wrapper操作</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise-wrapper.png" alt="image-20200121211615087"></p>
 <p>上面的图重点在于<code>then</code>方法实现里面</p>
 <ul>
 <li><p>首先直接创建了它的返回值，一个<code>Promise&lt;U.T&gt;</code>对象，这个<code>Promise</code>里面包含的是一个等待密封的空盒子</p>
@@ -1202,6 +1202,583 @@ this is Sample</code></pre><p>前面提到的<code>Kernel</code>模块包含所�
       </categories>
   </entry>
   <entry>
+    <title>Moya &amp;&amp; Alamofire</title>
+    <url>//blog/44783/2020/02/26/Moya/</url>
+    <content><![CDATA[<p>对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。</p>
+<h2 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h2><p>Moya的目录结构如下：</p>
+<pre><code>├── Moya
+│   ├── AnyEncodable.swift
+│   ├── Cancellable.swift
+│   ├── Endpoint.swift
+│   ├── Image.swift
+│   ├── Moya+Alamofire.swift
+│   ├── MoyaError.swift
+│   ├── MoyaProvider+Defaults.swift
+│   ├── MoyaProvider+Internal.swift
+│   ├── MoyaProvider.swift
+│   ├── MultiTarget.swift
+│   ├── MultipartFormData.swift
+│   ├── Plugin.swift
+│   ├── Plugins
+│   │   ├── AccessTokenPlugin.swift
+│   │   ├── CredentialsPlugin.swift
+│   │   ├── NetworkActivityPlugin.swift
+│   │   └── NetworkLoggerPlugin.swift
+│   ├── Response.swift
+│   ├── TargetType.swift
+│   ├── Task.swift
+│   ├── URL+Moya.swift
+│   ├── URLRequest+Encoding.swift
+│   └── ValidationType.swift
+├── ReactiveMoya
+│   ├── MoyaProvider+Reactive.swift
+│   └── SignalProducer+Response.swift
+└── RxMoya
+    ├── MoyaProvider+Rx.swift
+    ├── Observable+Response.swift
+    └── Single+Response.swift</code></pre><h3 id="Moya介绍"><a href="#Moya介绍" class="headerlink" title="Moya介绍"></a>Moya介绍</h3><p>Moya是基于Alamofire的更高一层的网络请求封装抽象层，在Moya中使用Enum来管理API，每一个网络请求接口都是枚举的一种case，下面是Moya的大概流程图：</p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" alt=""></p>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p>request部分主要是包含请求相关的代码，定义了TargetType协议，通过TargetType来定义一个请求。</p>
+<ul>
+<li>TargetType:请求相关信息</li>
+<li>Endpoint：Moya进行请求的最终数据结构</li>
+<li>Task：定义了请求的发起方式，请求参数设置等</li>
+<li>Cancellable：请求取消相关协议</li>
+</ul>
+<h3 id="MoyaProvider"><a href="#MoyaProvider" class="headerlink" title="MoyaProvider"></a>MoyaProvider</h3><h4 id="Provider初始化"><a href="#Provider初始化" class="headerlink" title="Provider初始化"></a>Provider初始化</h4><p>MoyaProvider是Moya的核心处理类，Moya中所有的API请求都是通过Provider来发起的。Provider真正做的事情可以用一个流来表示：Target-&gt;Endpoint-&gt;Request,这个过程中Provider会一步步生层一个NSURLRequest来交给Alamofire发起请求。</p>
+<pre><code class="swift">public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
+            requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
+            stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
+            callbackQueue: DispatchQueue? = nil,
+            manager: Manager = MoyaProvider&lt;Target&gt;.defaultAlamofireManager(),
+            plugins: [PluginType] = [],
+            trackInflights: Bool = false) {}
+</code></pre>
+<ul>
+<li><p>endpointClosure：负责从TargetType转成Endpoint，Moya对endpointClosure提供了默认的实现。</p>
+<pre><code class="swift">final class func defaultEndpointMapping(for target: Target) -&gt; Endpoint {
+    return Endpoint(
+        url: URL(target: target).absoluteString,
+        sampleResponseClosure: { .networkResponse(200, target.sampleData) },
+        method: target.method,
+        task: target.task,
+        httpHeaderFields: target.headers
+    )
+}</code></pre>
+<p>在实际的项目中，可以自定义这个闭包来实现复杂的功能。</p>
+</li>
+</ul>
+<ul>
+<li><p>requestClosure：负责把Endpoint转换成NSURLRequest，同样也有默认的实现<code>MoyaProvider.defaultRequestMappin</code></p>
+<pre><code class="swift">final class func defaultRequestMapping(for endpoint: Endpoint, closure: RequestResultClosure) {
+    do {
+        let urlRequest = try endpoint.urlRequest()
+        closure(.success(urlRequest))
+    } catch MoyaError.requestMapping(let url) {
+        closure(.failure(MoyaError.requestMapping(url)))
+    } catch MoyaError.parameterEncoding(let error) {
+        closure(.failure(MoyaError.parameterEncoding(error)))
+    } catch {
+        closure(.failure(MoyaError.underlying(error, nil)))
+    }
+}</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>stubClosure：返回一个枚举StubBehavior，默认会返回never，如果需要假数据测试可以重写这个。</p>
+<pre><code class="swift">public enum StubBehavior {
+    case never
+    case immediate
+    case delayed(seconds: TimeInterval)
+}</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>callbackQueue： 回调的线程，默认在主线程。</p>
+</li>
+<li><p>manager：真正用来请求的类，由Alamofire桥接过来的，Moya提供了一个默认的Manager实现。</p>
+<pre><code class="swift">final class func defaultAlamofireManager() -&gt; Manager {
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
+
+    let manager = Manager(configuration: configuration)
+    manager.startRequestsImmediately = false
+    return manager
+}</code></pre>
+</li>
+</ul>
+<ul>
+<li>plugins：插件，能够在不修改源码的情况下，来扩展其他功能，而且能够保证Provider的职责单一，满足开闭原则。</li>
+<li>trackInflights：是否要追踪请求，默认是false。</li>
+</ul>
+<h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" alt=""></p>
+<p>在初始化Provider实例对象之后，对外暴露<code>request</code>方法以便发起请求：</p>
+<pre><code class="swift">@discardableResult
+open func request(_ target: Target,
+                  callbackQueue: DispatchQueue? = .none,
+                  progress: ProgressBlock? = .none,
+                  completion: @escaping Completion) -&gt; Cancellable {
+
+    let callbackQueue = callbackQueue ?? self.callbackQueue
+    return requestNormal(target, callbackQueue: callbackQueue, progress: progress, completion: completion)
+}</code></pre>
+<p>在swift里面，如果没有接收某方法的返回值，Xcode会报出警告，使用<code>@discardableResult</code>关键字在不想接收方法返回值的时候，用来消除Xcode的警告。</p>
+<p>在MoyaProvider+Internal.swift文件中主要定义了十个方法,主要做的事如下图：</p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" alt=""></p>
+<h3 id="Moya-Alamofire"><a href="#Moya-Alamofire" class="headerlink" title="Moya+Alamofire"></a>Moya+Alamofire</h3><p>Moya+Alamofire.swift文件对Alamofire进行了简单的封装，这一层包装隔离了Alamofire的代码，如果需要更换请求框架的话，可以进行简单的修改来替换。</p>
+<ul>
+<li><p>使用<strong>typealias</strong>对Alamofire相关的的API进行封装：Manager、Request、Method等</p>
+</li>
+<li><p>让Alamofire相关的类实现Moya定义的一些protocol</p>
+<pre><code class="swift">extension Request: RequestType { }
+extension DataRequest: Requestable {
+   ...
+}
+extension DownloadRequest: Requestable {
+   ...
+}</code></pre>
+</li>
+</ul>
+<h3 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h3><p>Moya提供了非常好用的插件机制，可以通过插件在不修改源码的基础上，充分扩展Moya的功能。</p>
+<pre><code class="swift">public protocol PluginType {
+    /// Called to modify a request before sending.
+    func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest
+    /// Called immediately before a request is sent over the network (or stubbed).
+    func willSend(_ request: RequestType, target: TargetType)
+    /// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.
+    func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)
+    /// Called to modify a result before completion.
+    func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt;
+}
+
+public extension PluginType {
+    func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest { return request }
+    func willSend(_ request: RequestType, target: TargetType) { }
+    func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) { }
+    func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt; { return result }
+}</code></pre>
+<p>调用方可以实现上面的协议，来创建各种插件处理不同事情，从而保证Provider的单一职责。</p>
+<ul>
+<li><p>prepare：这个方法会在endpoint生成Request之后且请求发送前调用</p>
+<pre><code class="swift">let performNetworking = { (requestResult: Result&lt;URLRequest, MoyaError&gt;) in
+    // Allow plugins to modify request
+    let preparedRequest = self.plugins.reduce(request) { $1.prepare($0, target: target) }
+}</code></pre>
+</li>
+<li><p>willSend：会在发送Alamofire请求前调用</p>
+<pre><code class="swift">func sendAlamofireRequest&lt;T&gt;(_ alamoRequest: T, target: Target, callbackQueue: DispatchQueue?, progress progressCompletion: Moya.ProgressBlock?, completion: @escaping Moya.Completion) -&gt; CancellableToken where T: Requestable, T: Request {
+    // Give plugins the chance to alter the outgoing request
+    let plugins = self.plugins
+    plugins.forEach { $0.willSend(alamoRequest, target: target) }
+}</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>didReceive：在收到Response的时候调用</p>
+<pre><code class="swift">let completionHandler: RequestableCompletion = { response, request, data, error in
+    let result = convertResponseToResult(response, request: request, data: data, error: error)
+    // Inform all plugins about the response
+    plugins.forEach { $0.didReceive(result, target: target) }
+    completion(result)
+}</code></pre>
+</li>
+<li><p>process：在请求完成后修改Result。</p>
+</li>
+</ul>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><p>响应结果相关方法，以及字典，JSON等相关转换方法。</p>
+<pre><code class="swift">/// Represents a response to a `MoyaProvider.request`.
+public final class Response: CustomDebugStringConvertible, Equatable {
+    public let statusCode: Int
+    public let data: Data
+    public let request: URLRequest?
+    public let response: HTTPURLResponse?
+}</code></pre>
+<h4 id="Cancel"><a href="#Cancel" class="headerlink" title="Cancel"></a>Cancel</h4><p>网络API请求是 可以被取消的，Moya返回协议Cancellable给客户端。</p>
+<pre><code class="swift">internal class CancellableWrapper: Cancellable {
+    internal var innerCancellable: Cancellable = SimpleCancellable()
+
+    var isCancelled: Bool { return innerCancellable.isCancelled }
+
+    internal func cancel() {
+        innerCancellable.cancel()
+    }
+}</code></pre>
+<p>在内部实现中，引入了一个CancellableWrapper来进行实际的Cancel包装，返回的实际实现协议的类型就是它。</p>
+<p>使用一个CancellableWrapper包装的原因主要是对于没有实际发出的请求(参数错误)，cancel动作直接用SimpleCancellable即可，如果已经发出的请求，cancel则需要取消实际的网络请求。</p>
+<p>在<code>CancellableToken</code>中，取消网络请求：</p>
+<pre><code class="swift">public final class CancellableToken: Cancellable, CustomDebugStringConvertible {
+    fileprivate var lock: DispatchSemaphore = DispatchSemaphore(value: 1)
+
+    public func cancel() {
+        _ = lock.wait(timeout: DispatchTime.distantFuture)
+        defer { lock.signal() }
+        guard !isCancelled else { return }
+        isCancelled = true
+        cancelAction()
+    }
+    init(request: Request) {
+        self.request = request
+        self.cancelAction = {
+            request.cancel()
+        }
+    }
+}</code></pre>
+<p>这里用到了信号量，为了防止两个线程同时执行cancel操作。</p>
+<h3 id="Moya的设计原则"><a href="#Moya的设计原则" class="headerlink" title="Moya的设计原则"></a>Moya的设计原则</h3><p>1.面向协议</p>
+<p>swift是一个面向协议的语言，协议建立的是一个抽象的依赖关系，同时Swift协议支持扩展，可以通过扩展为协议中的方法提供默认的实现。</p>
+<pre><code>public protocol TargetType {} //表示一个API请求
+public protocol Cancellable {} // 唯一确定请求，只有一个接口用力爱取消
+public protocol PluginType {} // 插件类型
+public protocol RequestType {} // 对外提供的请求类型，隐藏Alamofire的细节</code></pre><p>2.不可变状态</p>
+<p>不可变状态是函数式编程的一个核心概念，在Moya中，很多状态都是不可变的。</p>
+<pre><code>public protocol TargetType {
+    var baseURL: URL { get } // 只读
+    ...
+}</code></pre><p>3.高阶函数</p>
+<p>在swift中，函数是一等公民，可以作为函数的参数和返回值。高阶函数配合函数默认值，是swift开发中进行接口暴露的常用技巧。</p>
+<p>4.插件</p>
+<p>通过各个节点暴露出插件的接口，让Moya的日志、授权等功能无须耦合到核心代码里，让代码足够灵活性。</p>
+<p>5.类型安全</p>
+<p>使用枚举来保证类型安全是swift中常用的技巧。</p>
+<p>6.错误处理</p>
+<p>通过Result类型来处理异步错误。</p>
+<pre><code class="swift">/// A public function responsible for converting the result of a `URLRequest` to a Result&lt;Moya.Response, MoyaError&gt;.
+public func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Swift.Error?) -&gt;
+    Result&lt;Moya.Response, MoyaError&gt; {
+        switch (response, data, error) {
+        case let (.some(response), data, .none):
+            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
+            return .success(response)
+        case let (.some(response), _, .some(error)):
+            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
+            let error = MoyaError.underlying(error, response)
+            return .failure(error)
+        case let (_, _, .some(error)):
+            let error = MoyaError.underlying(error, nil)
+            return .failure(error)
+        default:
+            let error = MoyaError.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), nil)
+            return .failure(error)
+        }
+}
+</code></pre>
+<p>用Result类型最大的好处是可以不用每一步都处理错误，通过Result类型，可以在最后统一处理错误。</p>
+<pre><code>provider.request(...).filter().mapJSON.filter().{ result in
+    switch result {
+        case let .success(moyaResponse):
+
+        case let .failure(error):
+    }
+ }</code></pre><h2 id="Alamofire"><a href="#Alamofire" class="headerlink" title="Alamofire"></a>Alamofire</h2><p>Alamofire的目录结构：</p>
+<pre><code>├── AFError.swift
+├── Alamofire.swift
+├── DispatchQueue+Alamofire.swift
+├── MultipartFormData.swift
+├── NetworkReachabilityManager.swift
+├── Notifications.swift
+├── ParameterEncoding.swift
+├── Request.swift
+├── Response.swift
+├── ResponseSerialization.swift
+├── Result.swift
+├── ServerTrustPolicy.swift
+├── SessionDelegate.swift
+├── SessionManager.swift
+├── TaskDelegate.swift
+├── Timeline.swift
+└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" alt=""></p>
+<h3 id="Alamofire-swift"><a href="#Alamofire-swift" class="headerlink" title="Alamofire.swift"></a>Alamofire.swift</h3><p>该文件主要是给用户提供一些便利的调用方法<code>request</code>、<code>download</code>、<code>upload</code>、<code>stream</code>，以及定义了两个protocol接口，提供将其他类型转换成URL和URLRequest。</p>
+<pre><code class="swift">@discardableResult
+public func request(
+    _ url: URLConvertible,
+    method: HTTPMethod = .get,
+    parameters: Parameters? = nil,
+    encoding: ParameterEncoding = URLEncoding.default,
+    headers: HTTPHeaders? = nil)
+    -&gt; DataRequest
+{
+    return SessionManager.default.request(
+        url,
+        method: method,
+        parameters: parameters,
+        encoding: encoding,
+        headers: headers
+    )
+}
+
+@discardableResult
+public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
+    return SessionManager.default.request(urlRequest)
+}
+//....</code></pre>
+<p>上面是提供给外部发起网络请求的api。</p>
+<pre><code class="swift">public protocol URLConvertible {
+    func asURL() throws -&gt; URL
+}
+
+public protocol URLRequestConvertible {
+    func asURLRequest() throws -&gt; URLRequest
+}</code></pre>
+<p>这个两个protocol主要是负责类型转换的接口。</p>
+<h3 id="SessionManager"><a href="#SessionManager" class="headerlink" title="SessionManager"></a>SessionManager</h3><h4 id="1-SessionManager的初始化"><a href="#1-SessionManager的初始化" class="headerlink" title="1.SessionManager的初始化"></a>1.SessionManager的初始化</h4><p>上面的便利方法主要是调用Manager类的单利，Manager类中主要负责Session和Request的初始化，并提供SessionDelegate代理方法的默认实现。在实现代理方法时提供相应的闭包以提供给用户使用该闭包来回调相应的代理方法。</p>
+<pre><code class="swift">public static let `default`: SessionManager = {
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+
+    return SessionManager(configuration: configuration)
+}()</code></pre>
+<p>Manager类是以单利的形式对外使用的，创建SessionManager对象时指定了一个默认的<code>URLSessionConfiguration</code>和<code>defaultHTTPHeaders</code>。</p>
+<pre><code class="swift">public init(
+    configuration: URLSessionConfiguration = URLSessionConfiguration.default,
+    delegate: SessionDelegate = SessionDelegate(),
+    serverTrustPolicyManager: ServerTrustPolicyManager? = nil) {
+    self.delegate = delegate
+    self.session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+
+    commonInit(serverTrustPolicyManager: serverTrustPolicyManager)
+}
+private func commonInit(serverTrustPolicyManager: ServerTrustPolicyManager?) {
+    session.serverTrustPolicyManager = serverTrustPolicyManager
+
+    delegate.sessionManager = self
+
+    delegate.sessionDidFinishEventsForBackgroundURLSession = { [weak self] session in
+        guard let strongSelf = self else { return }
+        DispatchQueue.main.async { strongSelf.backgroundCompletionHandler?() }
+    }
+}</code></pre>
+<p>SessionManager的<code>init</code>方法中，初始化了SessionDelegate和URLSession，并并SessionDelegate对象作为URLSession的delegate。</p>
+<h4 id="2-Manager的request方法"><a href="#2-Manager的request方法" class="headerlink" title="2.Manager的request方法"></a>2.Manager的request方法</h4><pre><code class="swift">@discardableResult
+open func request(
+    _ url: URLConvertible,
+    method: HTTPMethod = .get,
+    parameters: Parameters? = nil,
+    encoding: ParameterEncoding = URLEncoding.default,
+    headers: HTTPHeaders? = nil)
+    -&gt; DataRequest {
+    var originalRequest: URLRequest?
+
+    do {
+        originalRequest = try URLRequest(url: url, method: method, headers: headers)
+        /// 对参数进行编码, 其中encoding方法会根据ParameterEncoding的类型不同返回不同的request
+        let encodedURLRequest = try encoding.encode(originalRequest!, with: parameters)
+        return request(encodedURLRequest)
+    } catch {
+        return request(originalRequest, failedWith: error)
+    }
+}</code></pre>
+<p><code>url</code>是一个实现了<code>URLConvertible</code>的对象，<code>method</code>参数表示请求方式（GET、POST、PUT等），<code>parameters</code>就是请求参数，<code>encoding:ParameterEncoding</code>是请求参数的编码方式，在Alamofire的源码里面有URLEncoding、JSONEncoding、PropertyListEncoding，这里默认的是URL 编码。</p>
+<pre><code class="swift">@discardableResult
+open func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
+    var originalRequest: URLRequest?
+    do {
+        originalRequest = try urlRequest.asURLRequest()
+        let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)//return TaskConvertible
+
+        let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
+        let request = DataRequest(session: session, requestTask: .data(originalTask, task))
+        delegate[task] = request
+        if startRequestsImmediately { request.resume() }
+        return request
+    } catch {
+        return request(originalRequest, failedWith: error)
+    }
+}</code></pre>
+<p>上面的<code>request</code>的方法主要是负责通过Session创建DataTask，并用task对象初始化DataRequest类的对象，并将request存入ManagerDelegate类的属性中<code>delegate[task] = request</code>，因为在delegate属性中的代理方法是调用相应的TaskDelegate类的方法。</p>
+<p>然后默认调用<code>request.resume</code>发起网络请求。</p>
+<h3 id="SessionDelegate"><a href="#SessionDelegate" class="headerlink" title="SessionDelegate"></a>SessionDelegate</h3><p>这个类主要是URLSessionDelegate以及相关子协议的代理类，其中给出了各个代理方法的默认实现，并将URLSessionDelegate的相关代理封装成闭包的形式提供给外部。如果闭包变量不为空则会执行闭包块的内容，而不会执行默认的实现。</p>
+<pre><code class="swift">// MARK: URLSessionDelegate Overrides
+open var sessionDidReceiveChallenge: ((URLSession, URLAuthenticationChallenge) -&gt; (URLSession.AuthChallengeDisposition, URLCredential?))?
+open var sessionDidReceiveChallengeWithCompletion: ((URLSession, URLAuthenticationChallenge, @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void) -&gt; Void)?
+
+// MARK: URLSessionDataDelegate Overrides
+open var dataTaskDidReceiveResponse: ((URLSession, URLSessionDataTask, URLResponse) -&gt; URLSession.ResponseDisposition)?
+
+// MARK: URLSessionDownloadDelegate Overrides
+// ....
+
+var retrier: RequestRetrier?
+weak var sessionManager: SessionManager?
+
+var requests: [Int: Request] = [:]
+private let lock = NSLock()
+/// Access the task delegate for the specified task in a thread-safe manner.
+open subscript(task: URLSessionTask) -&gt; Request? {
+    get {
+        lock.lock() ; defer { lock.unlock() }
+        return requests[task.taskIdentifier]
+    }
+    set {
+        lock.lock() ; defer { lock.unlock() }
+        requests[task.taskIdentifier] = newValue
+    }
+}
+extension SessionDelegate: URLSessionDelegate {}
+extension SessionDelegate: URLSessionTaskDelegate {}
+extension SessionDelegate: URLSessionDataDelegate {}
+extension SessionDelegate: URLSessionDownloadDelegate {}
+extension SessionDelegate: URLSessionStreamDelegate {}</code></pre>
+<ul>
+<li><p><code>subscript</code>表示自定义下标，可以通过<code>delegate[task]</code>的形式进行访问；</p>
+</li>
+<li><p>使用到NSLock来保证线程安全以便在访问指定的task时；</p>
+</li>
+<li><p><code>requests</code>负责储存request对象，以便SessionDelegate在URLSessionDelegate相应的代理方法中通过<code>self[task]?.delegate</code>，获取到TaskDelegate对象来调用其方法，例如以下的代理方法中的实现：</p>
+<pre><code class="swift">open func urlSession(
+    _ session: URLSession,
+    task: URLSessionTask,
+    didReceive challenge: URLAuthenticationChallenge,
+    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void)
+{
+    guard taskDidReceiveChallengeWithCompletion == nil else {
+        taskDidReceiveChallengeWithCompletion?(session, task, challenge, completionHandler)
+        return
+    }
+
+    if let taskDidReceiveChallenge = taskDidReceiveChallenge {
+        let result = taskDidReceiveChallenge(session, task, challenge)
+        completionHandler(result.0, result.1)
+    } else if let delegate = self[task]?.delegate {
+        delegate.urlSession(
+            session,
+            task: task,
+            didReceive: challenge,
+            completionHandler: completionHandler
+        )
+    } else {
+        urlSession(session, didReceive: challenge, completionHandler: completionHandler)
+    }
+}</code></pre>
+</li>
+</ul>
+<h3 id="Request相关类"><a href="#Request相关类" class="headerlink" title="Request相关类"></a>Request相关类</h3><h4 id="1-Request初始化"><a href="#1-Request初始化" class="headerlink" title="1.Request初始化"></a>1.Request初始化</h4><p>Request就是负责通过会话创建各种类型的Task，并给出相应的Task Delegate。</p>
+<pre><code class="swift">init(session: URLSession, requestTask: RequestTask, error: Error? = nil) {
+    self.session = session
+
+    switch requestTask {
+    case .data(let originalTask, let task):
+        taskDelegate = DataTaskDelegate(task: task)
+        self.originalTask = originalTask
+    case .download(let originalTask, let task):
+        taskDelegate = DownloadTaskDelegate(task: task)
+        self.originalTask = originalTask
+    case .upload(let originalTask, let task):
+        taskDelegate = UploadTaskDelegate(task: task)
+        self.originalTask = originalTask
+    case .stream(let originalTask, let task):
+        taskDelegate = TaskDelegate(task: task)
+        self.originalTask = originalTask
+    }
+
+    delegate.error = error
+    delegate.queue.addOperation { self.endTime = CFAbsoluteTimeGetCurrent() }
+}</code></pre>
+<p>初始化方法需要两个参数：第一个参数是URLSession对象，改对象时SessionManager单例持有的session，第二个参数同样是Manager中传过来的<code>RequestTask</code>枚举类型，根据RequestTask的类型来设置代理对象DataDelegate，例如如果是data类型则创建的是DataDelegate的实例。</p>
+<h4 id="Request的ProgressHandler闭包"><a href="#Request的ProgressHandler闭包" class="headerlink" title="Request的ProgressHandler闭包"></a>Request的ProgressHandler闭包</h4><p>在使用Request类的对象时，可以链式地调用Request中的方法，最常用的是获取相应任务执行的进度：</p>
+<pre><code class="swift">Alamofire.request(URL(string: &quot;https://httpbin.org/get&quot;)!).downloadProgress { (progress) in
+    /// progress
+
+}.response { (response) in
+    /// response
+}</code></pre>
+<p>其中DataRequest和DownloadRequest定义的是downloadProgress，UploadRequest定义的是uploadProgress闭包，可以通过这个闭包监听下载或上传的进度。</p>
+<h4 id="resume方法"><a href="#resume方法" class="headerlink" title="resume方法"></a>resume方法</h4><pre><code class="swift">open func resume() {
+    guard let task = task else { delegate.queue.isSuspended = false ; return }
+
+    if startTime == nil { startTime = CFAbsoluteTimeGetCurrent() }
+
+    task.resume()
+
+    NotificationCenter.default.post(
+        name: Notification.Name.Task.DidResume,
+        object: self,
+        userInfo: [Notification.Key.Task: task]
+    )
+}
+</code></pre>
+<p><code>resume</code>方法主要是用来记录startTime，然后调用task的resume方法开始执行任务，并发出相应的通知。</p>
+<h3 id="ResponseSerialization"><a href="#ResponseSerialization" class="headerlink" title="ResponseSerialization"></a>ResponseSerialization</h3><p> ResponseSerialization是用来对Response返回的值进行序列化。在文件中定义了两个protocol：<code>DataResponseSerializerProtocol</code>和<code>DownloadResponseSerializerProtocol</code></p>
+<pre><code class="swift">public protocol DataResponseSerializerProtocol {
+    /// The type of serialized object to be created by this `DataResponseSerializerType`.
+    associatedtype SerializedObject
+    var serializeResponse: (URLRequest?, HTTPURLResponse?, Data?, Error?) -&gt; Result&lt;SerializedObject&gt; { get }
+}
+
+public protocol DownloadResponseSerializerProtocol {
+    associatedtype SerializedObject
+    var serializeResponse: (URLRequest?, HTTPURLResponse?, URL?, Error?) -&gt; Result&lt;SerializedObject&gt; { get }
+}</code></pre>
+<p>这两个protocol分别由<code>DataResponseSerializer&lt;Value&gt;</code>和<code>DownloadResponseSerializer&lt;Value&gt;</code>来实现。</p>
+<p>在Alamofire中调用DataRequest的的<code>response</code>或者<code>responseJSON</code>等其他方法，就会在request结束时，添加一个操作<code>OperationQueue</code>来处理服务器的response。</p>
+<pre><code class="swift">@discardableResult
+public func response&lt;T: DataResponseSerializerProtocol&gt;(
+    queue: DispatchQueue? = nil,
+    responseSerializer: T,
+    completionHandler: @escaping (DataResponse&lt;T.SerializedObject&gt;) -&gt; Void)
+    -&gt; Self
+{
+    delegate.queue.addOperation {
+        let result = responseSerializer.serializeResponse(
+            self.request,
+            self.response,
+            self.delegate.data,
+            self.delegate.error
+        )
+
+        var dataResponse = DataResponse&lt;T.SerializedObject&gt;(
+            request: self.request,
+            response: self.response,
+            data: self.delegate.data,
+            result: result,
+            timeline: self.timeline
+        )
+
+        dataResponse.add(self.delegate.metrics)
+
+        (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
+    }
+
+    return self
+}</code></pre>
+<p>总结：</p>
+<p>在Alamofire框架中使用了协议、扩展、闭包以及枚举关联值，在解析网络数据的时，将闭包类型作为函数的参数，通过闭包变量来提供相应的解析方案。</p>
+<ul>
+<li><p>Alamofire对泛型的使用：</p>
+<pre><code>public enum Result&lt;Value&gt; {}
+public func validate&lt;S: Sequence&gt;(contentType acceptableContentTypes: S) -&gt; Self where S.Iterator.Element == String {}
+public struct DataResponse&lt;Value&gt; {}</code></pre></li>
+<li><p>链式调用</p>
+<p>对于Request类。其中很多方法都使用了返回<code>-&gt;Self</code>方法</p>
+<pre><code>/// 鉴权
+open func authenticate(usingCredential credential: URLCredential) -&gt; Self {}
+/// 进度
+open func downloadProgress(queue: DispatchQueue = DispatchQueue.main, closure: @escaping ProgressHandler) -&gt; Self {}
+///响应
+public func response(queue: DispatchQueue? = nil, completionHandler: @escaping (DefaultDataResponse) -&gt; Void) -&gt; Self {}</code></pre></li>
+<li><p>顺序创建Task，并保存所有的requests。</p>
+<pre><code>delegate[task] = request
+open subscript(task: URLSessionTask) -&gt; Request? {
+    get {
+        lock.lock() ; defer { lock.unlock() }
+        return requests[task.taskIdentifier]
+    }
+    set {
+        lock.lock() ; defer { lock.unlock() }
+        requests[task.taskIdentifier] = newValue
+    }
+}</code></pre></li>
+<li><p>在URLSession的回调中根据task把回调分发给对应的TaskDelegate</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>swift</category>
+      </categories>
+      <tags>
+        <tag>liu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cocoapods源码分析</title>
     <url>//blog/31010/2020/02/12/Cocoapods/</url>
     <content><![CDATA[<p>Cocoapods是开发OSX和iOS应用程序的一个第三方库的依赖管理工具，只用这个工具可以简化对组件依赖。更新过程。Cocoapods是用Ruby写的，由若干个gems组成：相关的<a href="https://github.com/CocoaPods">源码</a>。</p>
@@ -1612,7 +2189,7 @@ rescue Molinillo::ResolverError =&gt; e
 end</code></pre>
 <p>这里的<code>Molinillo::Resolver</code>就是用于解决依赖关系的类。 <code>Milinillo</code>算法的核心是回溯(Backtracking)、向前检查(forward check)，整个过程会追踪栈中的两个状态（依赖和可能性）。</p>
 <p>Resolver的大概过程如下：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" alt=""></p>
 <p>下面是调试输出的日志：</p>
 <p><code>podfile_dependency_cache.podfile_dependencies</code>:</p>
 <pre><code>&lt;Pod::Dependency name=AFNetworking requirements== 1.3.3 source=nil external_source=nil&gt;
@@ -1826,582 +2403,5 @@ deleted_and_changed += pods_to_update[:pods] if update_mode == :selected</code><
       <categories>
         <category>Ruby</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Moya &amp;&amp; Alamofire</title>
-    <url>//blog/44783/2020/02/26/Moya/</url>
-    <content><![CDATA[<p>对Moya和Alamofire的分析基于以下版本：Alamofire (4.9.1) 、Moya (13.0.1)。</p>
-<h2 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h2><p>Moya的目录结构如下：</p>
-<pre><code>├── Moya
-│   ├── AnyEncodable.swift
-│   ├── Cancellable.swift
-│   ├── Endpoint.swift
-│   ├── Image.swift
-│   ├── Moya+Alamofire.swift
-│   ├── MoyaError.swift
-│   ├── MoyaProvider+Defaults.swift
-│   ├── MoyaProvider+Internal.swift
-│   ├── MoyaProvider.swift
-│   ├── MultiTarget.swift
-│   ├── MultipartFormData.swift
-│   ├── Plugin.swift
-│   ├── Plugins
-│   │   ├── AccessTokenPlugin.swift
-│   │   ├── CredentialsPlugin.swift
-│   │   ├── NetworkActivityPlugin.swift
-│   │   └── NetworkLoggerPlugin.swift
-│   ├── Response.swift
-│   ├── TargetType.swift
-│   ├── Task.swift
-│   ├── URL+Moya.swift
-│   ├── URLRequest+Encoding.swift
-│   └── ValidationType.swift
-├── ReactiveMoya
-│   ├── MoyaProvider+Reactive.swift
-│   └── SignalProducer+Response.swift
-└── RxMoya
-    ├── MoyaProvider+Rx.swift
-    ├── Observable+Response.swift
-    └── Single+Response.swift</code></pre><h3 id="Moya介绍"><a href="#Moya介绍" class="headerlink" title="Moya介绍"></a>Moya介绍</h3><p>Moya是基于Alamofire的更高一层的网络请求封装抽象层，在Moya中使用Enum来管理API，每一个网络请求接口都是枚举的一种case，下面是Moya的大概流程图：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p>request部分主要是包含请求相关的代码，定义了TargetType协议，通过TargetType来定义一个请求。</p>
-<ul>
-<li>TargetType:请求相关信息</li>
-<li>Endpoint：Moya进行请求的最终数据结构</li>
-<li>Task：定义了请求的发起方式，请求参数设置等</li>
-<li>Cancellable：请求取消相关协议</li>
-</ul>
-<h3 id="MoyaProvider"><a href="#MoyaProvider" class="headerlink" title="MoyaProvider"></a>MoyaProvider</h3><h4 id="Provider初始化"><a href="#Provider初始化" class="headerlink" title="Provider初始化"></a>Provider初始化</h4><p>MoyaProvider是Moya的核心处理类，Moya中所有的API请求都是通过Provider来发起的。Provider真正做的事情可以用一个流来表示：Target-&gt;Endpoint-&gt;Request,这个过程中Provider会一步步生层一个NSURLRequest来交给Alamofire发起请求。</p>
-<pre><code class="swift">public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
-            requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
-            stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
-            callbackQueue: DispatchQueue? = nil,
-            manager: Manager = MoyaProvider&lt;Target&gt;.defaultAlamofireManager(),
-            plugins: [PluginType] = [],
-            trackInflights: Bool = false) {}
-</code></pre>
-<ul>
-<li><p>endpointClosure：负责从TargetType转成Endpoint，Moya对endpointClosure提供了默认的实现。</p>
-<pre><code class="swift">final class func defaultEndpointMapping(for target: Target) -&gt; Endpoint {
-    return Endpoint(
-        url: URL(target: target).absoluteString,
-        sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-        method: target.method,
-        task: target.task,
-        httpHeaderFields: target.headers
-    )
-}</code></pre>
-<p>在实际的项目中，可以自定义这个闭包来实现复杂的功能。</p>
-</li>
-</ul>
-<ul>
-<li><p>requestClosure：负责把Endpoint转换成NSURLRequest，同样也有默认的实现<code>MoyaProvider.defaultRequestMappin</code></p>
-<pre><code class="swift">final class func defaultRequestMapping(for endpoint: Endpoint, closure: RequestResultClosure) {
-    do {
-        let urlRequest = try endpoint.urlRequest()
-        closure(.success(urlRequest))
-    } catch MoyaError.requestMapping(let url) {
-        closure(.failure(MoyaError.requestMapping(url)))
-    } catch MoyaError.parameterEncoding(let error) {
-        closure(.failure(MoyaError.parameterEncoding(error)))
-    } catch {
-        closure(.failure(MoyaError.underlying(error, nil)))
-    }
-}</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>stubClosure：返回一个枚举StubBehavior，默认会返回never，如果需要假数据测试可以重写这个。</p>
-<pre><code class="swift">public enum StubBehavior {
-    case never
-    case immediate
-    case delayed(seconds: TimeInterval)
-}</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>callbackQueue： 回调的线程，默认在主线程。</p>
-</li>
-<li><p>manager：真正用来请求的类，由Alamofire桥接过来的，Moya提供了一个默认的Manager实现。</p>
-<pre><code class="swift">final class func defaultAlamofireManager() -&gt; Manager {
-    let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
-
-    let manager = Manager(configuration: configuration)
-    manager.startRequestsImmediately = false
-    return manager
-}</code></pre>
-</li>
-</ul>
-<ul>
-<li>plugins：插件，能够在不修改源码的情况下，来扩展其他功能，而且能够保证Provider的职责单一，满足开闭原则。</li>
-<li>trackInflights：是否要追踪请求，默认是false。</li>
-</ul>
-<h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" srcset="/img/loading.gif" alt=""></p>
-<p>在初始化Provider实例对象之后，对外暴露<code>request</code>方法以便发起请求：</p>
-<pre><code class="swift">@discardableResult
-open func request(_ target: Target,
-                  callbackQueue: DispatchQueue? = .none,
-                  progress: ProgressBlock? = .none,
-                  completion: @escaping Completion) -&gt; Cancellable {
-
-    let callbackQueue = callbackQueue ?? self.callbackQueue
-    return requestNormal(target, callbackQueue: callbackQueue, progress: progress, completion: completion)
-}</code></pre>
-<p>在swift里面，如果没有接收某方法的返回值，Xcode会报出警告，使用<code>@discardableResult</code>关键字在不想接收方法返回值的时候，用来消除Xcode的警告。</p>
-<p>在MoyaProvider+Internal.swift文件中主要定义了十个方法,主要做的事如下图：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Moya-Alamofire"><a href="#Moya-Alamofire" class="headerlink" title="Moya+Alamofire"></a>Moya+Alamofire</h3><p>Moya+Alamofire.swift文件对Alamofire进行了简单的封装，这一层包装隔离了Alamofire的代码，如果需要更换请求框架的话，可以进行简单的修改来替换。</p>
-<ul>
-<li><p>使用<strong>typealias</strong>对Alamofire相关的的API进行封装：Manager、Request、Method等</p>
-</li>
-<li><p>让Alamofire相关的类实现Moya定义的一些protocol</p>
-<pre><code class="swift">extension Request: RequestType { }
-extension DataRequest: Requestable {
-   ...
-}
-extension DownloadRequest: Requestable {
-   ...
-}</code></pre>
-</li>
-</ul>
-<h3 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h3><p>Moya提供了非常好用的插件机制，可以通过插件在不修改源码的基础上，充分扩展Moya的功能。</p>
-<pre><code class="swift">public protocol PluginType {
-    /// Called to modify a request before sending.
-    func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest
-    /// Called immediately before a request is sent over the network (or stubbed).
-    func willSend(_ request: RequestType, target: TargetType)
-    /// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.
-    func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)
-    /// Called to modify a result before completion.
-    func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt;
-}
-
-public extension PluginType {
-    func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest { return request }
-    func willSend(_ request: RequestType, target: TargetType) { }
-    func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) { }
-    func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt; { return result }
-}</code></pre>
-<p>调用方可以实现上面的协议，来创建各种插件处理不同事情，从而保证Provider的单一职责。</p>
-<ul>
-<li><p>prepare：这个方法会在endpoint生成Request之后且请求发送前调用</p>
-<pre><code class="swift">let performNetworking = { (requestResult: Result&lt;URLRequest, MoyaError&gt;) in
-    // Allow plugins to modify request
-    let preparedRequest = self.plugins.reduce(request) { $1.prepare($0, target: target) }
-}</code></pre>
-</li>
-<li><p>willSend：会在发送Alamofire请求前调用</p>
-<pre><code class="swift">func sendAlamofireRequest&lt;T&gt;(_ alamoRequest: T, target: Target, callbackQueue: DispatchQueue?, progress progressCompletion: Moya.ProgressBlock?, completion: @escaping Moya.Completion) -&gt; CancellableToken where T: Requestable, T: Request {
-    // Give plugins the chance to alter the outgoing request
-    let plugins = self.plugins
-    plugins.forEach { $0.willSend(alamoRequest, target: target) }
-}</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>didReceive：在收到Response的时候调用</p>
-<pre><code class="swift">let completionHandler: RequestableCompletion = { response, request, data, error in
-    let result = convertResponseToResult(response, request: request, data: data, error: error)
-    // Inform all plugins about the response
-    plugins.forEach { $0.didReceive(result, target: target) }
-    completion(result)
-}</code></pre>
-</li>
-<li><p>process：在请求完成后修改Result。</p>
-</li>
-</ul>
-<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><p>响应结果相关方法，以及字典，JSON等相关转换方法。</p>
-<pre><code class="swift">/// Represents a response to a `MoyaProvider.request`.
-public final class Response: CustomDebugStringConvertible, Equatable {
-    public let statusCode: Int
-    public let data: Data
-    public let request: URLRequest?
-    public let response: HTTPURLResponse?
-}</code></pre>
-<h4 id="Cancel"><a href="#Cancel" class="headerlink" title="Cancel"></a>Cancel</h4><p>网络API请求是 可以被取消的，Moya返回协议Cancellable给客户端。</p>
-<pre><code class="swift">internal class CancellableWrapper: Cancellable {
-    internal var innerCancellable: Cancellable = SimpleCancellable()
-
-    var isCancelled: Bool { return innerCancellable.isCancelled }
-
-    internal func cancel() {
-        innerCancellable.cancel()
-    }
-}</code></pre>
-<p>在内部实现中，引入了一个CancellableWrapper来进行实际的Cancel包装，返回的实际实现协议的类型就是它。</p>
-<p>使用一个CancellableWrapper包装的原因主要是对于没有实际发出的请求(参数错误)，cancel动作直接用SimpleCancellable即可，如果已经发出的请求，cancel则需要取消实际的网络请求。</p>
-<p>在<code>CancellableToken</code>中，取消网络请求：</p>
-<pre><code class="swift">public final class CancellableToken: Cancellable, CustomDebugStringConvertible {
-    fileprivate var lock: DispatchSemaphore = DispatchSemaphore(value: 1)
-
-    public func cancel() {
-        _ = lock.wait(timeout: DispatchTime.distantFuture)
-        defer { lock.signal() }
-        guard !isCancelled else { return }
-        isCancelled = true
-        cancelAction()
-    }
-    init(request: Request) {
-        self.request = request
-        self.cancelAction = {
-            request.cancel()
-        }
-    }
-}</code></pre>
-<p>这里用到了信号量，为了防止两个线程同时执行cancel操作。</p>
-<h3 id="Moya的设计原则"><a href="#Moya的设计原则" class="headerlink" title="Moya的设计原则"></a>Moya的设计原则</h3><p>1.面向协议</p>
-<p>swift是一个面向协议的语言，协议建立的是一个抽象的依赖关系，同时Swift协议支持扩展，可以通过扩展为协议中的方法提供默认的实现。</p>
-<pre><code>public protocol TargetType {} //表示一个API请求
-public protocol Cancellable {} // 唯一确定请求，只有一个接口用力爱取消
-public protocol PluginType {} // 插件类型
-public protocol RequestType {} // 对外提供的请求类型，隐藏Alamofire的细节</code></pre><p>2.不可变状态</p>
-<p>不可变状态是函数式编程的一个核心概念，在Moya中，很多状态都是不可变的。</p>
-<pre><code>public protocol TargetType {
-    var baseURL: URL { get } // 只读
-    ...
-}</code></pre><p>3.高阶函数</p>
-<p>在swift中，函数是一等公民，可以作为函数的参数和返回值。高阶函数配合函数默认值，是swift开发中进行接口暴露的常用技巧。</p>
-<p>4.插件</p>
-<p>通过各个节点暴露出插件的接口，让Moya的日志、授权等功能无须耦合到核心代码里，让代码足够灵活性。</p>
-<p>5.类型安全</p>
-<p>使用枚举来保证类型安全是swift中常用的技巧。</p>
-<p>6.错误处理</p>
-<p>通过Result类型来处理异步错误。</p>
-<pre><code class="swift">/// A public function responsible for converting the result of a `URLRequest` to a Result&lt;Moya.Response, MoyaError&gt;.
-public func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Swift.Error?) -&gt;
-    Result&lt;Moya.Response, MoyaError&gt; {
-        switch (response, data, error) {
-        case let (.some(response), data, .none):
-            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
-            return .success(response)
-        case let (.some(response), _, .some(error)):
-            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
-            let error = MoyaError.underlying(error, response)
-            return .failure(error)
-        case let (_, _, .some(error)):
-            let error = MoyaError.underlying(error, nil)
-            return .failure(error)
-        default:
-            let error = MoyaError.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), nil)
-            return .failure(error)
-        }
-}
-</code></pre>
-<p>用Result类型最大的好处是可以不用每一步都处理错误，通过Result类型，可以在最后统一处理错误。</p>
-<pre><code>provider.request(...).filter().mapJSON.filter().{ result in
-    switch result {
-        case let .success(moyaResponse):
-
-        case let .failure(error):
-    }
- }</code></pre><h2 id="Alamofire"><a href="#Alamofire" class="headerlink" title="Alamofire"></a>Alamofire</h2><p>Alamofire的目录结构：</p>
-<pre><code>├── AFError.swift
-├── Alamofire.swift
-├── DispatchQueue+Alamofire.swift
-├── MultipartFormData.swift
-├── NetworkReachabilityManager.swift
-├── Notifications.swift
-├── ParameterEncoding.swift
-├── Request.swift
-├── Response.swift
-├── ResponseSerialization.swift
-├── Result.swift
-├── ServerTrustPolicy.swift
-├── SessionDelegate.swift
-├── SessionManager.swift
-├── TaskDelegate.swift
-├── Timeline.swift
-└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Alamofire-swift"><a href="#Alamofire-swift" class="headerlink" title="Alamofire.swift"></a>Alamofire.swift</h3><p>该文件主要是给用户提供一些便利的调用方法<code>request</code>、<code>download</code>、<code>upload</code>、<code>stream</code>，以及定义了两个protocol接口，提供将其他类型转换成URL和URLRequest。</p>
-<pre><code class="swift">@discardableResult
-public func request(
-    _ url: URLConvertible,
-    method: HTTPMethod = .get,
-    parameters: Parameters? = nil,
-    encoding: ParameterEncoding = URLEncoding.default,
-    headers: HTTPHeaders? = nil)
-    -&gt; DataRequest
-{
-    return SessionManager.default.request(
-        url,
-        method: method,
-        parameters: parameters,
-        encoding: encoding,
-        headers: headers
-    )
-}
-
-@discardableResult
-public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
-    return SessionManager.default.request(urlRequest)
-}
-//....</code></pre>
-<p>上面是提供给外部发起网络请求的api。</p>
-<pre><code class="swift">public protocol URLConvertible {
-    func asURL() throws -&gt; URL
-}
-
-public protocol URLRequestConvertible {
-    func asURLRequest() throws -&gt; URLRequest
-}</code></pre>
-<p>这个两个protocol主要是负责类型转换的接口。</p>
-<h3 id="SessionManager"><a href="#SessionManager" class="headerlink" title="SessionManager"></a>SessionManager</h3><h4 id="1-SessionManager的初始化"><a href="#1-SessionManager的初始化" class="headerlink" title="1.SessionManager的初始化"></a>1.SessionManager的初始化</h4><p>上面的便利方法主要是调用Manager类的单利，Manager类中主要负责Session和Request的初始化，并提供SessionDelegate代理方法的默认实现。在实现代理方法时提供相应的闭包以提供给用户使用该闭包来回调相应的代理方法。</p>
-<pre><code class="swift">public static let `default`: SessionManager = {
-    let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-
-    return SessionManager(configuration: configuration)
-}()</code></pre>
-<p>Manager类是以单利的形式对外使用的，创建SessionManager对象时指定了一个默认的<code>URLSessionConfiguration</code>和<code>defaultHTTPHeaders</code>。</p>
-<pre><code class="swift">public init(
-    configuration: URLSessionConfiguration = URLSessionConfiguration.default,
-    delegate: SessionDelegate = SessionDelegate(),
-    serverTrustPolicyManager: ServerTrustPolicyManager? = nil) {
-    self.delegate = delegate
-    self.session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
-
-    commonInit(serverTrustPolicyManager: serverTrustPolicyManager)
-}
-private func commonInit(serverTrustPolicyManager: ServerTrustPolicyManager?) {
-    session.serverTrustPolicyManager = serverTrustPolicyManager
-
-    delegate.sessionManager = self
-
-    delegate.sessionDidFinishEventsForBackgroundURLSession = { [weak self] session in
-        guard let strongSelf = self else { return }
-        DispatchQueue.main.async { strongSelf.backgroundCompletionHandler?() }
-    }
-}</code></pre>
-<p>SessionManager的<code>init</code>方法中，初始化了SessionDelegate和URLSession，并并SessionDelegate对象作为URLSession的delegate。</p>
-<h4 id="2-Manager的request方法"><a href="#2-Manager的request方法" class="headerlink" title="2.Manager的request方法"></a>2.Manager的request方法</h4><pre><code class="swift">@discardableResult
-open func request(
-    _ url: URLConvertible,
-    method: HTTPMethod = .get,
-    parameters: Parameters? = nil,
-    encoding: ParameterEncoding = URLEncoding.default,
-    headers: HTTPHeaders? = nil)
-    -&gt; DataRequest {
-    var originalRequest: URLRequest?
-
-    do {
-        originalRequest = try URLRequest(url: url, method: method, headers: headers)
-        /// 对参数进行编码, 其中encoding方法会根据ParameterEncoding的类型不同返回不同的request
-        let encodedURLRequest = try encoding.encode(originalRequest!, with: parameters)
-        return request(encodedURLRequest)
-    } catch {
-        return request(originalRequest, failedWith: error)
-    }
-}</code></pre>
-<p><code>url</code>是一个实现了<code>URLConvertible</code>的对象，<code>method</code>参数表示请求方式（GET、POST、PUT等），<code>parameters</code>就是请求参数，<code>encoding:ParameterEncoding</code>是请求参数的编码方式，在Alamofire的源码里面有URLEncoding、JSONEncoding、PropertyListEncoding，这里默认的是URL 编码。</p>
-<pre><code class="swift">@discardableResult
-open func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
-    var originalRequest: URLRequest?
-    do {
-        originalRequest = try urlRequest.asURLRequest()
-        let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)//return TaskConvertible
-
-        let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
-        let request = DataRequest(session: session, requestTask: .data(originalTask, task))
-        delegate[task] = request
-        if startRequestsImmediately { request.resume() }
-        return request
-    } catch {
-        return request(originalRequest, failedWith: error)
-    }
-}</code></pre>
-<p>上面的<code>request</code>的方法主要是负责通过Session创建DataTask，并用task对象初始化DataRequest类的对象，并将request存入ManagerDelegate类的属性中<code>delegate[task] = request</code>，因为在delegate属性中的代理方法是调用相应的TaskDelegate类的方法。</p>
-<p>然后默认调用<code>request.resume</code>发起网络请求。</p>
-<h3 id="SessionDelegate"><a href="#SessionDelegate" class="headerlink" title="SessionDelegate"></a>SessionDelegate</h3><p>这个类主要是URLSessionDelegate以及相关子协议的代理类，其中给出了各个代理方法的默认实现，并将URLSessionDelegate的相关代理封装成闭包的形式提供给外部。如果闭包变量不为空则会执行闭包块的内容，而不会执行默认的实现。</p>
-<pre><code class="swift">// MARK: URLSessionDelegate Overrides
-open var sessionDidReceiveChallenge: ((URLSession, URLAuthenticationChallenge) -&gt; (URLSession.AuthChallengeDisposition, URLCredential?))?
-open var sessionDidReceiveChallengeWithCompletion: ((URLSession, URLAuthenticationChallenge, @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void) -&gt; Void)?
-
-// MARK: URLSessionDataDelegate Overrides
-open var dataTaskDidReceiveResponse: ((URLSession, URLSessionDataTask, URLResponse) -&gt; URLSession.ResponseDisposition)?
-
-// MARK: URLSessionDownloadDelegate Overrides
-// ....
-
-var retrier: RequestRetrier?
-weak var sessionManager: SessionManager?
-
-var requests: [Int: Request] = [:]
-private let lock = NSLock()
-/// Access the task delegate for the specified task in a thread-safe manner.
-open subscript(task: URLSessionTask) -&gt; Request? {
-    get {
-        lock.lock() ; defer { lock.unlock() }
-        return requests[task.taskIdentifier]
-    }
-    set {
-        lock.lock() ; defer { lock.unlock() }
-        requests[task.taskIdentifier] = newValue
-    }
-}
-extension SessionDelegate: URLSessionDelegate {}
-extension SessionDelegate: URLSessionTaskDelegate {}
-extension SessionDelegate: URLSessionDataDelegate {}
-extension SessionDelegate: URLSessionDownloadDelegate {}
-extension SessionDelegate: URLSessionStreamDelegate {}</code></pre>
-<ul>
-<li><p><code>subscript</code>表示自定义下标，可以通过<code>delegate[task]</code>的形式进行访问；</p>
-</li>
-<li><p>使用到NSLock来保证线程安全以便在访问指定的task时；</p>
-</li>
-<li><p><code>requests</code>负责储存request对象，以便SessionDelegate在URLSessionDelegate相应的代理方法中通过<code>self[task]?.delegate</code>，获取到TaskDelegate对象来调用其方法，例如以下的代理方法中的实现：</p>
-<pre><code class="swift">open func urlSession(
-    _ session: URLSession,
-    task: URLSessionTask,
-    didReceive challenge: URLAuthenticationChallenge,
-    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void)
-{
-    guard taskDidReceiveChallengeWithCompletion == nil else {
-        taskDidReceiveChallengeWithCompletion?(session, task, challenge, completionHandler)
-        return
-    }
-
-    if let taskDidReceiveChallenge = taskDidReceiveChallenge {
-        let result = taskDidReceiveChallenge(session, task, challenge)
-        completionHandler(result.0, result.1)
-    } else if let delegate = self[task]?.delegate {
-        delegate.urlSession(
-            session,
-            task: task,
-            didReceive: challenge,
-            completionHandler: completionHandler
-        )
-    } else {
-        urlSession(session, didReceive: challenge, completionHandler: completionHandler)
-    }
-}</code></pre>
-</li>
-</ul>
-<h3 id="Request相关类"><a href="#Request相关类" class="headerlink" title="Request相关类"></a>Request相关类</h3><h4 id="1-Request初始化"><a href="#1-Request初始化" class="headerlink" title="1.Request初始化"></a>1.Request初始化</h4><p>Request就是负责通过会话创建各种类型的Task，并给出相应的Task Delegate。</p>
-<pre><code class="swift">init(session: URLSession, requestTask: RequestTask, error: Error? = nil) {
-    self.session = session
-
-    switch requestTask {
-    case .data(let originalTask, let task):
-        taskDelegate = DataTaskDelegate(task: task)
-        self.originalTask = originalTask
-    case .download(let originalTask, let task):
-        taskDelegate = DownloadTaskDelegate(task: task)
-        self.originalTask = originalTask
-    case .upload(let originalTask, let task):
-        taskDelegate = UploadTaskDelegate(task: task)
-        self.originalTask = originalTask
-    case .stream(let originalTask, let task):
-        taskDelegate = TaskDelegate(task: task)
-        self.originalTask = originalTask
-    }
-
-    delegate.error = error
-    delegate.queue.addOperation { self.endTime = CFAbsoluteTimeGetCurrent() }
-}</code></pre>
-<p>初始化方法需要两个参数：第一个参数是URLSession对象，改对象时SessionManager单例持有的session，第二个参数同样是Manager中传过来的<code>RequestTask</code>枚举类型，根据RequestTask的类型来设置代理对象DataDelegate，例如如果是data类型则创建的是DataDelegate的实例。</p>
-<h4 id="Request的ProgressHandler闭包"><a href="#Request的ProgressHandler闭包" class="headerlink" title="Request的ProgressHandler闭包"></a>Request的ProgressHandler闭包</h4><p>在使用Request类的对象时，可以链式地调用Request中的方法，最常用的是获取相应任务执行的进度：</p>
-<pre><code class="swift">Alamofire.request(URL(string: &quot;https://httpbin.org/get&quot;)!).downloadProgress { (progress) in
-    /// progress
-
-}.response { (response) in
-    /// response
-}</code></pre>
-<p>其中DataRequest和DownloadRequest定义的是downloadProgress，UploadRequest定义的是uploadProgress闭包，可以通过这个闭包监听下载或上传的进度。</p>
-<h4 id="resume方法"><a href="#resume方法" class="headerlink" title="resume方法"></a>resume方法</h4><pre><code class="swift">open func resume() {
-    guard let task = task else { delegate.queue.isSuspended = false ; return }
-
-    if startTime == nil { startTime = CFAbsoluteTimeGetCurrent() }
-
-    task.resume()
-
-    NotificationCenter.default.post(
-        name: Notification.Name.Task.DidResume,
-        object: self,
-        userInfo: [Notification.Key.Task: task]
-    )
-}
-</code></pre>
-<p><code>resume</code>方法主要是用来记录startTime，然后调用task的resume方法开始执行任务，并发出相应的通知。</p>
-<h3 id="ResponseSerialization"><a href="#ResponseSerialization" class="headerlink" title="ResponseSerialization"></a>ResponseSerialization</h3><p> ResponseSerialization是用来对Response返回的值进行序列化。在文件中定义了两个protocol：<code>DataResponseSerializerProtocol</code>和<code>DownloadResponseSerializerProtocol</code></p>
-<pre><code class="swift">public protocol DataResponseSerializerProtocol {
-    /// The type of serialized object to be created by this `DataResponseSerializerType`.
-    associatedtype SerializedObject
-    var serializeResponse: (URLRequest?, HTTPURLResponse?, Data?, Error?) -&gt; Result&lt;SerializedObject&gt; { get }
-}
-
-public protocol DownloadResponseSerializerProtocol {
-    associatedtype SerializedObject
-    var serializeResponse: (URLRequest?, HTTPURLResponse?, URL?, Error?) -&gt; Result&lt;SerializedObject&gt; { get }
-}</code></pre>
-<p>这两个protocol分别由<code>DataResponseSerializer&lt;Value&gt;</code>和<code>DownloadResponseSerializer&lt;Value&gt;</code>来实现。</p>
-<p>在Alamofire中调用DataRequest的的<code>response</code>或者<code>responseJSON</code>等其他方法，就会在request结束时，添加一个操作<code>OperationQueue</code>来处理服务器的response。</p>
-<pre><code class="swift">@discardableResult
-public func response&lt;T: DataResponseSerializerProtocol&gt;(
-    queue: DispatchQueue? = nil,
-    responseSerializer: T,
-    completionHandler: @escaping (DataResponse&lt;T.SerializedObject&gt;) -&gt; Void)
-    -&gt; Self
-{
-    delegate.queue.addOperation {
-        let result = responseSerializer.serializeResponse(
-            self.request,
-            self.response,
-            self.delegate.data,
-            self.delegate.error
-        )
-
-        var dataResponse = DataResponse&lt;T.SerializedObject&gt;(
-            request: self.request,
-            response: self.response,
-            data: self.delegate.data,
-            result: result,
-            timeline: self.timeline
-        )
-
-        dataResponse.add(self.delegate.metrics)
-
-        (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
-    }
-
-    return self
-}</code></pre>
-<p>总结：</p>
-<p>在Alamofire框架中使用了协议、扩展、闭包以及枚举关联值，在解析网络数据的时，将闭包类型作为函数的参数，通过闭包变量来提供相应的解析方案。</p>
-<ul>
-<li><p>Alamofire对泛型的使用：</p>
-<pre><code>public enum Result&lt;Value&gt; {}
-public func validate&lt;S: Sequence&gt;(contentType acceptableContentTypes: S) -&gt; Self where S.Iterator.Element == String {}
-public struct DataResponse&lt;Value&gt; {}</code></pre></li>
-<li><p>链式调用</p>
-<p>对于Request类。其中很多方法都使用了返回<code>-&gt;Self</code>方法</p>
-<pre><code>/// 鉴权
-open func authenticate(usingCredential credential: URLCredential) -&gt; Self {}
-/// 进度
-open func downloadProgress(queue: DispatchQueue = DispatchQueue.main, closure: @escaping ProgressHandler) -&gt; Self {}
-///响应
-public func response(queue: DispatchQueue? = nil, completionHandler: @escaping (DefaultDataResponse) -&gt; Void) -&gt; Self {}</code></pre></li>
-<li><p>顺序创建Task，并保存所有的requests。</p>
-<pre><code>delegate[task] = request
-open subscript(task: URLSessionTask) -&gt; Request? {
-    get {
-        lock.lock() ; defer { lock.unlock() }
-        return requests[task.taskIdentifier]
-    }
-    set {
-        lock.lock() ; defer { lock.unlock() }
-        requests[task.taskIdentifier] = newValue
-    }
-}</code></pre></li>
-<li><p>在URLSession的回调中根据task把回调分发给对应的TaskDelegate</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>swift</category>
-      </categories>
-      <tags>
-        <tag>liu</tag>
-      </tags>
   </entry>
 </search>

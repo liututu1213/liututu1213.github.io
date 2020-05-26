@@ -502,7 +502,7 @@ public var result: Result&lt;T&gt;? {
 </code></pre>
 <p>在这个pipe的闭包里面，首先会检查Promise对象传递过来的Result&lt;T&gt;对象，如果Result包含的是错误，则提取这个错误并封装到rp.box中，否则Result&lt;T&gt;对象包含的是成功执行的结果。do里面的body(value)就是在执行提供给then的closure。</p>
 <p>重点是在对<code>rv.pipe(to: rp.box.seal)</code>的理解上，<code>rv.pipe</code>的closure参数，会在rv持有的box被密封的时候调用，而调用时，传递给<code>rp.box.seal</code>的参数就是<code>rv</code>被resolve时所封装的结果，即一个<code>Result&lt;U.T&gt;</code>对象，这就是可以一直wrapper串联各种操作的原因。</p>
-<h4 id="Promise框架总结"><a href="#Promise框架总结" class="headerlink" title="Promise框架总结"></a>Promise框架总结</h4><h5 id="一-创建一个Promise-lt-T-gt-的步骤"><a href="#一-创建一个Promise-lt-T-gt-的步骤" class="headerlink" title="一.创建一个Promise&lt;T&gt;的步骤"></a>一.创建一个Promise&lt;T&gt;的步骤</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise.png" srcset="/img/loading.gif" alt="promise"></p>
+<h4 id="Promise框架总结"><a href="#Promise框架总结" class="headerlink" title="Promise框架总结"></a>Promise框架总结</h4><h5 id="一-创建一个Promise-lt-T-gt-的步骤"><a href="#一-创建一个Promise-lt-T-gt-的步骤" class="headerlink" title="一.创建一个Promise&lt;T&gt;的步骤"></a>一.创建一个Promise&lt;T&gt;的步骤</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise.png" alt="promise"></p>
 <ul>
 <li><p>首先调用了Promise的init方法</p>
 <pre><code class="swift">public init(resolver body: (Resolver&lt;T&gt;) throws -&gt; Void) {
@@ -544,7 +544,7 @@ public var result: Result&lt;T&gt;? {
 }
 </code></pre></li>
 </ul>
-<h5 id="二-Promise的Wrapper操作"><a href="#二-Promise的Wrapper操作" class="headerlink" title="二.Promise的Wrapper操作"></a>二.Promise的Wrapper操作</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise-wrapper.png" srcset="/img/loading.gif" alt="image-20200121211615087"></p>
+<h5 id="二-Promise的Wrapper操作"><a href="#二-Promise的Wrapper操作" class="headerlink" title="二.Promise的Wrapper操作"></a>二.Promise的Wrapper操作</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise-wrapper.png" alt="image-20200121211615087"></p>
 <p>上面的图重点在于<code>then</code>方法实现里面</p>
 <ul>
 <li><p>首先直接创建了它的返回值，一个<code>Promise&lt;U.T&gt;</code>对象，这个<code>Promise</code>里面包含的是一个等待密封的空盒子</p>

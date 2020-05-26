@@ -253,7 +253,7 @@
     ├── MoyaProvider+Rx.swift
     ├── Observable+Response.swift
     └── Single+Response.swift</code></pre><h3 id="Moya介绍"><a href="#Moya介绍" class="headerlink" title="Moya介绍"></a>Moya介绍</h3><p>Moya是基于Alamofire的更高一层的网络请求封装抽象层，在Moya中使用Enum来管理API，每一个网络请求接口都是枚举的一种case，下面是Moya的大概流程图：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" alt=""></p>
 <h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p>request部分主要是包含请求相关的代码，定义了TargetType协议，通过TargetType来定义一个请求。</p>
 <ul>
 <li>TargetType:请求相关信息</li>
@@ -327,7 +327,7 @@
 <li>plugins：插件，能够在不修改源码的情况下，来扩展其他功能，而且能够保证Provider的职责单一，满足开闭原则。</li>
 <li>trackInflights：是否要追踪请求，默认是false。</li>
 </ul>
-<h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" srcset="/img/loading.gif" alt=""></p>
+<h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" alt=""></p>
 <p>在初始化Provider实例对象之后，对外暴露<code>request</code>方法以便发起请求：</p>
 <pre><code class="swift">@discardableResult
 open func request(_ target: Target,
@@ -340,7 +340,7 @@ open func request(_ target: Target,
 }</code></pre>
 <p>在swift里面，如果没有接收某方法的返回值，Xcode会报出警告，使用<code>@discardableResult</code>关键字在不想接收方法返回值的时候，用来消除Xcode的警告。</p>
 <p>在MoyaProvider+Internal.swift文件中主要定义了十个方法,主要做的事如下图：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" alt=""></p>
 <h3 id="Moya-Alamofire"><a href="#Moya-Alamofire" class="headerlink" title="Moya+Alamofire"></a>Moya+Alamofire</h3><p>Moya+Alamofire.swift文件对Alamofire进行了简单的封装，这一层包装隔离了Alamofire的代码，如果需要更换请求框架的话，可以进行简单的修改来替换。</p>
 <ul>
 <li><p>使用<strong>typealias</strong>对Alamofire相关的的API进行封装：Manager、Request、Method等</p>
@@ -502,7 +502,7 @@ public func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRe
 ├── SessionManager.swift
 ├── TaskDelegate.swift
 ├── Timeline.swift
-└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" srcset="/img/loading.gif" alt=""></p>
+└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" alt=""></p>
 <h3 id="Alamofire-swift"><a href="#Alamofire-swift" class="headerlink" title="Alamofire.swift"></a>Alamofire.swift</h3><p>该文件主要是给用户提供一些便利的调用方法<code>request</code>、<code>download</code>、<code>upload</code>、<code>stream</code>，以及定义了两个protocol接口，提供将其他类型转换成URL和URLRequest。</p>
 <pre><code class="swift">@discardableResult
 public func request(

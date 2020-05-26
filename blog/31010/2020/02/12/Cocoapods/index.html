@@ -624,7 +624,7 @@ rescue Molinillo::ResolverError =&gt; e
 end</code></pre>
 <p>这里的<code>Molinillo::Resolver</code>就是用于解决依赖关系的类。 <code>Milinillo</code>算法的核心是回溯(Backtracking)、向前检查(forward check)，整个过程会追踪栈中的两个状态（依赖和可能性）。</p>
 <p>Resolver的大概过程如下：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" alt=""></p>
 <p>下面是调试输出的日志：</p>
 <p><code>podfile_dependency_cache.podfile_dependencies</code>:</p>
 <pre><code>&lt;Pod::Dependency name=AFNetworking requirements== 1.3.3 source=nil external_source=nil&gt;

@@ -243,7 +243,7 @@
     ├── MoyaProvider+Rx.swift
     ├── Observable+Response.swift
     └── Single+Response.swift</code></pre><h3 id="Moya介绍"><a href="#Moya介绍" class="headerlink" title="Moya介绍"></a>Moya介绍</h3><p>Moya是基于Alamofire的更高一层的网络请求封装抽象层，在Moya中使用Enum来管理API，每一个网络请求接口都是枚举的一种case，下面是Moya的大概流程图：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/moya.png" alt=""></p>
 <h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p>request部分主要是包含请求相关的代码，定义了TargetType协议，通过TargetType来定义一个请求。</p>
 <ul>
 <li>TargetType:请求相关信息</li>
@@ -317,7 +317,7 @@
 <li>plugins：插件，能够在不修改源码的情况下，来扩展其他功能，而且能够保证Provider的职责单一，满足开闭原则。</li>
 <li>trackInflights：是否要追踪请求，默认是false。</li>
 </ul>
-<h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" srcset="/img/loading.gif" alt=""></p>
+<h4 id="Provider-发起请求实现"><a href="#Provider-发起请求实现" class="headerlink" title="Provider 发起请求实现"></a>Provider 发起请求实现</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Provider.png" alt=""></p>
 <p>在初始化Provider实例对象之后，对外暴露<code>request</code>方法以便发起请求：</p>
 <pre><code class="swift">@discardableResult
 open func request(_ target: Target,
@@ -330,7 +330,7 @@ open func request(_ target: Target,
 }</code></pre>
 <p>在swift里面，如果没有接收某方法的返回值，Xcode会报出警告，使用<code>@discardableResult</code>关键字在不想接收方法返回值的时候，用来消除Xcode的警告。</p>
 <p>在MoyaProvider+Internal.swift文件中主要定义了十个方法,主要做的事如下图：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/provider-rquest.png" alt=""></p>
 <h3 id="Moya-Alamofire"><a href="#Moya-Alamofire" class="headerlink" title="Moya+Alamofire"></a>Moya+Alamofire</h3><p>Moya+Alamofire.swift文件对Alamofire进行了简单的封装，这一层包装隔离了Alamofire的代码，如果需要更换请求框架的话，可以进行简单的修改来替换。</p>
 <ul>
 <li><p>使用<strong>typealias</strong>对Alamofire相关的的API进行封装：Manager、Request、Method等</p>
@@ -492,7 +492,7 @@ public func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRe
 ├── SessionManager.swift
 ├── TaskDelegate.swift
 ├── Timeline.swift
-└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" srcset="/img/loading.gif" alt=""></p>
+└── Validation.swift</code></pre><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/Alamofire.png" alt=""></p>
 <h3 id="Alamofire-swift"><a href="#Alamofire-swift" class="headerlink" title="Alamofire.swift"></a>Alamofire.swift</h3><p>该文件主要是给用户提供一些便利的调用方法<code>request</code>、<code>download</code>、<code>upload</code>、<code>stream</code>，以及定义了两个protocol接口，提供将其他类型转换成URL和URLRequest。</p>
 <pre><code class="swift">@discardableResult
 public func request(
@@ -1257,7 +1257,7 @@ rescue Molinillo::ResolverError =&gt; e
 end</code></pre>
 <p>这里的<code>Molinillo::Resolver</code>就是用于解决依赖关系的类。 <code>Milinillo</code>算法的核心是回溯(Backtracking)、向前检查(forward check)，整个过程会追踪栈中的两个状态（依赖和可能性）。</p>
 <p>Resolver的大概过程如下：</p>
-<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/CocoaPods/Resolver.png" alt=""></p>
 <p>下面是调试输出的日志：</p>
 <p><code>podfile_dependency_cache.podfile_dependencies</code>:</p>
 <pre><code>&lt;Pod::Dependency name=AFNetworking requirements== 1.3.3 source=nil external_source=nil&gt;
@@ -2163,9 +2163,9 @@ this is Sample</code></pre><p>前面提到的<code>Kernel</code>模块包含所�
           <h4 id="1-UTC、GMT和时间戳介绍"><a href="#1-UTC、GMT和时间戳介绍" class="headerlink" title="1. UTC、GMT和时间戳介绍"></a>1. UTC、GMT和时间戳介绍</h4><h5 id="GMT"><a href="#GMT" class="headerlink" title="GMT"></a>GMT</h5><p>格林尼治标准时间（Greenwich Mean Time）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，即本初子午线时间。</p>
 <p>由于地球在椭圆轨道里的运动速度不均匀，这个时刻可能与实际的太阳时有误差，所以有了UTC时间出现。</p>
 <h5 id="UTC"><a href="#UTC" class="headerlink" title="UTC"></a>UTC</h5><p>协调世界时间（又称世界标准时间），与GMT一样都是本初子午时间，只不过UTC是经过协调后的世界时间，比GMT更加准确。全球一共有24个时区。</p>
-<p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png" srcset="/img/loading.gif" alt="timezone"></p>
+<p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/timezone.png" alt="timezone"></p>
 <p>而北京时间位于东八区，与格林尼治时间相差八小时，也就是我们经常在开发中遇到8小时时差的问题。</p>
-<h4 id="2-swift中Date与Calender关系"><a href="#2-swift中Date与Calender关系" class="headerlink" title="2. swift中Date与Calender关系"></a>2. swift中Date与Calender关系</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png" srcset="/img/loading.gif" alt=""></p>
+<h4 id="2-swift中Date与Calender关系"><a href="#2-swift中Date与Calender关系" class="headerlink" title="2. swift中Date与Calender关系"></a>2. swift中Date与Calender关系</h4><p><img src="https://raw.githubusercontent.com/liututu1213/imageForSource/master/2020/date-calender.png" alt=""></p>
 <p>首先Date可以通过DateFormatter进行互转，Date通过格式化可以转化成自定义的样式，反过来同样成立。在iOS中，没办法像其他语言一样直接time.year这样的api获取年份等信息，想要获取Date的年月日信息需要使用Calende+DateCompontents来完成，反之，也可以通过DateComponents对各个组件进行组装，通过Calender对象变成date。</p>
 <p>Calender封装了有关计算时间的系统的信息，其中定义了年的开始、长度和分割，提供了关于日历的信息和日历计算的支持。</p>
 <h4 id="3-Date"><a href="#3-Date" class="headerlink" title="3. Date"></a>3. Date</h4><p>iOS中的Date是用来表示公历的GMT时间，Date是没有存储时区等信息，所以不管你在哪个时区打印的Date()都是一样的，这一点非常重要。</p>
@@ -2744,7 +2744,7 @@ public var result: Result&lt;T&gt;? {
 </code></pre>
 <p>在这个pipe的闭包里面，首先会检查Promise对象传递过来的Result&lt;T&gt;对象，如果Result包含的是错误，则提取这个错误并封装到rp.box中，否则Result&lt;T&gt;对象包含的是成功执行的结果。do里面的body(value)就是在执行提供给then的closure。</p>
 <p>重点是在对<code>rv.pipe(to: rp.box.seal)</code>的理解上，<code>rv.pipe</code>的closure参数，会在rv持有的box被密封的时候调用，而调用时，传递给<code>rp.box.seal</code>的参数就是<code>rv</code>被resolve时所封装的结果，即一个<code>Result&lt;U.T&gt;</code>对象，这就是可以一直wrapper串联各种操作的原因。</p>
-<h4 id="Promise框架总结"><a href="#Promise框架总结" class="headerlink" title="Promise框架总结"></a>Promise框架总结</h4><h5 id="一-创建一个Promise-lt-T-gt-的步骤"><a href="#一-创建一个Promise-lt-T-gt-的步骤" class="headerlink" title="一.创建一个Promise&lt;T&gt;的步骤"></a>一.创建一个Promise&lt;T&gt;的步骤</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise.png" srcset="/img/loading.gif" alt="promise"></p>
+<h4 id="Promise框架总结"><a href="#Promise框架总结" class="headerlink" title="Promise框架总结"></a>Promise框架总结</h4><h5 id="一-创建一个Promise-lt-T-gt-的步骤"><a href="#一-创建一个Promise-lt-T-gt-的步骤" class="headerlink" title="一.创建一个Promise&lt;T&gt;的步骤"></a>一.创建一个Promise&lt;T&gt;的步骤</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise.png" alt="promise"></p>
 <ul>
 <li><p>首先调用了Promise的init方法</p>
 <pre><code class="swift">public init(resolver body: (Resolver&lt;T&gt;) throws -&gt; Void) {
@@ -2786,7 +2786,7 @@ public var result: Result&lt;T&gt;? {
 }
 </code></pre></li>
 </ul>
-<h5 id="二-Promise的Wrapper操作"><a href="#二-Promise的Wrapper操作" class="headerlink" title="二.Promise的Wrapper操作"></a>二.Promise的Wrapper操作</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise-wrapper.png" srcset="/img/loading.gif" alt="image-20200121211615087"></p>
+<h5 id="二-Promise的Wrapper操作"><a href="#二-Promise的Wrapper操作" class="headerlink" title="二.Promise的Wrapper操作"></a>二.Promise的Wrapper操作</h5><p><img src="https://raw.githubusercontent.com/CathyLy/imageForSource/master/2020/promise-wrapper.png" alt="image-20200121211615087"></p>
 <p>上面的图重点在于<code>then</code>方法实现里面</p>
 <ul>
 <li><p>首先直接创建了它的返回值，一个<code>Promise&lt;U.T&gt;</code>对象，这个<code>Promise</code>里面包含的是一个等待密封的空盒子</p>
